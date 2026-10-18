@@ -165,6 +165,12 @@ footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top
 
   function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 
+  // 富文本：把 AI 输出的 **加粗** 统一转为 <b>，只允许 b 标签，其余一律转义
+  function rich(s){
+    s = String(s==null?'':s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+    return s.split(/(<\/?b>)/g).map(function(part, i){ return i % 2 === 1 ? part : esc(part); }).join('');
+  }
+
   function showLoading(){
     newsEl.innerHTML = '<div class="state-card">正在加载信息差…</div>';
     deepEl.innerHTML = ''; takeawayWrap.innerHTML = '';
@@ -182,9 +188,9 @@ footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top
     var items = d.items || [];
     newsEl.innerHTML = items.map(function(it, i){
       return '<article class="item"><div class="num">' + (i+1) + '</div>' +
-        '<div><p class="fact">' + it.fact + '</p>' +
+        '<div><p class="fact">' + rich(it.fact) + '</p>' +
         '<p class="src">来源：' + esc(it.source || '') + (it.link ? ' · <a href="' + esc(it.link) + '" target="_blank" rel="noopener">原文</a>' : '') + '</p></div>' +
-        '<div class="signal">' + esc(it.signal || '').replace(/，/g, '<br>') + '</div></article>';
+        '<div class="signal">' + rich(it.signal).replace(/，/g, '<br>') + '</div></article>';
     }).join('');
     var dd = d.deepdive;
     if (!dd) {
@@ -197,19 +203,19 @@ footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top
     }
     var flow = (dd.flow && dd.flow.length) ? '<div class="flow">' + dd.flow.map(function(s, i){
       return (i>0 ? '<div class="arrow">→</div>' : '') +
-        '<div class="step">' + esc(s.label) + (s.sub ? '<small>' + esc(s.sub) + '</small>' : '') + '</div>';
+        '<div class="step">' + rich(s.label) + (s.sub ? '<small>' + rich(s.sub) + '</small>' : '') + '</div>';
     }).join('') + '</div>' : '';
     var points = (dd.points || []).map(function(p){
-      return '<div class="point"><h3>' + esc(p.heading) + '</h3><p>' + p.body + '</p></div>';
+      return '<div class="point"><h3>' + rich(p.heading) + '</h3><p>' + rich(p.body) + '</p></div>';
     }).join('');
-    var cmp = dd.compare ? '<div class="vs"><div><b>' + esc(dd.compare.a.title) + '</b>' +
-      dd.compare.a.lines.map(esc).join('<br>') + '</div><div><b>' + esc(dd.compare.b.title) + '</b>' +
-      dd.compare.b.lines.map(esc).join('<br>') + '</div></div>' : '';
-    deepEl.innerHTML = '<div class="deep"><div class="deep-tag">本期干货</div><h2>' + esc(dd.title || '') + '</h2>' +
-      (dd.summary ? '<div class="summary"><b>一句话理解</b> · ' + dd.summary + '</div>' : '') +
+    var cmp = dd.compare ? '<div class="vs"><div><b>' + rich(dd.compare.a.title) + '</b>' +
+      dd.compare.a.lines.map(rich).join('<br>') + '</div><div><b>' + rich(dd.compare.b.title) + '</b>' +
+      dd.compare.b.lines.map(rich).join('<br>') + '</div></div>' : '';
+    deepEl.innerHTML = '<div class="deep"><div class="deep-tag">本期干货</div><h2>' + rich(dd.title) + '</h2>' +
+      (dd.summary ? '<div class="summary"><b>一句话理解</b> · ' + rich(dd.summary) + '</div>' : '') +
       flow + points + cmp + '</div>';
     takeawayWrap.innerHTML = dd.takeaway ?
-      '<div class="takeaway"><b>收藏要点</b><br>' + dd.takeaway + '</div>' : '';
+      '<div class="takeaway"><b>收藏要点</b><br>' + rich(dd.takeaway) + '</div>' : '';
     buildCalendar();
   }
 
