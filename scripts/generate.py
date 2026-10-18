@@ -116,13 +116,17 @@ def gather_news():
         if i['link']:
             seen_l.add(i['link'])
         filtered.append(i)
-    # 单源上限 12 条
-    per_src, out = {}, []
+    # 单源上限 12 条；中英文均衡：英文最多 20 条
+    per_src, out, en_count = {}, [], 0
     for i in filtered:
+        if i.get('lang') == 'en' and en_count >= 20:
+            continue
         c = per_src.get(i['source'], 0)
         if c >= 12:
             continue
         per_src[i['source']] = c + 1
+        if i.get('lang') == 'en':
+            en_count += 1
         out.append(i)
         if len(out) >= 50:
             break
@@ -181,21 +185,35 @@ def extract_json(text):
 
 # ---------- 提示词（与 Worker 版同源） ----------
 
+SELECT_PROMPT = """你是「每日信息差」主编，面向关注全球科技产业与投资机会的中文读者。
+从下面 50 条新闻候选中，选出最有价值的 20 条。
+"有价值"的标准（按优先级）：
+1. 硬科技产业突破：芯片流片/量产、重大技术发布、科研突破（如量子计算、新材料）
+2. 重磅投融资并购：大额融资、巨头收购、IPO
+3. 产业链重大动态：产能扩张、关键政策、头部厂商战略动向
+4. 国际科技巨头的重大动作（英伟达、谷歌、台积电、三星、OpenAI 等）
+避开：消费电子新品、数码配件、纯观点评论、广告软文、重复话题。
+硬要求：20 条中 6-10 条为国际资讯（[英文]标记的），其余为国内资讯；同一主题/事件最多 2 条。
+只输出以下结构的合法 JSON，不要输出任何解释文字：
+{"selected": [3, 7, 12, 18, 25, 30, 33, 41, 2, 9, 14, 20, 27, 35, 44, 5, 11, 22, 38, 47]}
+（数字为候选编号，必须正好 20 个，不重复，都在 1-50 范围内）"""
+
 ITEMS_PROMPT = """你是「每日信息差」主编，面向关注全球科技产业与投资机会的中文读者。
-从下面的新闻候选中选出最重要的 20 条（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先硬科技产业突破、投融资并购、产业链动态；避开消费电子新品、数码配件、纯观点、广告和重复话题；英文新闻翻译成中文）。必须输出满 20 条，其中至少 6 条为国际资讯（欧美日韩企业/机构，如英伟达、谷歌、台积电、三星、OpenAI 等）。
+把下面 20 条已选出的新闻改写成信息差条目（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；英文新闻翻译成中文）。必须输出满 20 条，顺序与输入一致。
 严格遵守：
 - 同一主题/同一事件最多选 2 条
-- fact：一句话讲清发生了什么；关键词加粗只包裹 2-4 个核心词（关键数据、技术名、公司名），禁止整句加粗，禁止加粗超过 6 个词；用 <b></b> 包裹
+- fact：50-80 字讲清发生了什么；必须以公司/机构名开头或显著位置点出主体（如"<b>华为</b>宣布…"、"<b>英伟达</b>洽谈收购…"）；包含关键数据（百分比、金额、技术参数）；约一半条目在末尾加"——"点睛句（一句话点出行业含义，如"——芯片巨头从「卖算力」开始往「摆模型」上游走"）
+- 关键词加粗只包裹 2-4 个核心词（关键数据、技术名、公司名），禁止整句加粗，禁止加粗超过 6 个词；用 <b></b> 包裹
 - 外文专有名词必须准确翻译，不确定的保留英文原名，绝不编造中文名
 - signal：4-8 字、该新闻独有的具体技术趋势标签，如"容错量子计算""新型存储流片"；禁止宽泛品类词（如"新能源汽车""人工智能""半导体""通信""投资""AI推动"），禁止与事实矛盾
 - importance：重要程度，"high"（重大突破/重磅政策/大幅市场影响）或 "normal"
 - source：该新闻的媒体名；link：原文链接
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"items":[{"fact":"...","signal":"...","importance":"high","source":"...","link":"..."}]}
-格式示例（严格照此格式，每条 fact 必须带 <b> 关键词）：
+格式示例（严格照此风格：公司名打头、50-80 字、关键数据、约一半带"——"点睛句）：
 {"items":[
-{"fact":"<b>谷歌</b>发布新一代<b>量子芯片 Willow</b>，<b>错误率降低约 40 倍</b>","signal":"容错量子计算","importance":"high","source":"科创板日报","link":"https://example.com/1"},
-{"fact":"<b>铭芯启睿</b>首款<b>1Gb RRAM</b>芯片「<b>泰山一号</b>」完成流片，采用<b>28nm</b>工艺","signal":"新型存储流片","importance":"high","source":"界面新闻","link":"https://example.com/2"}
+{"fact":"<b>华为</b>宣布<b>麒麟 9050</b>系列芯片量产，麒麟 9050 Pro 的 <b>CPU 多核性能提升 23%</b>、<b>GPU 提升 40%</b>，首次落地「逻辑折叠」技术与垂直互通通道 TSV","signal":"国产SoC量产","importance":"high","source":"上海证券报","link":"https://example.com/1"},
+{"fact":"<b>英伟达</b>洽谈收购开源大模型公司 <b>Reflection AI</b>，后者被业内称为「美国版 DeepSeek」——芯片巨头从「卖算力」，开始往「摆模型」上游走","signal":"芯片买模型","importance":"high","source":"财联社","link":"https://example.com/2"}
 ]}
 注意：所有内容必须基于候选新闻的真实信息，绝不编造事实、数据和日期；不确定的不写。字符串值内部不要使用英文双引号，如需引用请用中文引号“”。"""
 
@@ -219,6 +237,9 @@ def items_valid(items):
         if not it or not it.get('fact') or not it.get('signal'):
             return 'empty'
         f = it['fact']
+        plain_len = len(re.sub(r'</?b>', '', f).replace('**', ''))
+        if plain_len < 30:
+            return 'tooshort'
         if '<b>' not in f and not re.search(r'\*\*[^*]+\*\*', f):
             return 'nobold'
         segs = [re.sub(r'</?b>', '', x) for x in re.findall(r'<b>([\s\S]*?)</b>', f)]
@@ -253,8 +274,30 @@ def main():
         + (f" —— {n['desc']}" if n['desc'] else '')
         for i, n in enumerate(news))
 
-    print('生成 20 条...', flush=True)
-    r = gemini(ITEMS_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + cand_text, max_tokens=5000)
+    # 第一步：筛选最有价值的 20 条（只做判断）
+    print('筛选 20 条...', flush=True)
+    rs = gemini(SELECT_PROMPT + '\n\n新闻候选：\n' + cand_text, max_tokens=1000)
+    if not rs['ok']:
+        print('筛选失败:', rs['reason'], file=sys.stderr)
+        sys.exit(1)
+    sel = rs['data'].get('selected', [])
+    sel = [x for x in sel if isinstance(x, int) and 1 <= x <= len(news)]
+    sel = list(dict.fromkeys(sel))[:20]
+    if len(sel) < 18:
+        print(f'筛选只选出 {len(sel)} 条，数量不足', file=sys.stderr)
+        sys.exit(1)
+    picked = [news[i - 1] for i in sel]
+    n_en = sum(1 for n in picked if n.get('lang') == 'en')
+    print(f'选出 {len(picked)} 条（国际 {n_en} 条）', flush=True)
+    pick_text = '\n'.join(
+        f"{i+1}. [{n['source']}]" + ('[英文，需译成中文]' if n.get('lang') == 'en' else '')
+        + f" {n['title']}" + (f" <{n['link']}>" if n['link'] else '')
+        + (f" —— {n['desc']}" if n['desc'] else '')
+        for i, n in enumerate(picked))
+
+    # 第二步：精写 20 条（只做写作）
+    print('精写 20 条...', flush=True)
+    r = gemini(ITEMS_PROMPT + '\n\n已选出的 20 条新闻：\n' + pick_text, max_tokens=5000)
     if not r['ok']:
         print('20条生成失败:', r['reason'], file=sys.stderr)
         sys.exit(1)
@@ -262,7 +305,7 @@ def main():
     err = items_valid(items)
     if err:
         print(f'格式校验未通过（{err}），重试一次...', flush=True)
-        r2 = gemini(ITEMS_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + cand_text
+        r2 = gemini(ITEMS_PROMPT + '\n\n已选出的 20 条新闻：\n' + pick_text
                     + f'\n\n注意：上次输出格式不合格（{err}），请严格遵守格式要求重新输出。',
                     max_tokens=5000)
         if r2['ok'] and not items_valid(r2['data'].get('items', [])):
