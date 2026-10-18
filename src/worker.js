@@ -151,6 +151,11 @@ export default {
       return new Response(s || '{}', { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
     }
 
+    // 诊断接口：只返回各绑定是否存在，不泄露任何密钥内容
+    if (url.pathname === '/api/debug') {
+      return json({ has_admin_key: !!env.ADMIN_KEY, kv_ok: !!env.DIGEST_KV, ai_ok: !!env.AI });
+    }
+
     // 手动触发一次生成（部署后首次用；需要 ADMIN_KEY）
     // 用法：https://你的域名/api/refresh?key=你的密钥
     if (url.pathname === '/api/refresh') {
