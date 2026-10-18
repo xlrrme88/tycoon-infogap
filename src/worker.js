@@ -84,12 +84,17 @@ async function generateDigest(env) {
   const list = news
     .map((n, i) => `${i + 1}. [${n.source}] ${n.title}${n.link ? ' <' + n.link + '>' : ''}${n.desc ? ' —— ' + n.desc : ''}`)
     .join('\n');
-  const res = await env.AI.run(AI_MODEL, {
-    messages: [
-      { role: 'system', content: '你只输出合法的 JSON，不要输出任何解释文字。' },
-      { role: 'user', content: SYSTEM_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list },
-    ],
-  });
+  let res;
+  try {
+    res = await env.AI.run(AI_MODEL, {
+      messages: [
+        { role: 'system', content: '你只输出合法的 JSON，不要输出任何解释文字。' },
+        { role: 'user', content: SYSTEM_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list },
+      ],
+    });
+  } catch (e) {
+    return { ok: false, reason: 'ai_call_failed: ' + String((e && e.message) || e).slice(0, 200) };
+  }
   const text = typeof res.response === 'string' ? res.response : JSON.stringify(res);
   const m = text.match(/\{[\s\S]*\}/);
   if (!m) return { ok: false, reason: 'ai_bad_json' };
@@ -161,8 +166,12 @@ export default {
     if (url.pathname === '/api/refresh') {
       const key = url.searchParams.get('key');
       if (!env.ADMIN_KEY || key !== env.ADMIN_KEY) return json({ error: 'forbidden' }, 403);
-      const r = await runDaily(env);
-      return json(r);
+      try {
+        const r = await runDaily(env);
+        return json(r);
+      } catch (e) {
+        return json({ ok: false, reason: 'exception: ' + String((e && e.message) || e).slice(0, 200) });
+      }
     }
 
     return env.ASSETS.fetch(request);
