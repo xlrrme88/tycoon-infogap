@@ -26,7 +26,7 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
   background:linear-gradient(160deg,var(--bg),var(--bg2));
   min-height:100vh; padding:40px 20px 60px; transition:background .3s;
-  color:var(--ink);
+  color:var(--ink); zoom:1.1;
 }
 .deco{position:fixed;border-radius:50%;background:var(--red);pointer-events:none;z-index:0;}
 .deco.d1{width:280px;height:280px;top:-90px;right:-90px;opacity:.08;}
@@ -95,8 +95,8 @@ body.dark h1{text-shadow:3px 3px 0 var(--reddeep),6px 6px 0 var(--shadow);}
 footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-top:28px;letter-spacing:3px;line-height:2;}
 .to-top{position:absolute;right:-58px;transform:translateY(-50%);z-index:50;width:46px;height:46px;border-radius:12px;background:var(--reddeep);color:var(--onred);border:none;font-size:20px;font-weight:900;cursor:pointer;box-shadow:3px 3px 0 var(--shadow);}
 .to-top:hover{transform:translateY(-50%) scale(1.08);}
-@media(max-width:1120px){.to-top{right:10px;}}@media(max-width:640px){.to-top{right:8px;width:42px;height:42px;}}
-@media(max-width:640px){
+@media(max-width:1018px){.to-top{right:10px;}}@media(max-width:582px){.to-top{right:8px;width:42px;height:42px;}}
+@media(max-width:582px){
   h1{font-size:34px;letter-spacing:8px;}
   .colhead{display:none;}
   .item{grid-template-columns:1fr;}
