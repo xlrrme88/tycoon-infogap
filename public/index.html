@@ -6,18 +6,20 @@
 <title>富人信息差 · TYCOON INFOGAP</title>
 <style>
 :root{
-  --bg:#b8322a; --bg2:#9c2a22;
-  --paper:#fdf3e0; --paper2:#f8ecd2;
-  --ink:#4a2c20; --red:#b8322a; --reddeep:#8f241e;
-  --cream:#fdf3e0; --muted:#9a8468;
-  --shadow:rgba(0,0,0,.20); --cardline:rgba(143,36,30,.28);
+  --bg:#f5f0e1; --bg2:#e9dfc6;
+  --paper:#ffffff; --paper2:#f6f0e0;
+  --ink:#1a1a1a; --red:#b8322a; --reddeep:#8f241e;
+  --onred:#fdf3e0; --title:#1a1a1a; --toptext:#3d3d3d;
+  --muted:#9a8468; --keyword:#d6941e;
+  --shadow:rgba(60,40,20,.14); --cardline:rgba(143,36,30,.25);
 }
 body.dark{
   --bg:#1a1a1e; --bg2:#232329;
-  --paper:#f7ecd4; --paper2:#f1e2c0;
-  --ink:#3d2c1f; --red:#c0392b; --reddeep:#a93226;
-  --cream:#f7ecd4; --muted:#9a8468;
-  --shadow:rgba(0,0,0,.55); --cardline:rgba(192,57,43,.30);
+  --paper:#26262c; --paper2:#30303a;
+  --ink:#f0e8d6; --red:#c0392b; --reddeep:#a93226;
+  --onred:#fdf3e0; --title:#f7ecd4; --toptext:#f7ecd4;
+  --muted:#9a8a6e; --keyword:#e8b23a;
+  --shadow:rgba(0,0,0,.55); --cardline:rgba(192,57,43,.35);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{
@@ -26,42 +28,51 @@ body{
   min-height:100vh; padding:40px 20px 60px; transition:background .3s;
   color:var(--ink);
 }
-.deco{position:fixed;border-radius:50%;background:var(--cream);pointer-events:none;z-index:0;}
+.deco{position:fixed;border-radius:50%;background:var(--red);pointer-events:none;z-index:0;}
 .deco.d1{width:280px;height:280px;top:-90px;right:-90px;opacity:.08;}
 .deco.d2{width:340px;height:340px;bottom:-120px;left:-120px;opacity:.05;}
 .wrap{max-width:980px;margin:0 auto;position:relative;z-index:1;}
 .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px;}
-.btn{font-size:13px;font-weight:700;color:var(--reddeep);background:var(--cream);border:none;border-radius:999px;padding:8px 20px;cursor:pointer;box-shadow:3px 3px 0 var(--shadow);display:inline-flex;align-items:center;gap:6px;}
+.date-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.date-tip{font-size:11px;color:var(--muted);letter-spacing:1px;opacity:.8;}
+.chev{font-size:10px;opacity:.65;}
+.btn{font-size:13px;font-weight:700;color:var(--reddeep);background:var(--paper);border:none;border-radius:999px;padding:8px 20px;cursor:pointer;box-shadow:3px 3px 0 var(--shadow);display:inline-flex;align-items:center;gap:6px;}
 .btn svg{width:14px;height:14px;}
-.cal-panel{background:var(--paper);border-radius:8px;box-shadow:6px 6px 0 var(--shadow);padding:18px;margin:0 6px 16px;}
-.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-.cal-head span{font-size:14px;font-weight:800;color:var(--ink);}
-.cal-head .btn{padding:6px 14px;font-size:12px;}
+#calBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:55;}
+.cal-panel{position:fixed;top:76px;left:50%;transform:translateX(-50%);width:min(600px,calc(100vw - 32px));max-height:calc(100vh - 110px);overflow:auto;z-index:60;background:var(--paper);border-radius:8px;box-shadow:6px 6px 0 var(--shadow);padding:18px;}
+.cal-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+#calTitle{flex:1;text-align:center;font-size:15px;font-weight:800;color:var(--ink);letter-spacing:2px;}
+.cal-head .btn{padding:6px 14px;font-size:12px;white-space:nowrap;}
+.cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:6px;}
+.cal-week span{text-align:center;font-size:12px;font-weight:700;color:var(--muted);}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
-.cal-day{border:1px solid var(--cardline);border-radius:8px;background:var(--paper2);color:var(--muted);font-size:12px;padding:10px 4px;text-align:center;cursor:default;line-height:1.4;}
-.cal-day small{display:block;font-size:10px;}
+.cal-day{border:1px solid transparent;border-radius:8px;color:var(--muted);font-size:13px;min-height:46px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:default;}
+.cal-day .dot{width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:4px;}
 .cal-day.avail{cursor:pointer;color:var(--ink);font-weight:700;}
-.cal-day.avail:hover{border-color:var(--red);color:var(--red);}
-.cal-day.sel{background:var(--red);border-color:var(--red);color:var(--cream);}
+.cal-day.avail:hover{border-color:var(--red);}
+.cal-day.today{border-color:var(--red);}
+.cal-day.sel{background:var(--red);border-color:var(--red);color:var(--onred);}
+.cal-day.sel .dot{background:var(--onred);}
 .cal-note{font-size:11px;color:var(--muted);margin-top:10px;}
 header{text-align:center;padding:16px 0 6px;}
-.seal{display:inline-block;background:var(--red);color:var(--cream);font-size:13px;font-weight:800;border-radius:4px;padding:5px 12px;letter-spacing:4px;margin-bottom:16px;box-shadow:3px 3px 0 var(--shadow);}
-h1{font-size:56px;font-weight:900;color:var(--cream);letter-spacing:14px;text-shadow:3px 3px 0 var(--reddeep),6px 6px 0 var(--shadow);margin-left:14px;}
-.en-sub{margin-top:10px;font-size:12px;letter-spacing:5px;color:var(--cream);opacity:.85;font-weight:700;}
-.date{margin-top:12px;font-size:16px;color:var(--cream);letter-spacing:6px;font-weight:700;opacity:.95;}
-.cutline{border-top:2px dashed var(--cream);opacity:.6;margin:28px 12px;position:relative;}
-.cutline span{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--red);border-radius:4px;padding:2px 16px;font-size:13px;color:var(--cream);letter-spacing:6px;font-weight:700;white-space:nowrap;}
-.colhead{display:grid;grid-template-columns:70px 1fr 150px;gap:16px;padding:0 22px;margin-bottom:10px;font-size:13px;font-weight:800;color:var(--cream);opacity:.9;letter-spacing:3px;}
+.seal{display:inline-block;background:var(--red);color:var(--onred);font-size:13px;font-weight:800;border-radius:4px;padding:5px 12px;letter-spacing:4px;margin-bottom:16px;box-shadow:3px 3px 0 var(--shadow);}
+h1{font-size:56px;font-weight:900;color:var(--title);letter-spacing:14px;text-shadow:2px 2px 0 rgba(184,50,42,.20);margin-left:14px;}
+body.dark h1{text-shadow:3px 3px 0 var(--reddeep),6px 6px 0 var(--shadow);}
+.en-sub{margin-top:10px;font-size:12px;letter-spacing:5px;color:var(--toptext);opacity:.85;font-weight:700;}
+.date{margin-top:12px;font-size:16px;color:var(--toptext);letter-spacing:6px;font-weight:700;opacity:.95;}
+.cutline{border-top:2px dashed var(--cardline);opacity:.6;margin:28px 12px;position:relative;}
+.cutline span{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--red);border-radius:4px;padding:2px 16px;font-size:13px;color:var(--onred);letter-spacing:6px;font-weight:700;white-space:nowrap;}
+.colhead{display:grid;grid-template-columns:70px 1fr 150px;gap:16px;padding:0 22px;margin-bottom:10px;font-size:13px;font-weight:800;color:var(--toptext);opacity:.9;letter-spacing:3px;}
 .item{background:var(--paper);border-radius:8px;padding:20px 22px;display:grid;grid-template-columns:70px 1fr 150px;gap:16px;align-items:center;margin:0 6px 16px;box-shadow:6px 6px 0 var(--shadow);transition:background .3s, transform .15s;}
 .item:hover{transform:translate(-2px,-2px);}
-.num{width:40px;height:40px;border-radius:50%;background:var(--red);color:var(--cream);font-size:17px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 var(--shadow);}
+.num{width:40px;height:40px;border-radius:50%;background:var(--red);color:var(--onred);font-size:17px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 var(--shadow);}
 .fact{font-size:15px;line-height:1.8;color:var(--ink);}
-.fact b{color:#c06f14;}
+.fact b{color:var(--keyword);}
 .src{font-size:12px;color:var(--muted);margin-top:8px;}
 .src a{color:var(--muted);}
-.signal{text-align:center;font-size:14px;font-weight:900;color:var(--red);border-left:2px solid var(--cardline);padding-left:16px;line-height:1.7;}
+.signal{text-align:center;font-size:14px;font-weight:900;color:var(--ink);border-left:2px solid var(--cardline);padding-left:16px;line-height:1.7;}
 .deep{background:var(--paper);border-radius:8px;margin:6px 6px 16px;padding:32px 36px;box-shadow:6px 6px 0 var(--shadow);border-top:8px solid var(--red);transition:background .3s;}
-.deep-tag{display:inline-block;background:var(--red);color:var(--cream);font-size:14px;font-weight:900;border-radius:999px;padding:6px 20px;letter-spacing:3px;box-shadow:2px 2px 0 var(--shadow);}
+.deep-tag{display:inline-block;background:var(--red);color:var(--onred);font-size:14px;font-weight:900;border-radius:999px;padding:6px 20px;letter-spacing:3px;box-shadow:2px 2px 0 var(--shadow);}
 .deep h2{font-size:23px;color:var(--ink);line-height:1.6;margin:18px 0 6px;}
 .deep .summary{font-size:14px;line-height:1.9;color:var(--ink);background:var(--paper2);border-radius:8px;padding:14px 16px;margin:14px 0;}
 .deep .summary b{color:var(--red);}
@@ -72,16 +83,19 @@ h1{font-size:56px;font-weight:900;color:var(--cream);letter-spacing:14px;text-sh
 .point{border-left:5px solid var(--red);padding:4px 0 4px 16px;margin:22px 0;}
 .point h3{font-size:15px;color:var(--red);margin-bottom:8px;}
 .point p{font-size:14px;line-height:1.85;color:var(--ink);}
-.point p b{color:#c06f14;}
+.point p b{color:var(--keyword);}
 .vs{display:grid;grid-template-columns:1fr 1fr;margin:24px 0 6px;border:2px solid var(--cardline);border-radius:8px;overflow:hidden;}
 .vs div{padding:20px 12px;text-align:center;font-size:14px;line-height:2;color:var(--ink);}
 .vs div:first-child{border-right:2px solid var(--cardline);}
 .vs b{display:block;font-size:16px;color:var(--red);margin-bottom:4px;}
-.takeaway{margin:6px;background:var(--reddeep);color:var(--cream);border-radius:8px;padding:22px 28px;font-size:15px;line-height:1.9;box-shadow:6px 6px 0 var(--shadow);}
+.takeaway{margin:6px;background:var(--reddeep);color:var(--onred);border-radius:8px;padding:22px 28px;font-size:15px;line-height:1.9;box-shadow:6px 6px 0 var(--shadow);}
 .takeaway b{letter-spacing:3px;font-size:16px;}
 .state-card{background:var(--paper);border-radius:8px;margin:0 6px 16px;padding:40px 24px;text-align:center;box-shadow:6px 6px 0 var(--shadow);font-size:15px;color:var(--ink);line-height:2;}
 .state-card .btn{margin-top:12px;}
-footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top:28px;letter-spacing:3px;line-height:2;}
+footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-top:28px;letter-spacing:3px;line-height:2;}
+.to-top{position:fixed;left:calc(50% + 490px + 12px);top:66%;transform:translateY(-50%);z-index:50;width:46px;height:46px;border-radius:12px;background:var(--reddeep);color:var(--onred);border:none;font-size:20px;font-weight:900;cursor:pointer;box-shadow:3px 3px 0 var(--shadow);}
+.to-top:hover{transform:translateY(-50%) scale(1.08);}
+@media(max-width:1120px){.to-top{left:auto;right:10px;}}@media(max-width:640px){.to-top{right:8px;width:42px;height:42px;}}
 @media(max-width:640px){
   h1{font-size:34px;letter-spacing:8px;}
   .colhead{display:none;}
@@ -97,16 +111,26 @@ footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top
 <div class="deco d1"></div><div class="deco d2"></div>
 <div class="wrap">
   <div class="toolbar">
+    <div class="date-wrap">
     <button class="btn" id="dateBtn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      <span id="dateBtnLabel">选择日期</span>
+      <span id="dateBtnLabel">选择日期</span><span class="chev">▾</span>
     </button>
+    <div class="date-tip">回看点击日历</div>
+    </div>
     <button class="btn" id="themeToggle">切换浅色模式</button>
   </div>
+  <div id="calBackdrop" hidden></div>
   <div id="calPanel" class="cal-panel" hidden>
-    <div class="cal-head"><span>回看历史信息差</span><button class="btn" id="todayBtn">回到今天</button></div>
+    <div class="cal-head">
+      <button class="btn" id="prevMonth">‹ 上月</button>
+      <span id="calTitle">--</span>
+      <button class="btn" id="nextMonth">下月 ›</button>
+      <button class="btn" id="todayBtn">回到今天</button>
+    </div>
+    <div class="cal-week"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
     <div id="calGrid" class="cal-grid"></div>
-    <div class="cal-note">可回看最近 30 天 · 灰色日期暂无内容</div>
+    <div class="cal-note">红点日期有内容可看 · 可回看最近 30 天</div>
   </div>
   <header>
     <div class="seal">每 日 情 报</div>
@@ -122,6 +146,7 @@ footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top
   <div class="cutline"><span>本期干货</span></div>
   <section id="deep"></section>
   <div id="takeawayWrap"></div>
+  <button id="toTop" class="to-top" hidden aria-label="回到顶部">↑</button>
   <footer>富人信息差 · TYCOON INFOGAP<br>每天早上自动更新 · 可回看最近 30 天</footer>
 </div>
 <script>
@@ -233,27 +258,69 @@ footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top
     });
   }
 
+  var calCursor = null;
+  function monthStart(d){ return new Date(d.getFullYear(), d.getMonth(), 1); }
   function buildCalendar(){
-    calGrid.innerHTML = '';
-    for(var i = 0; i < 30; i++){
-      (function(i){
-        var dt = new Date(Date.now() + 8*3600*1000 - i*86400000).toISOString().slice(0,10);
-        var cell = document.createElement('div');
-        cell.className = 'cal-day' + (available.indexOf(dt) >= 0 ? ' avail' : '') + (dt === current ? ' sel' : '');
-        cell.innerHTML = shortMD(dt) + '<small>' + (i === 0 ? '今天' : '') + '</small>';
-        if(available.indexOf(dt) >= 0){
-          cell.addEventListener('click', function(){ load(dt); calPanel.hidden = true; window.scrollTo({top:0, behavior:'smooth'}); });
-        }
-        calGrid.appendChild(cell);
-      })(i);
+    var nowS = new Date(Date.now() + 8*3600*1000);
+    if(!calCursor) calCursor = monthStart(nowS);
+    var y = calCursor.getFullYear(), m = calCursor.getMonth();
+    document.getElementById('calTitle').textContent = y + '年' + (m + 1) + '月';
+    var firstDow = new Date(y, m, 1).getDay();
+    var daysInMonth = new Date(y, m + 1, 0).getDate();
+    function p2(n){ return (n < 10 ? '0' : '') + n; }
+    var html = '';
+    for(var i = 0; i < firstDow; i++) html += '<div></div>';
+    for(var d = 1; d <= daysInMonth; d++){
+      var ds = y + '-' + p2(m + 1) + '-' + p2(d);
+      var has = available.indexOf(ds) >= 0;
+      html += '<div class="cal-day' + (has ? ' avail' : '') + (ds === current ? ' sel' : '') + (ds === today ? ' today' : '') +
+        '" data-d="' + ds + '">' + d + (has ? '<span class="dot"></span>' : '') + '</div>';
+    }
+    calGrid.innerHTML = html;
+    var cells = calGrid.querySelectorAll('.cal-day.avail');
+    for(var j = 0; j < cells.length; j++){
+      (function(c){
+        c.addEventListener('click', function(){
+          load(c.getAttribute('data-d'));
+          closeCal();
+          window.scrollTo({top:0, behavior:'smooth'});
+        });
+      })(cells[j]);
     }
   }
-
-  document.getElementById('dateBtn').addEventListener('click', function(){
-    calPanel.hidden = !calPanel.hidden;
+  document.getElementById('prevMonth').addEventListener('click', function(){
+    var nowS = new Date(Date.now() + 8*3600*1000);
+    var minM = monthStart(new Date(nowS.getTime() - 29*86400000));
+    if(calCursor > minM){
+      calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() - 1, 1);
+      buildCalendar();
+    }
   });
+  document.getElementById('nextMonth').addEventListener('click', function(){
+    var nowS = new Date(Date.now() + 8*3600*1000);
+    if(calCursor < monthStart(nowS)){
+      calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() + 1, 1);
+      buildCalendar();
+    }
+  });
+
+  var calBackdrop = document.getElementById('calBackdrop');
+  function closeCal(){ calPanel.hidden = true; calBackdrop.hidden = true; }
+  document.getElementById('dateBtn').addEventListener('click', function(){
+    var opening = calPanel.hidden;
+    calPanel.hidden = !opening;
+    calBackdrop.hidden = !opening;
+  });
+  calBackdrop.addEventListener('click', closeCal);
+  var toTop = document.getElementById('toTop');
+  function toggleToTop(){ toTop.hidden = window.scrollY < 300; }
+  window.addEventListener('scroll', toggleToTop, {passive:true});
+  toggleToTop();
+  toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
   document.getElementById('todayBtn').addEventListener('click', function(){
-    calPanel.hidden = true;
+    closeCal();
+    calCursor = null;
     load(today);
     window.scrollTo({top:0, behavior:'smooth'});
   });
