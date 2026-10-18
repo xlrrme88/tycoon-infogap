@@ -16,12 +16,15 @@ API_KEY = os.environ.get('GEMINI_API_KEY', '')
 BASE = 'https://generativelanguage.googleapis.com/v1beta'
 
 def pick_model():
-    """列出可用模型，优先选 flash 系列（自动适配 key 可用的模型）。"""
+    """列出可用模型，只选支持 generateContent 的 flash 系列。"""
     try:
         req = urllib.request.Request(BASE + '/models?key=' + API_KEY,
                                      headers={'User-Agent': UA})
         with urllib.request.urlopen(req, timeout=30) as r:
-            models = [m['name'].split('/')[-1] for m in json.load(r).get('models', [])]
+            raw = json.load(r).get('models', [])
+        models = [m['name'].split('/')[-1] for m in raw
+                  if 'generateContent' in m.get('supportedGenerationMethods', [])]
+        print('可用生成模型:', models, flush=True)
     except Exception as e:
         print('列模型失败:', str(e)[:80], flush=True)
         models = []
@@ -146,6 +149,14 @@ def gemini(prompt, max_tokens=4000, tries=3):
             if data:
                 return {'ok': True, 'data': data}
             last_err = 'bad_json'
+        except urllib.error.HTTPError as e:
+            try:
+                body = e.read().decode('utf-8', errors='ignore')[:300]
+            except Exception:
+                body = ''
+            last_err = f'HTTP {e.code}: {body}'
+            print('Gemini 错误:', last_err, flush=True)
+            time.sleep(3)
         except Exception as e:
             last_err = str(e)[:120]
             time.sleep(3)
