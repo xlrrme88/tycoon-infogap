@@ -93,9 +93,9 @@ body.dark h1{text-shadow:3px 3px 0 var(--reddeep),6px 6px 0 var(--shadow);}
 .state-card{background:var(--paper);border-radius:8px;margin:0 6px 16px;padding:40px 24px;text-align:center;box-shadow:6px 6px 0 var(--shadow);font-size:15px;color:var(--ink);line-height:2;}
 .state-card .btn{margin-top:12px;}
 footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-top:28px;letter-spacing:3px;line-height:2;}
-.to-top{display:block;margin:8px auto 4px;width:46px;height:46px;border-radius:12px;background:var(--reddeep);color:var(--onred);border:none;font-size:20px;font-weight:900;cursor:pointer;box-shadow:3px 3px 0 var(--shadow);}
-.to-top:hover{transform:scale(1.08);}
-@media(max-width:640px){.to-top{width:42px;height:42px;}}
+.to-top{position:fixed;left:calc(50% + 490px + 12px);top:66%;top:66svh;transform:translateY(-50%);z-index:50;width:46px;height:46px;border-radius:12px;background:var(--reddeep);color:var(--onred);border:none;font-size:20px;font-weight:900;cursor:pointer;box-shadow:3px 3px 0 var(--shadow);}
+.to-top:hover{transform:translateY(-50%) scale(1.08);}
+@media(max-width:1120px){.to-top{left:auto;right:10px;}}@media(max-width:640px){.to-top{right:8px;width:42px;height:42px;}}
 @media(max-width:640px){
   h1{font-size:34px;letter-spacing:8px;}
   .colhead{display:none;}
@@ -146,7 +146,7 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
   <div class="cutline"><span>本期干货</span></div>
   <section id="deep"></section>
   <div id="takeawayWrap"></div>
-  <button id="toTop" class="to-top" aria-label="回到顶部">↑</button>
+  <button id="toTop" class="to-top" hidden aria-label="回到顶部">↑</button>
   <footer>富人信息差 · TYCOON INFOGAP<br>每天早上自动更新 · 可回看最近 30 天</footer>
 </div>
 <script>
@@ -319,7 +319,11 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
     calBackdrop.hidden = !opening;
   });
   calBackdrop.addEventListener('click', closeCal);
-  document.getElementById('toTop').addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+  var toTop = document.getElementById('toTop');
+  function toggleToTop(){ toTop.hidden = window.scrollY < 300; }
+  window.addEventListener('scroll', toggleToTop, {passive:true});
+  toggleToTop();
+  toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 
   document.getElementById('todayBtn').addEventListener('click', function(){
     closeCal();
