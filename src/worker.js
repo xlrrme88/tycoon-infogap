@@ -6,11 +6,11 @@ const AI_MODEL = '@cf/zhipu-ai/glm-4.7-flash'; // 主力：快、中文强
 const AI_FALLBACK = '@cf/meta/llama-3.1-8b-instruct-fp8'; // 备用
 const KEEP_DAYS = 30;
 
-// 财经新闻源（已验证可用；华尔街见闻/金十/财联社有反爬或接口失效，已弃用）
+// 科技产业新闻源（已验证可用）
 const FEEDS = [
+  { name: 'IT之家', url: 'https://www.ithome.com/rss/', lang: 'zh' },
   { name: 'FT中文网', url: 'http://www.ftchinese.com/rss/news', lang: 'zh' },
-  { name: 'CNBC', url: 'https://www.cnbc.com/id/100003114/device/rss/rss.html', lang: 'en' },
-  { name: 'MarketWatch', url: 'https://feeds.marketwatch.com/marketwatch/topstories/', lang: 'en' },
+  { name: 'CNBC科技', url: 'https://www.cnbc.com/id/10000664/device/rss/rss.html', lang: 'en' },
 ];
 
 // 北京时间日期 YYYY-MM-DD
@@ -89,14 +89,14 @@ function extractJSON(text) {
   return { data: null, err: 'no_json_found head: ' + text.slice(0, 120) };
 }
 
-const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注全球市场与投资机会的中文读者。
-从下面的新闻候选中选出最重要的 20 条（优先：宏观政策与央行动态、全球股市/债市/汇市/大宗商品、重要公司财报与产业趋势；避开纯观点、广告和重复话题；英文新闻翻译成中文）。
+const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注全球科技产业与投资机会的中文读者。
+从下面的新闻候选中选出最重要的 20 条（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先硬科技产业突破、投融资并购、产业链动态；避开消费电子新品、数码配件、纯观点、广告和重复话题；英文新闻翻译成中文）。
 严格遵守：
-- 同一主题（如汇率、同一事件）最多选 2 条，禁止罗列多个货币对/重复事件
-- fact：一句话讲清发生了什么（市场事实）；关键词加粗只包裹 2-4 个核心词（关键数据、涨跌幅、政策名、公司名），禁止整句加粗，禁止加粗超过 6 个词；用 <b></b> 或 ** ** 包裹
-- 外文专有名词必须准确翻译，不确定的保留英文原名，绝不编造中文名（如 Berkshire Hathaway 是伯克希尔）
-- signal：一句话点出投资含义，格式必须指明资产，如"利空美债""利好黄金"，禁止只写"利空/利好"二字，不超过 20 字
-- importance：重要程度，"high"（影响市场走势/重大政策/大幅波动）或 "normal"
+- 同一主题/同一事件最多选 2 条
+- fact：一句话讲清发生了什么；关键词加粗只包裹 2-4 个核心词（关键数据、技术名、公司名等），禁止整句加粗，禁止加粗超过 6 个词；用 <b></b> 或 ** ** 包裹
+- 外文专有名词必须准确翻译，不确定的保留英文原名，绝不编造中文名
+- signal：一句话点出背后的趋势或机会，4-8 字的趋势标签，如"容错量子计算""新型存储流片"
+- importance：重要程度，"high"（重大突破/重磅政策/大幅市场影响）或 "normal"
 - source：该新闻的媒体名；link：原文链接
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"items":[{"fact":"...","signal":"...","importance":"high","source":"...","link":"..."}]}
@@ -105,7 +105,7 @@ const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注全球市�
 const DD_A_PROMPT = `你是「每日信息差」主编。从下面「今日资讯」中选 1 条最值得展开的，写「本期干货」上半部分：
 - title：干货标题；summary：一句话理解（让小白也能懂）
 - points：3 个信息差要点，每个含 heading 和 body（body 写 2-3 句实质分析，不要只罗列关键词；关键词用 <b></b> 或 ** ** 包裹 2-4 个）
-- 优先选择与宏观政策、市场走势、投资机会相关的条目展开；不要选汇率日常波动、单一货币对涨跌这类缺乏深度的条目
+- 优先选择硬科技产业突破、投融资并购相关的条目展开；不要选单一产品发布、日常波动这类缺乏深度的条目
 - points 的 body 每段写 2-3 句实质分析，禁止"进而导致"式循环论证
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"title":"...","summary":"...","points":[{"heading":"...","body":"..."}]}
