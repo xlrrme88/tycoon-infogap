@@ -10,15 +10,15 @@
   --paper:#ffffff; --paper2:#f6f0e0;
   --ink:#1a1a1a; --red:#b8322a; --reddeep:#8f241e;
   --onred:#fdf3e0; --title:#1a1a1a; --toptext:#3d3d3d;
-  --muted:#9a8468; --keyword:#d6941e;
+  --muted:#9a8468; --keyword:#de901f;
   --shadow:rgba(60,40,20,.14); --cardline:rgba(143,36,30,.25);
 }
 body.dark{
   --bg:#1a1a1e; --bg2:#232329;
   --paper:#26262c; --paper2:#30303a;
-  --ink:#f0e8d6; --red:#c0392b; --reddeep:#a93226;
+  --ink:#f4f4f4; --red:#c0392b; --reddeep:#a93226;
   --onred:#fdf3e0; --title:#f7ecd4; --toptext:#f7ecd4;
-  --muted:#9a8a6e; --keyword:#e8b23a;
+  --muted:#a3a3a3; --keyword:#f2a62e;
   --shadow:rgba(0,0,0,.55); --cardline:rgba(192,57,43,.35);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -66,8 +66,8 @@ body.dark h1{text-shadow:3px 3px 0 var(--reddeep),6px 6px 0 var(--shadow);}
 .item{background:var(--paper);border-radius:8px;padding:20px 22px;display:grid;grid-template-columns:70px 1fr 150px;gap:16px;align-items:center;margin:0 6px 16px;box-shadow:6px 6px 0 var(--shadow);transition:background .3s, transform .15s;}
 .item:hover{transform:translate(-2px,-2px);}
 .num{width:40px;height:40px;border-radius:50%;background:var(--red);color:var(--onred);font-size:17px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 var(--shadow);}
-.fact{font-size:15px;line-height:1.8;color:var(--ink);}
-.fact b{color:var(--keyword);}
+.fact{font-size:15px;line-height:1.8;color:var(--ink);font-weight:600;}
+.fact b{color:var(--keyword);font-weight:800;}
 .src{font-size:12px;color:var(--muted);margin-top:8px;}
 .src a{color:var(--muted);}
 .signal{text-align:center;font-size:14px;font-weight:900;color:var(--ink);border-left:2px solid var(--cardline);padding-left:16px;line-height:1.7;}
@@ -182,7 +182,7 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
   }
   function shortMD(ds){
     var p = ds.split('-');
-    return (+p[1]) + '/' + (+p[2]);
+    return (+p[1]) + '月' + (+p[2]) + '日';
   }
   var today = shanghaiToday();
   var available = [];
@@ -211,7 +211,7 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
     current = d.date;
     dateLine.textContent = fmtCN(d.date);
     dateBtnLabel.textContent = fmtCN(d.date);
-    newsLabel.textContent = (d.date === today ? '今日' : fmtCN(d.date)) + (d.items || []).length + '条';
+    newsLabel.textContent = (d.date === today ? '今日' : shortMD(d.date)) + (d.items || []).length + '条';
     var items = d.items || [];
     newsEl.innerHTML = items.map(function(it, i){
       return '<article class="item"><div class="num">' + (i+1) + '</div>' +
