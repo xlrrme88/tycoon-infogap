@@ -211,7 +211,7 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
     current = d.date;
     dateLine.textContent = fmtCN(d.date);
     dateBtnLabel.textContent = fmtCN(d.date);
-    newsLabel.textContent = (d.date === today ? '今日' : shortMD(d.date)) + (d.items || []).length + '条';
+    newsLabel.textContent = (d.date === today ? '今日' : fmtCN(d.date)) + (d.items || []).length + '条';
     var items = d.items || [];
     newsEl.innerHTML = items.map(function(it, i){
       return '<article class="item"><div class="num">' + (i+1) + '</div>' +
