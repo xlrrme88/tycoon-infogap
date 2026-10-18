@@ -7,10 +7,15 @@ const AI_FALLBACK = '@cf/meta/llama-3.1-8b-instruct-fp8'; // 备用
 const KEEP_DAYS = 30;
 
 // 科技产业新闻源（已验证可用）
+// Google News RSS 聚合：覆盖各家媒体（含参考批次的财联社/上证报等），<source> 标签带真实媒体名
+const GN = (q) => 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=zh-CN&gl=CN&ceid=CN:zh-Hans';
 const FEEDS = [
+  { name: '集微网', url: 'https://www.laoyaoba.com/api/rss/hbb', lang: 'zh' },
   { name: 'IT之家', url: 'https://www.ithome.com/rss/', lang: 'zh' },
-  { name: 'FT中文网', url: 'http://www.ftchinese.com/rss/news', lang: 'zh' },
-  { name: 'CNBC科技', url: 'https://www.cnbc.com/id/10000664/device/rss/rss.html', lang: 'en' },
+  { name: 'GN-半导体', url: GN('半导体芯片'), lang: 'zh', useSourceTag: true },
+  { name: 'GN-AI', url: GN('AI大模型'), lang: 'zh', useSourceTag: true },
+  { name: 'GN-医药', url: GN('生物医药创新药'), lang: 'zh', useSourceTag: true },
+  { name: 'GN-新能源', url: GN('新能源机器人'), lang: 'zh', useSourceTag: true },
 ];
 
 // 北京时间日期 YYYY-MM-DD
@@ -41,7 +46,12 @@ function parseRSS(xml, feed) {
     const pubRaw = extractTag(b, 'pubDate');
     const ts = pubRaw ? Date.parse(pubRaw) : NaN;
     const desc = extractTag(b, 'description').slice(0, 200);
-    if (title) items.push({ title, link, source: feed.name, lang: feed.lang || 'zh', ts: isNaN(ts) ? 0 : ts, desc });
+    let source = feed.name;
+    if (feed.useSourceTag) {
+      const sm = b.match(/<source[^>]*>([^<]*)<\/source>/i);
+      if (sm && sm[1].trim()) source = sm[1].trim();
+    }
+    if (title) items.push({ title, link, source, lang: feed.lang || 'zh', ts: isNaN(ts) ? Date.now() : ts, desc });
   }
   return items;
 }
@@ -50,7 +60,7 @@ async function gatherNews() {
   const all = [];
   for (const f of FEEDS) {
     try {
-      const r = await fetch(f.url, { headers: { 'User-Agent': 'tycoon-infogap/1.0 (+daily-digest)' } });
+      const r = await fetch(f.url, { headers: { 'User-Agent': 'tycoon-infogap/1.0 (+daily-digest)' }, signal: AbortSignal.timeout(20000) });
       if (!r.ok) continue;
       const xml = await r.text();
       all.push(...parseRSS(xml, f));
@@ -58,14 +68,23 @@ async function gatherNews() {
   }
   const cutoff = Date.now() - 36 * 3600 * 1000;
   const seenT = new Set(), seenL = new Set();
-  return all
+  const sorted = all
     .filter((i) => {
       if (i.ts < cutoff || seenT.has(i.title) || (i.link && seenL.has(i.link))) return false;
       seenT.add(i.title); if (i.link) seenL.add(i.link);
       return true;
     })
-    .sort((a, b) => b.ts - a.ts)
-    .slice(0, 50);
+    .sort((a, b) => b.ts - a.ts);
+  // 单源上限 12 条，避免高频源（如 IT之家）挤占候选池，保证来源多样性
+  const perSource = {}, out = [];
+  for (const i of sorted) {
+    const c = perSource[i.source] || 0;
+    if (c >= 12) continue;
+    perSource[i.source] = c + 1;
+    out.push(i);
+    if (out.length >= 50) break;
+  }
+  return out;
 }
 
 // 从 AI 返回文本中提取 JSON：先尝试 markdown 代码块，再尝试首尾大括号
