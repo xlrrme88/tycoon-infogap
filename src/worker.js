@@ -2,7 +2,10 @@
 // 每天定时抓取 RSS 新闻 → Workers AI 生成信息差 → 存 KV → API 输出
 // 前端静态资源由 [assets] 提供，/api/* 由本 Worker 处理
 
-const AI_MODEL = '@cf/meta/llama-3.1-8b-instruct'; // 如需更换模型，改这里
+const AI_MODELS = [
+  '@cf/zhipu-ai/glm-4.7-flash',       // 主力：快、中文强、便宜
+  '@cf/meta/llama-3.1-8b-instruct-fp8', // 备用
+];
 const KEEP_DAYS = 30;
 
 // 默认 RSS 新闻源（已验证可用；36kr 有反爬已弃用）。可在 README 指引下自行增减。
@@ -84,16 +87,24 @@ async function generateDigest(env) {
   const list = news
     .map((n, i) => `${i + 1}. [${n.source}] ${n.title}${n.link ? ' <' + n.link + '>' : ''}${n.desc ? ' —— ' + n.desc : ''}`)
     .join('\n');
-  let res;
-  try {
-    res = await env.AI.run(AI_MODEL, {
-      messages: [
-        { role: 'system', content: '你只输出合法的 JSON，不要输出任何解释文字。' },
-        { role: 'user', content: SYSTEM_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list },
-      ],
-    });
-  } catch (e) {
-    return { ok: false, reason: 'ai_call_failed: ' + String((e && e.message) || e).slice(0, 200) };
+  let res = null;
+  let lastErr = '';
+  for (const model of AI_MODELS) {
+    try {
+      res = await env.AI.run(model, {
+        messages: [
+          { role: 'system', content: '你只输出合法的 JSON，不要输出任何解释文字。' },
+          { role: 'user', content: SYSTEM_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list },
+        ],
+      });
+      break;
+    } catch (e) {
+      lastErr = String((e && e.message) || e).slice(0, 200);
+      res = null;
+    }
+  }
+  if (!res) {
+    return { ok: false, reason: 'ai_call_failed: ' + lastErr };
   }
   const text = typeof res.response === 'string' ? res.response : JSON.stringify(res);
   const m = text.match(/\{[\s\S]*\}/);
