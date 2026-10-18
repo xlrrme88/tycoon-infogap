@@ -248,9 +248,14 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
 
   function load(date){
     showLoading();
-    fetch('/api/digest?date=' + encodeURIComponent(date)).then(function(r){
+    fetch('/data/' + encodeURIComponent(date) + '.json').then(function(r){
       if(!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
+    }).catch(function(){
+      return fetch('/api/digest?date=' + encodeURIComponent(date)).then(function(r){
+        if(!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      });
     }).then(function(d){
       if(d.error) throw new Error(d.error);
       render(d);
@@ -329,8 +334,14 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
 
   // ---- init ----
   showLoading();
-  fetch('/api/dates').then(function(r){ return r.json(); }).then(function(d){
-    available = d.dates || [];
+  fetch('/data/index.json').then(function(r){ return r.ok ? r.json() : []; }).catch(function(){ return []; }).then(function(staticDates){
+    return fetch('/api/dates').then(function(r){ return r.json(); }).then(function(d){ return d.dates || []; }).catch(function(){ return []; }).then(function(kvDates){
+      var seen = {}, merged = [];
+      staticDates.concat(kvDates).forEach(function(x){ if(x && !seen[x]){ seen[x] = 1; merged.push(x); } });
+      return merged.sort();
+    });
+  }).then(function(dates){
+    available = dates;
     var first = available.length ? available[available.length - 1] : today;
     load(first);
   }).catch(function(){ load(today); });
