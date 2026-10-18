@@ -44,9 +44,9 @@ UA = 'tycoon-infogap/1.0 (+daily-digest)'
 
 # ---------- 新闻抓取 ----------
 
-def gn_url(q):
+def gn_url(q, hl='zh-CN', gl='CN', ceid='CN:zh-Hans'):
     return ('https://news.google.com/rss/search?q=' + urllib.parse.quote(q)
-            + '&hl=zh-CN&gl=CN&ceid=CN:zh-Hans')
+            + f'&hl={hl}&gl={gl}&ceid={ceid}')
 
 FEEDS = [
     {'name': '集微网', 'url': 'https://www.laoyaoba.com/api/rss/hbb', 'use_source_tag': False},
@@ -55,6 +55,9 @@ FEEDS = [
     {'name': 'GN-AI', 'url': gn_url('AI大模型'), 'use_source_tag': True},
     {'name': 'GN-医药', 'url': gn_url('生物医药创新药'), 'use_source_tag': True},
     {'name': 'GN-新能源', 'url': gn_url('新能源机器人'), 'use_source_tag': True},
+    {'name': 'GN-EN-芯片', 'url': gn_url('semiconductor chips', 'en', 'US', 'US:en'), 'use_source_tag': True, 'lang': 'en'},
+    {'name': 'GN-EN-AI', 'url': gn_url('AI startup funding', 'en', 'US', 'US:en'), 'use_source_tag': True, 'lang': 'en'},
+    {'name': 'GN-EN-医药', 'url': gn_url('biotech pharma breakthrough', 'en', 'US', 'US:en'), 'use_source_tag': True, 'lang': 'en'},
 ]
 
 def fetch(url, timeout=20):
@@ -89,7 +92,8 @@ def parse_rss(xml, feed):
         desc = tag('description')[:200]
         if title:
             items.append({'title': title, 'link': link, 'source': source,
-                          'ts': ts or time.time(), 'desc': desc})
+                          'ts': ts or time.time(), 'desc': desc,
+                          'lang': feed.get('lang', 'zh')})
     return items[:30]
 
 def gather_news():
@@ -178,7 +182,7 @@ def extract_json(text):
 # ---------- 提示词（与 Worker 版同源） ----------
 
 ITEMS_PROMPT = """你是「每日信息差」主编，面向关注全球科技产业与投资机会的中文读者。
-从下面的新闻候选中选出最重要的 20 条（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先硬科技产业突破、投融资并购、产业链动态；避开消费电子新品、数码配件、纯观点、广告和重复话题；英文新闻翻译成中文）。必须输出满 20 条。
+从下面的新闻候选中选出最重要的 20 条（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先硬科技产业突破、投融资并购、产业链动态；避开消费电子新品、数码配件、纯观点、广告和重复话题；英文新闻翻译成中文）。必须输出满 20 条，其中至少 6 条为国际资讯（欧美日韩企业/机构，如英伟达、谷歌、台积电、三星、OpenAI 等）。
 严格遵守：
 - 同一主题/同一事件最多选 2 条
 - fact：一句话讲清发生了什么；关键词加粗只包裹 2-4 个核心词（关键数据、技术名、公司名），禁止整句加粗，禁止加粗超过 6 个词；用 <b></b> 包裹
@@ -244,7 +248,8 @@ def main():
         print('无新闻候选，退出', file=sys.stderr)
         sys.exit(1)
     cand_text = '\n'.join(
-        f"{i+1}. [{n['source']}] {n['title']}" + (f" <{n['link']}>" if n['link'] else '')
+        f"{i+1}. [{n['source']}]" + ('[英文，需译成中文]' if n.get('lang') == 'en' else '')
+        + f" {n['title']}" + (f" <{n['link']}>" if n['link'] else '')
         + (f" —— {n['desc']}" if n['desc'] else '')
         for i, n in enumerate(news))
 
