@@ -66,16 +66,24 @@ async function gatherNews() {
 }
 
 // 从 AI 返回文本中提取 JSON：先尝试 markdown 代码块，再尝试首尾大括号
+// 解析失败时返回错误位置和上下文，便于定位
 function extractJSON(text) {
+  const candidates = [];
   const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  if (fence) {
-    try { return JSON.parse(fence[1].trim()); } catch (e) { /* 继续尝试 */ }
-  }
+  if (fence) candidates.push(fence[1].trim());
   const m = text.match(/\{[\s\S]*\}/);
-  if (m) {
-    try { return JSON.parse(m[0]); } catch (e) { /* 解析失败 */ }
+  if (m) candidates.push(m[0]);
+  for (const s of candidates) {
+    try {
+      return { data: JSON.parse(s) };
+    } catch (e) {
+      const pm = String(e.message).match(/position (\d+)/);
+      const pos = pm ? parseInt(pm[1], 10) : -1;
+      const ctx = pos >= 0 ? s.slice(Math.max(0, pos - 60), pos + 60) : s.slice(0, 120);
+      return { data: null, err: e.message + ' @pos ' + pos + ' ctx: ' + ctx };
+    }
   }
-  return null;
+  return { data: null, err: 'no_json_found head: ' + text.slice(0, 120) };
 }
 
 const SYSTEM_PROMPT = `你是「每日信息差」主编，面向关注科技、商业与投资机会的中文读者。
@@ -105,6 +113,7 @@ async function generateDigest(env) {
   for (const model of AI_MODELS) {
     try {
       res = await env.AI.run(model, {
+        max_tokens: 4096,
         messages: [
           { role: 'system', content: '你只输出合法的 JSON，不要输出任何解释文字。' },
           { role: 'user', content: SYSTEM_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list },
@@ -120,8 +129,9 @@ async function generateDigest(env) {
     return { ok: false, reason: 'ai_call_failed: ' + lastErr };
   }
   const text = typeof res.response === 'string' ? res.response : JSON.stringify(res);
-  const data = extractJSON(text);
-  if (!data) return { ok: false, reason: 'ai_bad_json: ' + text.slice(0, 300) };
+  const parsed = extractJSON(text);
+  if (!parsed.data) return { ok: false, reason: 'ai_bad_json: ' + parsed.err };
+  const data = parsed.data;
   if (!Array.isArray(data.items) || !data.items.length) return { ok: false, reason: 'ai_empty' };
   data.items = data.items.slice(0, 7);
   return { ok: true, data };
