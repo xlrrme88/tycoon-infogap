@@ -101,6 +101,11 @@ function itemsValid(items){
   return null;
 }
 
+// 是否为可重试的 transient 错误（AI 超时/限流/网关错误）
+function isTransient(reason){
+  return /ai_call_failed/i.test(reason || '') && /3046|timeout|timed out|429|502|503|504/i.test(reason || '');
+}
+
 const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注全球科技产业与投资机会的中文读者。
 从下面的新闻候选中选出最重要的 20 条（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先硬科技产业突破、投融资并购、产业链动态；避开消费电子新品、数码配件、纯观点、广告和重复话题；英文新闻翻译成中文）。必须输出满 20 条。
 严格遵守：
@@ -179,6 +184,9 @@ async function generateDigest(env) {
   // 第一步：生成今日二十条（格式校验，不合格自动重试一次）
   const itemsPrompt = ITEMS_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list;
   let itemsRes = await aiJSON(env, itemsPrompt, 2500);
+  if (!itemsRes.ok && isTransient(itemsRes.reason)) {
+    itemsRes = await aiJSON(env, itemsPrompt, 2500); // 超时/限流自动再试一次
+  }
   if (!itemsRes.ok) return itemsRes;
   const vErr = itemsValid(itemsRes.data.items);
   if (vErr) {
