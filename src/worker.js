@@ -7,6 +7,8 @@ const AI_FALLBACK = '@cf/meta/llama-3.1-8b-instruct-fp8'; // 备用
 const KEEP_DAYS = 30;
 
 // 科技产业新闻源（已验证可用）
+const CODE_VER = '2026-10-18-gn2'; // 部署版本追踪：每次改 worker.js 时更新
+
 // Google News RSS 聚合：覆盖各家媒体（含参考批次的财联社/上证报等），<source> 标签带真实媒体名
 const GN = (q) => 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=zh-CN&gl=CN&ceid=CN:zh-Hans';
 const FEEDS = [
@@ -109,13 +111,20 @@ function extractJSON(text) {
 }
 
 // 校验条目格式：数量、关键词加粗、signal 长度；返回 null 表示通过，否则返回原因
+const SIGNAL_BANNED = ['新能源汽车','人工智能','半导体','通信','投资','AI推动','AI技术','显示器','笔记本','电子支付','游戏','移动电源','智能手机','互联网','娱乐','创业','机器人维修','终端AI应用'];
 function itemsValid(items){
   if(!Array.isArray(items) || items.length < 18) return 'count=' + (Array.isArray(items) ? items.length : 0);
   for(const it of items){
     if(!it || !it.fact || !it.signal) return 'empty';
     if(it.fact.indexOf('<b>') < 0 && !/\*\*[^*]+\*\*/.test(it.fact)) return 'nobold';
+    // 防整句加粗：单个加粗段覆盖超过 60% 视为异常（参考风格是多个短词分散标注）
+    const segs = (it.fact.match(/<b>([\s\S]*?)<\/b>/g) || []).map(function(x){ return x.replace(/<\/?b>/g, ''); });
+    const plain = it.fact.replace(/<\/?b>/g, '').replace(/\*\*/g, '');
+    const maxSeg = segs.reduce(function(m, x){ return Math.max(m, x.length); }, 0);
+    if(segs.length > 0 && maxSeg / Math.max(1, plain.length) > 0.6) return 'overbold';
     const sig = String(it.signal).replace(/\*\*/g, '').trim();
     if(sig.length < 2 || sig.length > 8) return 'signal=' + sig;
+    if(SIGNAL_BANNED.indexOf(sig) >= 0) return 'banned=' + sig;
   }
   return null;
 }
@@ -277,6 +286,9 @@ export default {
       return new Response(data, { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
     }
 
+    if (url.pathname === '/api/ver') {
+      return new Response(JSON.stringify({ ver: CODE_VER }), { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
+    }
     if (url.pathname === '/api/status') {
       const s = await env.DIGEST_KV.get('status');
       return new Response(s || '{}', { headers: { 'Content-Type': 'application/json; charset=utf-8' } });
