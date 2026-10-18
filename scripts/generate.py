@@ -134,7 +134,7 @@ def gather_news():
 
 # ---------- Gemini 调用 ----------
 
-def gemini(prompt, max_tokens=4000, tries=3):
+def gemini(prompt, max_tokens=4000, tries=3, json_mode=False):
     global MODEL
     if not MODEL:
         MODEL = pick_model()
@@ -143,9 +143,12 @@ def gemini(prompt, max_tokens=4000, tries=3):
     last_err = ''
     for _ in range(tries):
         try:
+            cfg = {'temperature': 0.7, 'maxOutputTokens': max_tokens}
+            if json_mode:
+                cfg['response_mime_type'] = 'application/json'
             body = json.dumps({
                 'contents': [{'parts': [{'text': prompt}]}],
-                'generationConfig': {'temperature': 0.7, 'maxOutputTokens': max_tokens},
+                'generationConfig': cfg,
             }).encode()
             req = urllib.request.Request(
                 url, data=body,
@@ -280,7 +283,7 @@ def main():
 
     # 第一步：筛选最有价值的 20 条（只做判断）
     print('筛选 20 条...', flush=True)
-    rs = gemini(SELECT_PROMPT + '\n\n新闻候选：\n' + cand_text, max_tokens=1000)
+    rs = gemini(SELECT_PROMPT + '\n\n新闻候选：\n' + cand_text, max_tokens=1000, json_mode=True)
     sel = []
     if rs['ok']:
         sel = rs['data'].get('selected', [])
