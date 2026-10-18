@@ -28,7 +28,7 @@ def pick_model():
     except Exception as e:
         print('列模型失败:', str(e)[:80], flush=True)
         models = []
-    for prefer in ('gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'):
+    for prefer in ('gemini-3.8-flash', 'gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'):
         if prefer in models:
             return prefer
     flashes = [m for m in models if 'flash' in m]
