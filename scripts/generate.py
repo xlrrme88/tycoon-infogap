@@ -13,8 +13,29 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 
 API_KEY = os.environ.get('GEMINI_API_KEY', '')
-MODEL = 'gemini-2.0-flash'
-API_URL = f'https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent'
+BASE = 'https://generativelanguage.googleapis.com/v1beta'
+
+def pick_model():
+    """列出可用模型，优先选 flash 系列（自动适配 key 可用的模型）。"""
+    try:
+        req = urllib.request.Request(BASE + '/models?key=' + API_KEY,
+                                     headers={'User-Agent': UA})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            models = [m['name'].split('/')[-1] for m in json.load(r).get('models', [])]
+    except Exception as e:
+        print('列模型失败:', str(e)[:80], flush=True)
+        models = []
+    for prefer in ('gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'):
+        if prefer in models:
+            return prefer
+    flashes = [m for m in models if 'flash' in m]
+    if flashes:
+        return flashes[0]
+    if models:
+        return models[0]
+    return 'gemini-2.0-flash'  # 兜底
+
+MODEL = None  # 运行时 pick_model() 确定
 
 UA = 'tycoon-infogap/1.0 (+daily-digest)'
 
@@ -103,6 +124,11 @@ def gather_news():
 # ---------- Gemini 调用 ----------
 
 def gemini(prompt, max_tokens=4000, tries=3):
+    global MODEL
+    if not MODEL:
+        MODEL = pick_model()
+        print('使用模型:', MODEL, flush=True)
+    url = f'{BASE}/models/{MODEL}:generateContent?key={API_KEY}'
     last_err = ''
     for _ in range(tries):
         try:
@@ -111,7 +137,7 @@ def gemini(prompt, max_tokens=4000, tries=3):
                 'generationConfig': {'temperature': 0.7, 'maxOutputTokens': max_tokens},
             }).encode()
             req = urllib.request.Request(
-                API_URL + '?key=' + API_KEY, data=body,
+                url, data=body,
                 headers={'Content-Type': 'application/json'})
             with urllib.request.urlopen(req, timeout=120) as r:
                 d = json.load(r)
