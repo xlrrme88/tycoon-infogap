@@ -65,6 +65,19 @@ async function gatherNews() {
     .slice(0, 40);
 }
 
+// 从 AI 返回文本中提取 JSON：先尝试 markdown 代码块，再尝试首尾大括号
+function extractJSON(text) {
+  const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fence) {
+    try { return JSON.parse(fence[1].trim()); } catch (e) { /* 继续尝试 */ }
+  }
+  const m = text.match(/\{[\s\S]*\}/);
+  if (m) {
+    try { return JSON.parse(m[0]); } catch (e) { /* 解析失败 */ }
+  }
+  return null;
+}
+
 const SYSTEM_PROMPT = `你是「每日信息差」主编，面向关注科技、商业与投资机会的中文读者。
 从下面的新闻候选中选出最重要的 7 条（优先覆盖：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先选择有明确事实的硬新闻，避开纯观点、广告和重复话题）。
 每条输出：
@@ -107,10 +120,8 @@ async function generateDigest(env) {
     return { ok: false, reason: 'ai_call_failed: ' + lastErr };
   }
   const text = typeof res.response === 'string' ? res.response : JSON.stringify(res);
-  const m = text.match(/\{[\s\S]*\}/);
-  if (!m) return { ok: false, reason: 'ai_bad_json' };
-  let data;
-  try { data = JSON.parse(m[0]); } catch { return { ok: false, reason: 'ai_bad_json' }; }
+  const data = extractJSON(text);
+  if (!data) return { ok: false, reason: 'ai_bad_json: ' + text.slice(0, 300) };
   if (!Array.isArray(data.items) || !data.items.length) return { ok: false, reason: 'ai_empty' };
   data.items = data.items.slice(0, 7);
   return { ok: true, data };
