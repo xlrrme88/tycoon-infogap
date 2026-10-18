@@ -104,14 +104,15 @@ const DEEPDIVE_PROMPT = `你是「每日信息差」主编。从下面「今日�
 {"deepdive":{"title":"...","summary":"...","points":[{"heading":"...","body":"..."}],"flow":[{"label":"...","sub":"..."}],"compare":{"a":{"title":"...","lines":["...","...","..."]},"b":{"title":"...","lines":["...","...","..."]}},"takeaway":"..."}}
 注意：内容必须基于所给七条的真实信息，绝不编造；字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
 
-// 调用 AI 生成并解析 JSON：失败自动重试（带语法错误反馈），
-// 主模型调用抛错时换备用模型。短输出更快更稳。
+// 调用 AI 生成并解析 JSON：
+// - 调用抛错（超时等）→ 换备用模型重试
+// - JSON 语法错误 → 用同一模型+错误反馈重试修正
 async function aiJSON(env, prompt, maxTokens) {
-  const models = [AI_MODEL, AI_FALLBACK];
+  let modelIdx = 0;
   let feedback = '';
   let lastErr = '';
   for (let attempt = 0; attempt < 3; attempt++) {
-    const model = models[Math.min(attempt, models.length - 1)];
+    const model = [AI_MODEL, AI_FALLBACK][modelIdx];
     let res = null;
     try {
       res = await env.AI.run(model, {
@@ -124,12 +125,13 @@ async function aiJSON(env, prompt, maxTokens) {
     } catch (e) {
       lastErr = 'ai_call_failed: ' + String((e && e.message) || e).slice(0, 200);
       feedback = '';
+      modelIdx = 1; // 调用失败才换备用模型
       continue;
     }
     const text = typeof res.response === 'string' ? res.response : JSON.stringify(res);
     const parsed = extractJSON(text);
     if (parsed.data) return { ok: true, data: parsed.data };
-    feedback = parsed.err;
+    feedback = parsed.err; // 语法错误：同一模型重试修正，modelIdx 不变
     lastErr = 'ai_bad_json: ' + parsed.err;
   }
   return { ok: false, reason: lastErr };
@@ -148,12 +150,12 @@ async function generateDigest(env) {
   const items = itemsRes.data.items;
   if (!Array.isArray(items) || !items.length) return { ok: false, reason: 'ai_empty' };
 
-  // 第二步：生成本期干货（短输出）
+  // 第二步：生成本期干货（短输出）。干货失败不卡死整期：先保存七条，干货置空，页面会显示"生成中"。
   const itemsText = items.map((it, i) => `${i + 1}. ${it.fact}（${it.source}）`).join('\n');
   const ddRes = await aiJSON(env, DEEPDIVE_PROMPT + '\n\n今日七条：\n' + itemsText, 2000);
-  if (!ddRes.ok) return { ok: false, reason: 'deepdive_failed: ' + ddRes.reason };
+  const deepdive = ddRes.ok ? ddRes.data.deepdive : null;
 
-  return { ok: true, data: { items: items.slice(0, 7), deepdive: ddRes.data.deepdive } };
+  return { ok: true, data: { items: items.slice(0, 7), deepdive } };
 }
 
 async function runDaily(env) {

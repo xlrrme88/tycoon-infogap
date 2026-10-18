@@ -186,7 +186,15 @@ footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top
         '<p class="src">来源：' + esc(it.source || '') + (it.link ? ' · <a href="' + esc(it.link) + '" target="_blank" rel="noopener">原文</a>' : '') + '</p></div>' +
         '<div class="signal">' + esc(it.signal || '').replace(/，/g, '<br>') + '</div></article>';
     }).join('');
-    var dd = d.deepdive || {};
+    var dd = d.deepdive;
+    if (!dd) {
+      deepEl.innerHTML = '<div class="deep"><div class="deep-tag">本期干货</div>' +
+        '<p style="font-size:14px;line-height:2;color:var(--ink);margin-top:14px;">本期干货正在生成中，稍后再来看看 → ' +
+        '<a href="javascript:location.reload()" style="color:var(--red);font-weight:700;">刷新</a></p></div>';
+      takeawayWrap.innerHTML = '';
+      buildCalendar();
+      return;
+    }
     var flow = (dd.flow && dd.flow.length) ? '<div class="flow">' + dd.flow.map(function(s, i){
       return (i>0 ? '<div class="arrow">→</div>' : '') +
         '<div class="step">' + esc(s.label) + (s.sub ? '<small>' + esc(s.sub) + '</small>' : '') + '</div>';
