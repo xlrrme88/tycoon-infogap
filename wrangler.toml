@@ -9,7 +9,7 @@ directory = "./public"
 # KV：存放每日信息差 JSON（部署前先创建，把 id 填到下面）
 [[kv_namespaces]]
 binding = "DIGEST_KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "57d27eeecae041cf92181d99862f31c9"
 
 # Workers AI：用于每日生成信息差内容
 [ai]
