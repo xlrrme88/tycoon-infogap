@@ -56,7 +56,7 @@ h1{font-size:56px;font-weight:900;color:var(--cream);letter-spacing:14px;text-sh
 .item:hover{transform:translate(-2px,-2px);}
 .num{width:40px;height:40px;border-radius:50%;background:var(--red);color:var(--cream);font-size:17px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 var(--shadow);}
 .fact{font-size:15px;line-height:1.8;color:var(--ink);}
-.fact b{color:var(--red);}
+.fact b{color:#c06f14;}
 .src{font-size:12px;color:var(--muted);margin-top:8px;}
 .src a{color:var(--muted);}
 .signal{text-align:center;font-size:14px;font-weight:900;color:var(--red);border-left:2px solid var(--cardline);padding-left:16px;line-height:1.7;}
@@ -72,7 +72,7 @@ h1{font-size:56px;font-weight:900;color:var(--cream);letter-spacing:14px;text-sh
 .point{border-left:5px solid var(--red);padding:4px 0 4px 16px;margin:22px 0;}
 .point h3{font-size:15px;color:var(--red);margin-bottom:8px;}
 .point p{font-size:14px;line-height:1.85;color:var(--ink);}
-.point p b{color:var(--red);}
+.point p b{color:#c06f14;}
 .vs{display:grid;grid-template-columns:1fr 1fr;margin:24px 0 6px;border:2px solid var(--cardline);border-radius:8px;overflow:hidden;}
 .vs div{padding:20px 12px;text-align:center;font-size:14px;line-height:2;color:var(--ink);}
 .vs div:first-child{border-right:2px solid var(--cardline);}
@@ -178,7 +178,7 @@ footer{text-align:center;font-size:12px;color:var(--cream);opacity:.7;margin-top
     current = d.date;
     dateLine.textContent = fmtCN(d.date);
     dateBtnLabel.textContent = fmtCN(d.date);
-    newsLabel.textContent = (d.date === today) ? '今日七条' : shortMD(d.date) + ' 七条';
+    newsLabel.textContent = (d.date === today ? '今日' : shortMD(d.date)) + (d.items || []).length + '条';
     var items = d.items || [];
     newsEl.innerHTML = items.map(function(it, i){
       return '<article class="item"><div class="num">' + (i+1) + '</div>' +

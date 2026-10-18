@@ -60,7 +60,7 @@ async function gatherNews() {
   return all
     .filter((i) => i.ts >= cutoff && !seen.has(i.title) && seen.add(i.title))
     .sort((a, b) => b.ts - a.ts)
-    .slice(0, 40);
+    .slice(0, 50);
 }
 
 // 从 AI 返回文本中提取 JSON：先尝试 markdown 代码块，再尝试首尾大括号
@@ -85,24 +85,29 @@ function extractJSON(text) {
 }
 
 const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注科技、商业与投资机会的中文读者。
-从下面的新闻候选中选出最重要的 7 条（优先覆盖：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先选择有明确事实的硬新闻，避开纯观点、广告和重复话题）。
+从下面的新闻候选中选出最重要的 20 条（优先覆盖：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先选择有明确事实的硬新闻，避开纯观点、广告和重复话题）。
 每条输出：
-- fact：一句话讲清发生了什么，最重要的关键词用 <b></b> 包裹
+- fact：一句话讲清发生了什么，必须用 <b></b> 包裹 2-4 个关键词
 - signal：一句话点出背后的趋势或机会，不超过 20 字
 - source：该新闻的媒体名；link：原文链接
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"items":[{"fact":"...","signal":"...","source":"...","link":"..."}]}
 注意：所有内容必须基于候选新闻的真实信息，绝不编造事实、数据和日期；不确定的不写。字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
 
-const DEEPDIVE_PROMPT = `你是「每日信息差」主编。从下面「今日七条」中选 1 条最值得展开的，写「本期干货」：
+const DD_A_PROMPT = `你是「每日信息差」主编。从下面「今日资讯」中选 1 条最值得展开的，写「本期干货」上半部分：
 - title：干货标题；summary：一句话理解（让小白也能懂）
-- points：3 个信息差要点，每个含 heading 和 body（body 中的关键词可用 <b></b> 包裹）
+- points：3 个信息差要点，每个含 heading 和 body（body 中必须用 <b></b> 包裹 2-4 个关键词）
+只输出以下结构的合法 JSON，不要输出任何解释文字：
+{"title":"...","summary":"...","points":[{"heading":"...","body":"..."}]}
+注意：内容必须基于所给资讯的真实信息，绝不编造；字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
+
+const DD_B_PROMPT = `你是「每日信息差」主编。下面是本期干货已确定的标题、一句话理解和信息差要点，请补充下半部分：
 - flow：4 步流程（每步 label 和 sub），如不适用可为空数组
 - compare：左右对比 {a:{title,lines[3行]}, b:{title,lines[3行]}}
 - takeaway：一句收藏要点总结
 只输出以下结构的合法 JSON，不要输出任何解释文字：
-{"deepdive":{"title":"...","summary":"...","points":[{"heading":"...","body":"..."}],"flow":[{"label":"...","sub":"..."}],"compare":{"a":{"title":"...","lines":["...","...","..."]},"b":{"title":"...","lines":["...","...","..."]}},"takeaway":"..."}}
-注意：内容必须基于所给七条的真实信息，绝不编造；字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
+{"flow":[{"label":"...","sub":"..."}],"compare":{"a":{"title":"...","lines":["...","...","..."]},"b":{"title":"...","lines":["...","...","..."]}},"takeaway":"..."}
+注意：内容必须基于所给信息的真实内容，绝不编造；字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
 
 // 调用 AI 生成并解析 JSON：
 // - 调用抛错（超时等）→ 换备用模型重试
@@ -144,18 +149,26 @@ async function generateDigest(env) {
     .map((n, i) => `${i + 1}. [${n.source}] ${n.title}${n.link ? ' <' + n.link + '>' : ''}${n.desc ? ' —— ' + n.desc : ''}`)
     .join('\n');
 
-  // 第一步：生成今日七条（短输出）
-  const itemsRes = await aiJSON(env, ITEMS_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list, 1200);
+  // 第一步：生成今日二十条
+  const itemsRes = await aiJSON(env, ITEMS_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list, 2500);
   if (!itemsRes.ok) return itemsRes;
   const items = itemsRes.data.items;
   if (!Array.isArray(items) || !items.length) return { ok: false, reason: 'ai_empty' };
 
-  // 第二步：生成本期干货（短输出）。干货失败不卡死整期：先保存七条，干货置空，页面会显示"生成中"。
+  // 第二步：干货上半部分（标题+一句话理解+3个要点）
   const itemsText = items.map((it, i) => `${i + 1}. ${it.fact}（${it.source}）`).join('\n');
-  const ddRes = await aiJSON(env, DEEPDIVE_PROMPT + '\n\n今日七条：\n' + itemsText, 2000);
-  const deepdive = ddRes.ok ? ddRes.data.deepdive : null;
+  const ddA = await aiJSON(env, DD_A_PROMPT + '\n\n今日资讯：\n' + itemsText, 1500);
+  if (!ddA.ok) return { ok: true, data: { items: items.slice(0, 20), deepdive: null } }; // 降级：只要条目
+  const a = ddA.data;
 
-  return { ok: true, data: { items: items.slice(0, 7), deepdive } };
+  // 第三步：干货下半部分（流程+对比+收藏要点）
+  const ddB = await aiJSON(env, DD_B_PROMPT + '\n\n标题：' + a.title + '\n一句话理解：' + a.summary +
+    '\n要点：\n' + (a.points || []).map((p) => '- ' + p.heading + '：' + p.body).join('\n'), 1500);
+  const deepdive = ddB.ok
+    ? { title: a.title, summary: a.summary, points: a.points, flow: ddB.data.flow, compare: ddB.data.compare, takeaway: ddB.data.takeaway }
+    : { title: a.title, summary: a.summary, points: a.points }; // 部分降级：缺下半部分也照常显示
+
+  return { ok: true, data: { items: items.slice(0, 20), deepdive } };
 }
 
 async function runDaily(env) {
