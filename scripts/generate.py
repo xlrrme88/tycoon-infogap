@@ -134,7 +134,7 @@ def gather_news():
 
 # ---------- Gemini 调用 ----------
 
-def gemini(prompt, max_tokens=4000, tries=3, json_mode=False):
+def gemini(prompt, max_tokens=4000, tries=3, json_mode=False, allow_raw=False):
     global MODEL
     if not MODEL:
         MODEL = pick_model()
@@ -158,7 +158,9 @@ def gemini(prompt, max_tokens=4000, tries=3, json_mode=False):
             text = d['candidates'][0]['content']['parts'][0]['text']
             data = extract_json(text)
             if data:
-                return {'ok': True, 'data': data}
+                return {'ok': True, 'data': data, 'raw': text}
+            if allow_raw:
+                return {'ok': True, 'data': {}, 'raw': text, 'parse_warn': 'bad_json'}
             last_err = 'bad_json'
         except urllib.error.HTTPError as e:
             try:
@@ -201,9 +203,10 @@ SELECT_PROMPT = """你是「每日信息差」主编，面向关注全球科技�
 - 20 条中 6-10 条为国际资讯（[英文]标记的），其余为国内资讯；同一主题/事件最多 2 条
 - 领域分散：20 条至少覆盖 5 个不同领域（芯片半导体/AI大模型/生物医药/机器人/商业航天/量子科技/新材料/低空经济等），单一领域不超过 6 条
 - 突破优先：优先选有"全球首个/首款/首次/创纪录/重大突破"属性的硬科技新闻，少选常规融资、观点评论、行业综述类
-只输出以下结构的合法 JSON，不要输出任何解释文字：
-{"selected": [3, 7, 12, 18, 25, 30, 33, 41, 2, 9, 14, 20, 27, 35, 44, 5, 11, 22, 38, 47]}
-（数字为候选编号，必须正好 20 个，不重复，都在 1-50 范围内）"""
+只输出 20 个候选编号，用英文逗号分隔，不要输出任何其他文字
+（包括不要输出 JSON、不要换行、不要解释）。
+示例：3,7,12,18,25,30,33,41,2,9,14,20,27,35,44,5,11,22,38,47
+（编号必须正好 20 个，不重复，都在 1-50 范围内）"""
 
 ITEMS_PROMPT = """你是「每日信息差」主编，面向关注全球科技产业与投资机会的中文读者。
 把下面 20 条已选出的新闻改写成信息差条目（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；英文新闻翻译成中文）。必须输出满 20 条，顺序与输入一致。
@@ -283,11 +286,12 @@ def main():
 
     # 第一步：筛选最有价值的 20 条（只做判断）
     print('筛选 20 条...', flush=True)
-    rs = gemini(SELECT_PROMPT + '\n\n新闻候选：\n' + cand_text, max_tokens=1000, json_mode=True)
+    rs = gemini(SELECT_PROMPT + '\n\n新闻候选：\n' + cand_text, max_tokens=500, allow_raw=True)
     sel = []
     if rs['ok']:
-        sel = rs['data'].get('selected', [])
-        sel = [x for x in sel if isinstance(x, int) and 1 <= x <= len(news)]
+        raw_text = rs.get('raw', '')
+        sel = [int(x) for x in re.findall(r'\d+', raw_text)]
+        sel = [x for x in sel if 1 <= x <= len(news)]
         sel = list(dict.fromkeys(sel))[:20]
     if len(sel) >= 18:
         picked = [news[i - 1] for i in sel]
