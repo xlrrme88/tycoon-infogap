@@ -6,10 +6,11 @@ const AI_MODEL = '@cf/zhipu-ai/glm-4.7-flash'; // 主力：快、中文强
 const AI_FALLBACK = '@cf/meta/llama-3.1-8b-instruct-fp8'; // 备用
 const KEEP_DAYS = 30;
 
-// 默认 RSS 新闻源（已验证可用；36kr 有反爬已弃用）。可在 README 指引下自行增减。
+// 财经新闻源（已验证可用；华尔街见闻/金十/财联社有反爬或接口失效，已弃用）
 const FEEDS = [
-  { name: 'IT之家', url: 'https://www.ithome.com/rss/' },
-  { name: '少数派', url: 'https://sspai.com/feed' },
+  { name: 'FT中文网', url: 'http://www.ftchinese.com/rss/news', lang: 'zh' },
+  { name: 'CNBC', url: 'https://www.cnbc.com/id/100003114/device/rss/rss.html', lang: 'en' },
+  { name: 'MarketWatch', url: 'https://feeds.marketwatch.com/marketwatch/topstories/', lang: 'en' },
 ];
 
 // 北京时间日期 YYYY-MM-DD
@@ -31,7 +32,7 @@ function extractTag(block, tag) {
   if (cdata) t = cdata[1];
   return decodeEntities(stripTags(t)).trim();
 }
-function parseRSS(xml, source) {
+function parseRSS(xml, feed) {
   const items = [];
   const blocks = xml.match(/<item[\s>][\s\S]*?<\/item>/gi) || [];
   for (const b of blocks.slice(0, 30)) {
@@ -40,7 +41,7 @@ function parseRSS(xml, source) {
     const pubRaw = extractTag(b, 'pubDate');
     const ts = pubRaw ? Date.parse(pubRaw) : NaN;
     const desc = extractTag(b, 'description').slice(0, 200);
-    if (title) items.push({ title, link, source, ts: isNaN(ts) ? 0 : ts, desc });
+    if (title) items.push({ title, link, source: feed.name, lang: feed.lang || 'zh', ts: isNaN(ts) ? 0 : ts, desc });
   }
   return items;
 }
@@ -52,7 +53,7 @@ async function gatherNews() {
       const r = await fetch(f.url, { headers: { 'User-Agent': 'tycoon-infogap/1.0 (+daily-digest)' } });
       if (!r.ok) continue;
       const xml = await r.text();
-      all.push(...parseRSS(xml, f.name));
+      all.push(...parseRSS(xml, f));
     } catch (e) { /* 单个源失败不影响整体 */ }
   }
   const cutoff = Date.now() - 36 * 3600 * 1000;
@@ -84,20 +85,21 @@ function extractJSON(text) {
   return { data: null, err: 'no_json_found head: ' + text.slice(0, 120) };
 }
 
-const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注科技、商业与投资机会的中文读者。
-从下面的新闻候选中选出最重要的 20 条（优先覆盖：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先选择有明确事实的硬新闻，避开纯观点、广告和重复话题）。
+const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注全球市场与投资机会的中文读者。
+从下面的新闻候选中选出最重要的 20 条（优先：宏观政策与央行动态、全球股市/债市/汇市/大宗商品、重要公司财报与产业趋势；避开纯观点、广告和重复话题；英文新闻翻译成中文）。
 每条输出：
-- fact：一句话讲清发生了什么，必须用 <b></b> 或 ** ** 包裹 2-4 个关键词
-- signal：一句话点出背后的趋势或机会，不超过 20 字
+- fact：一句话讲清发生了什么（市场事实），用 <b></b> 或 ** ** 包裹 2-4 个关键词（关键数据、涨跌幅、政策名、公司名等）
+- signal：一句话点出投资含义：利好还是利空、影响哪类资产，不超过 20 字
+- importance：重要程度，"high"（影响市场走势/重大政策/大幅波动）或 "normal"
 - source：该新闻的媒体名；link：原文链接
 只输出以下结构的合法 JSON，不要输出任何解释文字：
-{"items":[{"fact":"...","signal":"...","source":"...","link":"..."}]}
+{"items":[{"fact":"...","signal":"...","importance":"high","source":"...","link":"..."}]}
 注意：所有内容必须基于候选新闻的真实信息，绝不编造事实、数据和日期；不确定的不写。字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
 
 const DD_A_PROMPT = `你是「每日信息差」主编。从下面「今日资讯」中选 1 条最值得展开的，写「本期干货」上半部分：
 - title：干货标题；summary：一句话理解（让小白也能懂）
 - points：3 个信息差要点，每个含 heading 和 body（body 写 2-3 句实质分析，不要只罗列关键词；关键词用 <b></b> 或 ** ** 包裹 2-4 个）
-- 优先选择与商业、投资、科技产业、政策相关的条目展开
+- 优先选择与宏观政策、市场走势、投资机会相关的条目展开
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"title":"...","summary":"...","points":[{"heading":"...","body":"..."}]}
 注意：内容必须基于所给资讯的真实信息，绝不编造；字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
@@ -147,7 +149,7 @@ async function generateDigest(env) {
   const news = await gatherNews();
   if (!news.length) return { ok: false, reason: 'no_recent_news' };
   const list = news
-    .map((n, i) => `${i + 1}. [${n.source}] ${n.title}${n.link ? ' <' + n.link + '>' : ''}${n.desc ? ' —— ' + n.desc : ''}`)
+    .map((n, i) => `${i + 1}. [${n.source}]${n.lang === 'en' ? '[英文，需译成中文]' : ''} ${n.title}${n.link ? ' <' + n.link + '>' : ''}${n.desc ? ' —— ' + n.desc : ''}`)
     .join('\n');
 
   // 第一步：生成今日二十条
