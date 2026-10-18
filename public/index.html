@@ -95,6 +95,8 @@ body.dark h1{text-shadow:3px 3px 0 var(--reddeep),6px 6px 0 var(--shadow);}
 footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-top:28px;letter-spacing:3px;line-height:2;}
 .to-top{position:absolute;right:-58px;transform:translateY(-50%);z-index:50;width:46px;height:46px;border-radius:12px;background:var(--reddeep);color:var(--onred);border:none;font-size:20px;font-weight:900;cursor:pointer;box-shadow:3px 3px 0 var(--shadow);}
 .to-top:hover{transform:translateY(-50%) scale(1.08);}
+.vs-anchor{position:relative;}
+.vs-anchor .to-top{top:50%;}
 @media(max-width:1018px){.to-top{right:10px;}}@media(max-width:582px){.to-top{right:8px;width:42px;height:42px;}}
 @media(max-width:582px){
   h1{font-size:34px;letter-spacing:8px;}
@@ -146,7 +148,7 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
   <div class="cutline"><span>本期干货</span></div>
   <section id="deep"></section>
   <div id="takeawayWrap"></div>
-  <button id="toTop" class="to-top" hidden aria-label="回到顶部">↑</button>
+  <span id="toTopSlot" hidden></span><button id="toTop" class="to-top" hidden aria-label="回到顶部">↑</button>
   <footer>富人信息差 · TYCOON INFOGAP<br>每晚 20 点自动更新 · 可回看最近 30 天</footer>
 </div>
 <script>
@@ -209,6 +211,9 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
 
   function render(d){
     current = d.date;
+    // 先把回到顶部按钮搬回原位，防止被 innerHTML 重建时销毁
+    var slot = document.getElementById('toTopSlot');
+    if(typeof toTop !== 'undefined' && toTop && slot && toTop.nextSibling !== slot){ slot.parentNode.insertBefore(toTop, slot); }
     dateLine.textContent = fmtCN(d.date);
     dateBtnLabel.textContent = fmtCN(d.date);
     newsLabel.textContent = (d.date === today ? '今日' : shortMD(d.date)) + (d.items || []).length + '条';
@@ -226,7 +231,6 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
         '<a href="javascript:location.reload()" style="color:var(--red);font-weight:700;">刷新</a></p></div>';
       takeawayWrap.innerHTML = '';
       buildCalendar();
-      placeToTop();
       return;
     }
     var flow = (dd.flow && dd.flow.length) ? '<div class="flow">' + dd.flow.map(function(s, i){
@@ -236,16 +240,18 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
     var points = (dd.points || []).map(function(p){
       return '<div class="point"><h3>' + rich(p.heading) + '</h3><p>' + rich(p.body) + '</p></div>';
     }).join('');
-    var cmp = dd.compare ? '<div class="vs"><div><b>' + rich(dd.compare.a.title) + '</b>' +
+    var cmp = dd.compare ? '<div class="vs-anchor"><div class="vs"><div><b>' + rich(dd.compare.a.title) + '</b>' +
       dd.compare.a.lines.map(rich).join('<br>') + '</div><div><b>' + rich(dd.compare.b.title) + '</b>' +
-      dd.compare.b.lines.map(rich).join('<br>') + '</div></div>' : '';
+      dd.compare.b.lines.map(rich).join('<br>') + '</div></div></div>' : '';
     deepEl.innerHTML = '<div class="deep"><div class="deep-tag">本期干货</div><h2>' + rich(dd.title) + '</h2>' +
       (dd.summary ? '<div class="summary"><b>一句话理解</b> · ' + rich(dd.summary) + '</div>' : '') +
       flow + points + cmp + '</div>';
     takeawayWrap.innerHTML = dd.takeaway ?
       '<div class="takeaway"><b>收藏要点</b><br>' + rich(dd.takeaway) + '</div>' : '';
     buildCalendar();
-    placeToTop();
+    // 把按钮挂进对照面板容器，纯 CSS 定位到面板右侧纵向居中（不受 zoom 影响）
+    var anchor = deepEl.querySelector('.vs-anchor');
+    if(anchor && typeof toTop !== 'undefined' && toTop){ anchor.appendChild(toTop); }
   }
 
   function load(date){
@@ -326,16 +332,6 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
   window.addEventListener('scroll', toggleToTop, {passive:true});
   toggleToTop();
   toTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
-  function placeToTop(){
-    var wrap = document.querySelector('.wrap');
-    var vsEl = document.querySelector('#deep .vs');
-    if(!toTop || !wrap || !vsEl) return;
-    var y = vsEl.getBoundingClientRect().top - wrap.getBoundingClientRect().top + vsEl.offsetHeight/2;
-    toTop.style.top = y + 'px';
-  }
-  var rszT;
-  window.addEventListener('resize', function(){ clearTimeout(rszT); rszT = setTimeout(placeToTop, 150); });
-  window.addEventListener('load', placeToTop);
 
   document.getElementById('todayBtn').addEventListener('click', function(){
     closeCal();
