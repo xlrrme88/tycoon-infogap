@@ -193,6 +193,8 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
   // 富文本：把 AI 输出的 **加粗** 统一转为 <b>，只允许 b 标签，其余一律转义
   function rich(s){
     s = String(s==null?'':s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+    var opens = (s.match(/<b>/g) || []).length, closes = (s.match(/<\/b>/g) || []).length;
+    for (var i = 0; i < opens - closes; i++) s += '</b>'; // 配平未闭合标签，防止后面整段变黄
     return s.split(/(<\/?b>)/g).map(function(part, i){ return i % 2 === 1 ? part : esc(part); }).join('');
   }
 
