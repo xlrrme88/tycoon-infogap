@@ -1,0 +1,20 @@
+name = "tycoon-infogap"
+main = "src/worker.js"
+compatibility_date = "2026-10-18"
+
+# 静态资源目录（前端页面）
+[assets]
+directory = "./public"
+
+# KV：存放每日信息差 JSON（部署前先创建，把 id 填到下面）
+[[kv_namespaces]]
+binding = "DIGEST_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Workers AI：用于每日生成信息差内容
+[ai]
+binding = "AI"
+
+# 定时任务：每天 22:00 UTC = 北京时间次日 06:00 自动生成当日信息差
+[triggers]
+crons = ["0 22 * * *"]
