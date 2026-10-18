@@ -57,9 +57,13 @@ async function gatherNews() {
     } catch (e) { /* 单个源失败不影响整体 */ }
   }
   const cutoff = Date.now() - 36 * 3600 * 1000;
-  const seen = new Set();
+  const seenT = new Set(), seenL = new Set();
   return all
-    .filter((i) => i.ts >= cutoff && !seen.has(i.title) && seen.add(i.title))
+    .filter((i) => {
+      if (i.ts < cutoff || seenT.has(i.title) || (i.link && seenL.has(i.link))) return false;
+      seenT.add(i.title); if (i.link) seenL.add(i.link);
+      return true;
+    })
     .sort((a, b) => b.ts - a.ts)
     .slice(0, 50);
 }
@@ -87,9 +91,11 @@ function extractJSON(text) {
 
 const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注全球市场与投资机会的中文读者。
 从下面的新闻候选中选出最重要的 20 条（优先：宏观政策与央行动态、全球股市/债市/汇市/大宗商品、重要公司财报与产业趋势；避开纯观点、广告和重复话题；英文新闻翻译成中文）。
-每条输出：
-- fact：一句话讲清发生了什么（市场事实），用 <b></b> 或 ** ** 包裹 2-4 个关键词（关键数据、涨跌幅、政策名、公司名等）
-- signal：一句话点出投资含义：利好还是利空、影响哪类资产，不超过 20 字
+严格遵守：
+- 同一主题（如汇率、同一事件）最多选 2 条，禁止罗列多个货币对/重复事件
+- fact：一句话讲清发生了什么（市场事实）；关键词加粗只包裹 2-4 个核心词（关键数据、涨跌幅、政策名、公司名），禁止整句加粗，禁止加粗超过 6 个词；用 <b></b> 或 ** ** 包裹
+- 外文专有名词必须准确翻译，不确定的保留英文原名，绝不编造中文名（如 Berkshire Hathaway 是伯克希尔）
+- signal：一句话点出投资含义，格式必须指明资产，如"利空美债""利好黄金"，禁止只写"利空/利好"二字，不超过 20 字
 - importance：重要程度，"high"（影响市场走势/重大政策/大幅波动）或 "normal"
 - source：该新闻的媒体名；link：原文链接
 只输出以下结构的合法 JSON，不要输出任何解释文字：
@@ -99,14 +105,15 @@ const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注全球市�
 const DD_A_PROMPT = `你是「每日信息差」主编。从下面「今日资讯」中选 1 条最值得展开的，写「本期干货」上半部分：
 - title：干货标题；summary：一句话理解（让小白也能懂）
 - points：3 个信息差要点，每个含 heading 和 body（body 写 2-3 句实质分析，不要只罗列关键词；关键词用 <b></b> 或 ** ** 包裹 2-4 个）
-- 优先选择与宏观政策、市场走势、投资机会相关的条目展开
+- 优先选择与宏观政策、市场走势、投资机会相关的条目展开；不要选汇率日常波动、单一货币对涨跌这类缺乏深度的条目
+- points 的 body 每段写 2-3 句实质分析，禁止"进而导致"式循环论证
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"title":"...","summary":"...","points":[{"heading":"...","body":"..."}]}
 注意：内容必须基于所给资讯的真实信息，绝不编造；字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
 
 const DD_B_PROMPT = `你是「每日信息差」主编。下面是本期干货已确定的标题、一句话理解和信息差要点，请补充下半部分：
 - flow：4 步流程（每步 label 写具体步骤名，不要写"步骤1/步骤2"；每步含 label 和 sub），如不适用可为空数组
-- compare：左右对比，必须且只能有 a、b 两项：{a:{title,lines[3行]}, b:{title,lines[3行]}}
+- compare：左右对比，只能有两个键 a 和 b（多一个键就是错误输出）；a.lines 和 b.lines 必须恰好 3 个字符串，每个不超过 14 字
 - takeaway：一句收藏要点总结
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"flow":[{"label":"...","sub":"..."}],"compare":{"a":{"title":"...","lines":["...","...","..."]},"b":{"title":"...","lines":["...","...","..."]}},"takeaway":"..."}
