@@ -100,7 +100,7 @@ const SYSTEM_PROMPT = `你是「每日信息差」主编，面向关注科技、
 - takeaway：一句收藏要点总结
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"items":[{"fact":"...","signal":"...","source":"...","link":"..."}],"deepdive":{"title":"...","summary":"...","points":[{"heading":"...","body":"..."}],"flow":[{"label":"...","sub":"..."}],"compare":{"a":{"title":"...","lines":["...","...","..."]},"b":{"title":"...","lines":["...","...","..."]}},"takeaway":"..."}}
-注意：所有内容必须基于候选新闻的真实信息，绝不编造事实、数据和日期；不确定的不写。`;
+注意：所有内容必须基于候选新闻的真实信息，绝不编造事实、数据和日期；不确定的不写。字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
 
 async function generateDigest(env) {
   const news = await gatherNews();
@@ -110,28 +110,35 @@ async function generateDigest(env) {
     .join('\n');
   let res = null;
   let lastErr = '';
+  let data = null;
+  outer:
   for (const model of AI_MODELS) {
-    try {
-      res = await env.AI.run(model, {
-        max_tokens: 4096,
-        messages: [
-          { role: 'system', content: '你只输出合法的 JSON，不要输出任何解释文字。' },
-          { role: 'user', content: SYSTEM_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list },
-        ],
-      });
-      break;
-    } catch (e) {
-      lastErr = String((e && e.message) || e).slice(0, 200);
-      res = null;
+    let feedback = '';
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        res = await env.AI.run(model, {
+          max_tokens: 4096,
+          messages: [
+            { role: 'system', content: '你只输出合法的 JSON，不要输出任何解释文字。' },
+            { role: 'user', content: SYSTEM_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list +
+              (feedback ? '\n\n你上一次输出的 JSON 有语法错误：' + feedback + '。请修正这个错误，重新只输出合法的 JSON。' : '') },
+          ],
+        });
+      } catch (e) {
+        lastErr = String((e && e.message) || e).slice(0, 200);
+        res = null;
+        break;
+      }
+      const text = typeof res.response === 'string' ? res.response : JSON.stringify(res);
+      const parsed = extractJSON(text);
+      if (parsed.data) { data = parsed.data; break outer; }
+      feedback = parsed.err;
+      lastErr = 'ai_bad_json: ' + parsed.err;
     }
   }
-  if (!res) {
+  if (!data) {
     return { ok: false, reason: 'ai_call_failed: ' + lastErr };
   }
-  const text = typeof res.response === 'string' ? res.response : JSON.stringify(res);
-  const parsed = extractJSON(text);
-  if (!parsed.data) return { ok: false, reason: 'ai_bad_json: ' + parsed.err };
-  const data = parsed.data;
   if (!Array.isArray(data.items) || !data.items.length) return { ok: false, reason: 'ai_empty' };
   data.items = data.items.slice(0, 7);
   return { ok: true, data };
