@@ -89,17 +89,34 @@ function extractJSON(text) {
   return { data: null, err: 'no_json_found head: ' + text.slice(0, 120) };
 }
 
+// 校验条目格式：数量、关键词加粗、signal 长度；返回 null 表示通过，否则返回原因
+function itemsValid(items){
+  if(!Array.isArray(items) || items.length < 18) return 'count=' + (Array.isArray(items) ? items.length : 0);
+  for(const it of items){
+    if(!it || !it.fact || !it.signal) return 'empty';
+    if(it.fact.indexOf('<b>') < 0 && !/\*\*[^*]+\*\*/.test(it.fact)) return 'nobold';
+    const sig = String(it.signal).replace(/\*\*/g, '').trim();
+    if(sig.length < 2 || sig.length > 8) return 'signal=' + sig;
+  }
+  return null;
+}
+
 const ITEMS_PROMPT = `你是「每日信息差」主编，面向关注全球科技产业与投资机会的中文读者。
-从下面的新闻候选中选出最重要的 20 条（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先硬科技产业突破、投融资并购、产业链动态；避开消费电子新品、数码配件、纯观点、广告和重复话题；英文新闻翻译成中文）。
+从下面的新闻候选中选出最重要的 20 条（领域：AI/大模型、半导体、生物医药、新材料、通信、机器人、新能源；优先硬科技产业突破、投融资并购、产业链动态；避开消费电子新品、数码配件、纯观点、广告和重复话题；英文新闻翻译成中文）。必须输出满 20 条。
 严格遵守：
 - 同一主题/同一事件最多选 2 条
-- fact：一句话讲清发生了什么；关键词加粗只包裹 2-4 个核心词（关键数据、技术名、公司名等），禁止整句加粗，禁止加粗超过 6 个词；用 <b></b> 或 ** ** 包裹
+- fact：一句话讲清发生了什么；关键词加粗只包裹 2-4 个核心词（关键数据、技术名、公司名），禁止整句加粗，禁止加粗超过 6 个词；用 <b></b> 包裹
 - 外文专有名词必须准确翻译，不确定的保留英文原名，绝不编造中文名
-- signal：一句话点出背后的趋势或机会，4-8 字的趋势标签，如"容错量子计算""新型存储流片"
+- signal：4-8 字、该新闻独有的具体技术趋势标签，如"容错量子计算""新型存储流片"；禁止宽泛品类词（如"新能源汽车""人工智能""半导体""通信""投资""AI推动"），禁止与事实矛盾
 - importance：重要程度，"high"（重大突破/重磅政策/大幅市场影响）或 "normal"
 - source：该新闻的媒体名；link：原文链接
 只输出以下结构的合法 JSON，不要输出任何解释文字：
 {"items":[{"fact":"...","signal":"...","importance":"high","source":"...","link":"..."}]}
+格式示例（严格照此格式，每条 fact 必须带 <b> 关键词）：
+{"items":[
+{"fact":"<b>谷歌</b>发布新一代<b>量子芯片 Willow</b>，<b>错误率降低约 40 倍</b>","signal":"容错量子计算","importance":"high","source":"科创板日报","link":"https://example.com/1"},
+{"fact":"<b>铭芯启睿</b>首款<b>1Gb RRAM</b>芯片「<b>泰山一号</b>」完成流片，采用<b>28nm</b>工艺","signal":"新型存储流片","importance":"high","source":"界面新闻","link":"https://example.com/2"}
+]}
 注意：所有内容必须基于候选新闻的真实信息，绝不编造事实、数据和日期；不确定的不写。字符串值内部不要使用英文双引号，如需引用请用中文引号“”。`;
 
 const DD_A_PROMPT = `你是「每日信息差」主编。从下面「今日资讯」中选 1 条最值得展开的，写「本期干货」上半部分：
@@ -159,9 +176,15 @@ async function generateDigest(env) {
     .map((n, i) => `${i + 1}. [${n.source}]${n.lang === 'en' ? '[英文，需译成中文]' : ''} ${n.title}${n.link ? ' <' + n.link + '>' : ''}${n.desc ? ' —— ' + n.desc : ''}`)
     .join('\n');
 
-  // 第一步：生成今日二十条
-  const itemsRes = await aiJSON(env, ITEMS_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list, 2500);
+  // 第一步：生成今日二十条（格式校验，不合格自动重试一次）
+  const itemsPrompt = ITEMS_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list;
+  let itemsRes = await aiJSON(env, itemsPrompt, 2500);
   if (!itemsRes.ok) return itemsRes;
+  const vErr = itemsValid(itemsRes.data.items);
+  if (vErr) {
+    const retry = await aiJSON(env, itemsPrompt + '\n\n注意：上次输出格式不合格（' + vErr + '），请严格遵守格式要求（输出 20 条、每条 fact 用 <b> 标注 2-4 个关键词、signal 为 4-8 字趋势标签）重新输出。', 2500);
+    if (retry.ok && !itemsValid(retry.data.items)) itemsRes = retry;
+  }
   const items = itemsRes.data.items;
   if (!Array.isArray(items) || !items.length) return { ok: false, reason: 'ai_empty' };
 
