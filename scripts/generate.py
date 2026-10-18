@@ -277,27 +277,37 @@ def main():
     # 第一步：筛选最有价值的 20 条（只做判断）
     print('筛选 20 条...', flush=True)
     rs = gemini(SELECT_PROMPT + '\n\n新闻候选：\n' + cand_text, max_tokens=1000)
-    if not rs['ok']:
-        print('筛选失败:', rs['reason'], file=sys.stderr)
-        sys.exit(1)
-    sel = rs['data'].get('selected', [])
-    sel = [x for x in sel if isinstance(x, int) and 1 <= x <= len(news)]
-    sel = list(dict.fromkeys(sel))[:20]
-    if len(sel) < 18:
-        print(f'筛选只选出 {len(sel)} 条，数量不足', file=sys.stderr)
-        sys.exit(1)
-    picked = [news[i - 1] for i in sel]
-    n_en = sum(1 for n in picked if n.get('lang') == 'en')
-    print(f'选出 {len(picked)} 条（国际 {n_en} 条）', flush=True)
+    sel = []
+    if rs['ok']:
+        sel = rs['data'].get('selected', [])
+        sel = [x for x in sel if isinstance(x, int) and 1 <= x <= len(news)]
+        sel = list(dict.fromkeys(sel))[:20]
+    if len(sel) >= 18:
+        picked = [news[i - 1] for i in sel]
+        n_en = sum(1 for n in picked if n.get('lang') == 'en')
+        print(f'选出 {len(picked)} 条（国际 {n_en} 条）', flush=True)
+    else:
+        # 兜底：筛选失败则回退到 50 选 20 边选边写
+        print(f"筛选失败（{rs.get('reason', '')}），回退到单步模式", flush=True)
+        picked = None
     pick_text = '\n'.join(
         f"{i+1}. [{n['source']}]" + ('[英文，需译成中文]' if n.get('lang') == 'en' else '')
         + f" {n['title']}" + (f" <{n['link']}>" if n['link'] else '')
         + (f" —— {n['desc']}" if n['desc'] else '')
-        for i, n in enumerate(picked))
+        for i, n in enumerate(picked)) if picked else ''
 
-    # 第二步：精写 20 条（只做写作）
+    # 第二步：精写 20 条（只做写作；兜底时用全候选单步选写）
+    if picked is None:
+        pick_text = cand_text
+        write_prompt = ITEMS_PROMPT.replace(
+            '把下面 20 条已选出的新闻改写成信息差条目',
+            '从下面的新闻候选中选出最重要的 20 条并改写成信息差条目（6-10 条国际、其余国内）'
+        ).replace('顺序与输入一致。', '')
+    else:
+        write_prompt = ITEMS_PROMPT
     print('精写 20 条...', flush=True)
-    r = gemini(ITEMS_PROMPT + '\n\n已选出的 20 条新闻：\n' + pick_text, max_tokens=5000)
+    label = '已选出的 20 条新闻：' if picked else '新闻候选：'
+    r = gemini(write_prompt + '\n\n' + label + '\n' + pick_text, max_tokens=5000)
     if not r['ok']:
         print('20条生成失败:', r['reason'], file=sys.stderr)
         sys.exit(1)
@@ -305,7 +315,7 @@ def main():
     err = items_valid(items)
     if err:
         print(f'格式校验未通过（{err}），重试一次...', flush=True)
-        r2 = gemini(ITEMS_PROMPT + '\n\n已选出的 20 条新闻：\n' + pick_text
+        r2 = gemini(write_prompt + '\n\n' + label + '\n' + pick_text
                     + f'\n\n注意：上次输出格式不合格（{err}），请严格遵守格式要求重新输出。',
                     max_tokens=5000)
         if r2['ok'] and not items_valid(r2['data'].get('items', [])):
