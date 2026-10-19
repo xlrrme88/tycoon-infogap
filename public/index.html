@@ -96,7 +96,9 @@ footer{text-align:center;font-size:12px;color:var(--toptext);opacity:.7;margin-t
 .to-top{position:absolute;right:-58px;transform:translateY(-50%);z-index:50;width:46px;height:46px;border-radius:12px;background:var(--reddeep);color:var(--onred);border:none;font-size:20px;font-weight:900;cursor:pointer;box-shadow:3px 3px 0 var(--shadow);}
 .to-top:hover{transform:translateY(-50%) scale(1.08);}
 .vs-anchor{position:relative;}
-.vs-anchor .to-top{top:50%;}
+.vs-anchor .to-top{top:50%;right:calc(-58px - 42px);} /* 对齐内容栏右侧：-58px为栏外距离，-42px补偿deep卡片的右边距+内边距 */
+@media(max-width:1018px){.vs-anchor .to-top{right:calc(10px - 42px);}}
+@media(max-width:582px){.vs-anchor .to-top{right:calc(8px - 24px);}} /* 移动端 deep 内边距变为 18px，补偿 18+6=24px */
 @media(max-width:1018px){.to-top{right:10px;}}@media(max-width:582px){.to-top{right:8px;width:42px;height:42px;}}
 @media(max-width:582px){
   h1{font-size:34px;letter-spacing:8px;}
