@@ -14,7 +14,3 @@ id = "57d27eeecae041cf92181d99862f31c9"
 # Workers AI：用于每日生成信息差内容
 [ai]
 binding = "AI"
-
-# 定时任务：每天 22:00 UTC = 北京时间次日 06:00 自动生成当日信息差
-[triggers]
-crons = ["0 22 * * *"]

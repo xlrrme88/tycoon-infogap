@@ -205,24 +205,39 @@ async function aiJSON(env, prompt, maxTokens) {
 async function generateDigest(env) {
   const news = await gatherNews();
   if (!news.length) return { ok: false, reason: 'no_recent_news' };
-  const list = news
-    .map((n, i) => `${i + 1}. [${n.source}]${n.lang === 'en' ? '[英文，需译成中文]' : ''} ${n.title}${n.link ? ' <' + n.link + '>' : ''}${n.desc ? ' —— ' + n.desc : ''}`)
-    .join('\n');
+  const fmt = (n, i) => `${i + 1}. [${n.source}]${n.lang === 'en' ? '[英文，需译成中文]' : ''} ${n.title}${n.link ? ' <' + n.link + '>' : ''}${n.desc ? ' —— ' + n.desc : ''}`;
 
-  // 第一步：生成今日二十条（格式校验，不合格自动重试一次）
-  const itemsPrompt = ITEMS_PROMPT + '\n\n以下是过去36小时的新闻候选：\n' + list;
-  let itemsRes = await aiJSON(env, itemsPrompt, 2500);
-  if (!itemsRes.ok && isTransient(itemsRes.reason)) {
-    itemsRes = await aiJSON(env, itemsPrompt, 2500); // 超时/限流自动再试一次
+  // 第一步：生成今日二十条（分 2 批并行，每批 10 条，单次输出减半以降低超时风险）
+  const mkBatchPrompt = (n, sub) => ITEMS_PROMPT.replace('必须输出满 20 条。', '必须输出满 10 条（这是第 ' + n + ' 批，共 2 批，两批选题不要重复）。')
+    + '\n\n以下是过去36小时的新闻候选（第 ' + n + ' 批请从以下候选中选）：\n' + sub;
+  async function oneBatch(n, sub) {
+    let r = await aiJSON(env, mkBatchPrompt(n, sub), 1500);
+    if (!r.ok && isTransient(r.reason)) r = await aiJSON(env, mkBatchPrompt(n, sub), 1500);
+    return r;
   }
-  if (!itemsRes.ok) return itemsRes;
-  const vErr = itemsValid(itemsRes.data.items);
-  if (vErr) {
-    const retry = await aiJSON(env, itemsPrompt + '\n\n注意：上次输出格式不合格（' + vErr + '），请严格遵守格式要求（输出 20 条、每条 fact 用 <b> 标注 2-4 个关键词、signal 为 4-8 字趋势标签）重新输出。', 2500);
-    if (retry.ok && !itemsValid(retry.data.items)) itemsRes = retry;
+  function mergeItems(results) {
+    const seen = new Set(), out = [];
+    for (const r of results) {
+      if (!r || !r.ok || !Array.isArray(r.data.items)) continue;
+      for (const it of r.data.items) {
+        const key = (it.link || '') + '|' + String(it.fact || '').slice(0, 30);
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push(it);
+      }
+    }
+    return out;
   }
-  const items = itemsRes.data.items;
-  if (!Array.isArray(items) || !items.length) return { ok: false, reason: 'ai_empty' };
+  const half = Math.ceil(news.length / 2);
+  const listA = news.slice(0, half).map(fmt).join('\n');
+  const listB = news.slice(half).map(fmt).join('\n');
+  let items = mergeItems(await Promise.all([oneBatch(1, listA), oneBatch(2, listB)]));
+  if (!items.length) return { ok: false, reason: 'ai_empty' };
+  // 格式校验，不合格则两批整体重试一次
+  if (itemsValid(items)) {
+    const retryItems = mergeItems(await Promise.all([oneBatch(1, listA), oneBatch(2, listB)]));
+    if (retryItems.length && !itemsValid(retryItems)) items = retryItems;
+  }
 
   // 第二步：干货上半部分（标题+一句话理解+3个要点）
   const itemsText = items.map((it, i) => `${i + 1}. ${it.fact}（${it.source}）`).join('\n');
@@ -315,8 +330,8 @@ export default {
     return env.ASSETS.fetch(request);
   },
 
-  // 每天 22:00 UTC = 北京时间次日 06:00
+  // 定时生成已停用（2026-10-19 起改由每晚 20:00 简报直推静态 JSON，不再由 Worker 生成）
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(runDaily(env));
+    return;
   },
 };
