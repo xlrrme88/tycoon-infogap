@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-21",
+  "generated_at": "2026-10-21T12:07:37Z",
+  "items": [
+    {
+      "fact": "<b>英伟达</b>在 GTC Berlin 宣布携<b>安靠</b>、IBIDEN、<b>京元电子</b>等扩产，未来三年基板产能提升 <b>2.5 倍</b>；向京元电子支付 11 亿美元预付款锁定美国测试产能。",
+      "signal": "产能瓶颈总攻",
+      "importance": "high",
+      "source": "英伟达官方通稿",
+      "link": "https://www.globenewswire.com/news-release/2026/10/21/3385344/0/en/nvidia-and-supply-chain-partners-expand-capacity-to-accelerate-ai-infrastructure-buildout.html"
+    },
+    {
+      "fact": "<b>OpenAI</b> 收购 AI 生物技术创企 <b>Orchestra Bio</b>，团队与技术并入生命科学平台 <b>Rosalind</b>；金额未披露。——AI 巨头杀入制药业。",
+      "signal": "巨头切入制药",
+      "importance": "high",
+      "source": "新浪新闻",
+      "link": "https://news.sina.cn/ai/2026-10-21/detail-inivynss4898460.d.html"
+    },
+    {
+      "fact": "<b>DeepSeek</b> 以 Apache 2.0 开源推理框架 <b>DeepInfer</b>，支持 V4.1-Flash，兼容英伟达 <b>SM100</b> 与华为昇腾 950。",
+      "signal": "推理成本战开源化",
+      "importance": "high",
+      "source": "Particle News",
+      "link": "https://particle.news/story/deepseek-opens-production-inference-engine-deepinfer"
+    },
+    {
+      "fact": "<b>宇树科技</b>发布人形机器人 <b>H2-X</b>“功夫传奇”，演示徒手抬汽车前端、单脚踢凹车门、<b>4 米</b>高台空翻落地，最长续航约 8 小时。——人形机器人开始秀肌肉。",
+      "signal": "人形机器人秀肌肉",
+      "importance": "high",
+      "source": "21经济网",
+      "link": "https://www.21jingji.com/article/20261021/herald/6232a98726fd7468d5d9640fb120ff81.html"
+    },
+    {
+      "fact": "<b>马斯克</b>宣布<b>星舰</b>第 15 次试飞（11 月）将首试“筷子”双回收助推器与飞船；同期 <b>Starlink</b> Q3 新增 160 万用户、营收 52 亿美元。",
+      "signal": "星舰双回收前夜",
+      "importance": "high",
+      "source": "IT之家",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-21/detail-inivyaau7993534.d.html"
+    },
+    {
+      "fact": "<b>和黄医药</b>与 <b>GSK</b> 的 <b>HMPL-A830</b> 许可协议完成交割，首付款 1.1 亿美元、里程碑最高 11.85 亿美元。——国产创新药授权持续放量。",
+      "signal": "创新药授权放量",
+      "importance": "high",
+      "source": "新浪财经",
+      "link": "https://finance.sina.cn/2026-10-21/detail-inivxvuy4684442.d.html"
+    },
+    {
+      "fact": "<b>OCC</b> 发布 <b>GENIUS 法案</b>下首个稳定币最终规则，成首个出台细则的联邦监管机构；稳定币奖励边界逐案审查，<b>2027 年 1 月 18 日</b>生效。",
+      "signal": "稳定币监管落地",
+      "importance": "high",
+      "source": "CoinDesk",
+      "link": "https://Www.coindesk.com/policy/2026/10/21/occ-s-final-rule-to-start-fresh-in-weighing-stablecoin-rewards-against-genius-act-ban"
+    },
+    {
+      "fact": "<b>西联汇款</b>选用稳定币基建商 <b>Noah</b> 搭建全球稳定币支付网，支持 60 多种货币、200 多个国家和地区，1.5 亿客户可经 50 余万个网点收发 <b>USDPT</b>。",
+      "signal": "传统汇款上链",
+      "importance": "normal",
+      "source": "GlobeNewswire",
+      "link": "https://markets.financialcontent.com/stocks/article/gnwcq-2026-10-21-western-union-selects-noah-to-power-global-stablecoin-payments-network"
+    },
+    {
+      "fact": "<b>英伟达</b>推出模块化 AI 工厂 <b>DSX POD</b>，把 <b>Vera Rubin</b> 整机预装进集装箱，部署从 6 个月压缩至 14 天，2027 年初交付。",
+      "signal": "AI工厂整装交付",
+      "importance": "normal",
+      "source": "界面新闻",
+      "link": "https://k.sina.cn/article_5182171545_134e1a99902002kmi2.html"
+    },
+    {
+      "fact": "据路透，<b>字节跳动</b>、<b>阿里巴巴</b>、<b>腾讯</b>订购超 300 万块英伟达 <b>RTX PRO 5500</b>，价值超 350 亿美元；英伟达称无法保证满足全部订单。——算力缺口难填。",
+      "signal": "国内算力缺口难填",
+      "importance": "normal",
+      "source": "路透",
+      "link": "https://kylesinvestigation.com/2026/10/20/chinese-tech-giants-line-up-for-35-billion-of-nvidias-export-compliant-ai-chips/"
+    },
+    {
+      "fact": "<b>ServiceNow</b> 与<b>英伟达</b>联合打造的企业 AI 智能体 <b>Arc</b> 正式可用，首批登陆 Mac、专为 RTX Spark 设备打造，主打多层安全护栏。",
+      "signal": "企业智能体交付期",
+      "importance": "normal",
+      "source": "ZDNET",
+      "link": "https://thetechstreetnow.com/exclusive-servicenow-and-nvidia-launch-arc-a-new-ai-agent-for-enterprise/"
+    },
+    {
+      "fact": "中国<b>国家数据集团</b>在雄安成立，丁薛祥出席揭牌；这家副部级央企以数据资源开发利用为主业，提出把握 <b>AI</b> 先机、构筑国家竞争新优势。",
+      "signal": "数据要素国家队",
+      "importance": "normal",
+      "source": "路透",
+      "link": "https://cn.tradingview.com/news/reuters.com,2026:newsml_L4S46702Z:0/"
+    },
+    {
+      "fact": "中办、国办发布《关于推动<b>科技创新</b>和<b>产业创新</b>深度融合的意见》，围绕创新链产业链对接等 6 方面部署，以新质生产力为目标。——科技产业政策定调。",
+      "signal": "科技产业政策定调",
+      "importance": "normal",
+      "source": "新华社",
+      "link": "https://news.bjd.com.cn/2026/10/21/12003754.shtml"
+    },
+    {
+      "fact": "<b>央行</b>宣布 10 月 21 日至 11 月 2 日开展<b>隔夜逆回购</b>操作，今日投放 800 亿元、单日净投放 240 亿元；七天期操作量为零。——政策利率锚切换启幕。",
+      "signal": "政策利率锚切换",
+      "importance": "normal",
+      "source": "路透",
+      "link": "https://cn.tradingview.com/news/reuters.com,2026:newsml_L4S46702S:0/"
+    },
+    {
+      "fact": "<b>泰诺麦博</b>的全球首款一针 9 个月保护 <b>RSV 单抗</b>芮特韦拜单抗（新多妥）在珠海开出全国首方；III 期显示 270 天住院保护效力仍达 <b>69.8%</b>。",
+      "signal": "国产长效单抗落地",
+      "importance": "normal",
+      "source": "美通社",
+      "link": "https://www.tradingkey.com/zh-hans/news/stocks/262228776-pr-newswire"
+    },
+    {
+      "fact": "<b>道达尔</b>旗下 <b>Saft</b> 在波尔多启用固态电池产线，能量密度较传统锂电高最高 <b>50%</b>，干法电极减排 40%，首攻航空航天市场。——欧洲固态电池提速。",
+      "signal": "欧洲固态电池提速",
+      "importance": "normal",
+      "source": "Evertiq",
+      "link": "https://evertiq.com/news/2026-10-21-saft-starts-solid-state-battery-production-in-bordeaux"
+    },
+    {
+      "fact": "<b>The Nuclear Company</b> 宣布建 <b>Prosperity One</b> 核电园区，规划 6 台 AP1000 机组、<b>6.6GW</b>，2028 年开工。",
+      "signal": "美国核电重启加速",
+      "importance": "normal",
+      "source": "PR Newswire",
+      "link": "https://lifestyle.houstonnewstoday.com/story/956072/the-nuclear-company-announces-prosperity-one-a-6-6-gigawatt-nuclear-power-campus-in-lewis-county-kentucky/"
+    },
+    {
+      "fact": "“<b>北脑一号</b>”完成全部注册临床试验患者入组，40 余例植入、最长超 18 个月，计划 2027 年申报注册证；广东脑机接口重点企业超 <b>100 家</b>居全国首位。",
+      "signal": "脑机接口临床提速",
+      "importance": "normal",
+      "source": "上海证券报",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-21/detail-inivynsp6217864.d.html"
+    },
+    {
+      "fact": "<b>Netflix</b> Q3 营收 <b>128.7 亿美元</b>（同比 +11.8%，近三年最低增速），净利润超预期但四季度指引疲软，广告收入预期下调，盘后跌近 <b>7%</b>。",
+      "signal": "流媒体增长见顶",
+      "importance": "normal",
+      "source": "路透",
+      "link": "https://bworldonline.com/technology/2026/10/21/788320/netflix-issues-weak-fourth-quarter-forecast-as-company-seeks-to-kick-start-growth/"
+    },
+    {
+      "fact": "跨境电商海外“双 11”开打：<b>速卖通</b>海外仓备货同比增 <b>146%</b>、官方仓扩容 2.5 倍，并联合天猫启动中国品牌全球增长计划。——出海备货前置避险。",
+      "signal": "跨境备货前置避险",
+      "importance": "normal",
+      "source": "北京商报",
+      "link": "http://www.senn.com.cn/ds/2026/10/21/24343.html"
+    }
+  ],
+  "deepdive": {
+    "title": "为什么英伟达把供应链扩产变成公开战役很重要？",
+    "summary": "英伟达在 GTC Berlin 把“产能是瓶颈”从财报措辞升级为公开战役：拉六家供应链伙伴站台、未来三年基板产能翻 2.5 倍，并用 11 亿美元预付款把测试产能锁进自己名下——AI 竞赛的胜负手，正从芯片设计转向供应链动员能力。",
+    "points": [
+      {
+        "heading": "原理拆解",
+        "body": "AI 服务器出货的短板不在 GPU 本身，而在基板、先进封装与测试这些“配套工序”。预付款的本质是<b>产能期权</b>：用今天的现金锁定 2027 年的产能，把涨价与断供风险转给供应商。SPIL 光引擎 15 倍扩产则指向下一代互联——共封装光学（CPO）。"
+      },
+      {
+        "heading": "信息差在哪里",
+        "body": "黄仁勋公开喊出“人类历史上最大规模基础设施建设”，不是讲给投资者听的，是讲给供应链的银行和地方政府听的——公开站台等于信用背书，供应商拿着它去融资、拿地、招人。同时京元电子美国测试工厂意味着封测产能向美国回流，IBIDEN 日本小野工厂 3 倍产能 2028 年一季度爬坡，时间表都已钉死。"
+      },
+      {
+        "heading": "产业链影响",
+        "body": "上游看<b>基板</b>（IBIDEN、Unimicron、三星电机）、<b>封测</b>（Amkor、日月光/SPIL）、测试（京元电子）的订单能见度拉长到 2027—2028 年；中游看 AI 服务器整机与液冷配套；国内基板与封测厂商有望承接外溢订单，但高端基板仍依赖日韩。"
+      }
+    ],
+    "flow": [
+      {
+        "label": "过去",
+        "sub": "芯片设计定胜负，供应链是后台配角"
+      },
+      {
+        "label": "现在",
+        "sub": "基板/封测/测试成出货瓶颈，预付款锁产能"
+      },
+      {
+        "label": "未来 12 个月",
+        "sub": "京元电子美国工厂 2027 年 4 月量产、IBIDEN 小野工厂 2028 年一季度爬坡"
+      },
+      {
+        "label": "终局",
+        "sub": "谁锁定产能，谁锁定未来两年的 AI 出货"
+      }
+    ],
+    "compare": {
+      "a": {
+        "title": "此前",
+        "lines": [
+          "拼的是芯片架构与制程",
+          "供应链藏在财报附注里",
+          "产能不足靠加价解决"
+        ]
+      },
+      "b": {
+        "title": "之后",
+        "lines": [
+          "拼的是供应链动员能力",
+          "预付款与扩产变成发布会主角",
+          "产能不足靠提前两年锁定解决"
+        ]
+      }
+    },
+    "takeaway": "AI 算力的稀缺已从芯片转向制造产能：谁锁定基板、封测、测试的产能，谁就锁定未来两年出货。判断方法看三个硬变量——巨头预付款的规模与投向、关键供应商扩产时间表是否兑现、瓶颈工序的合约价走势。原理：当需求远超供给时，供应链动员能力就是定价权。"
+  }
+}
