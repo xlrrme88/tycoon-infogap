@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-22",
+  "deepdive": {
+    "compare": {
+      "a": {
+        "lines": [
+          "拼的是谁借得到钱、买得到 GPU",
+          "股价涨跌是市场情绪的晴雨表",
+          "规划里的 GW 数就是供给"
+        ],
+        "title": "此前"
+      },
+      "b": {
+        "lines": [
+          "拼的是谁的资金成本更低、续约更稳",
+          "CDS 利差是比股价更早的先行指标",
+          "规划数字先乘 40% 再谈供给"
+        ],
+        "title": "之后"
+      }
+    },
+    "flow": [
+      {
+        "label": "过去",
+        "sub": "借债买 GPU、签长约回租，扩张飞轮越转越快"
+      },
+      {
+        "label": "现在",
+        "sub": "CDS 利差走阔，债券市场开始为违约风险定价"
+      },
+      {
+        "label": "未来 12 个月",
+        "sub": "看 CoreWeave 下次发债的票息与认购倍数"
+      },
+      {
+        "label": "终局",
+        "sub": "有电、有钱、有订单的“三有”玩家赢者通吃"
+      }
+    ],
+    "points": [
+      {
+        "body": "CDS 利差是违约保险的价格，利差走阔等于市场认为违约概率上升。CoreWeave 的模式是借债买 GPU、再签长租约回租给云厂商与大模型公司：资产重、负债高、现金流依赖续约与利用率。当新债成本上升，扩张的飞轮就转不动了——这和巴克莱说的“电力与融资双重瓶颈”正好扣上：大摩量的是水龙头拧开多大，巴克莱量的是杯子实际接到多少水，而 CDS 量的是水管子会不会爆。",
+        "heading": "原理拆解"
+      },
+      {
+        "body": "股价跌 29% 是结果，CDS 是先行指标——债券交易员用机构资金在定价，不像散户情绪。昨天简报的“交付三率”（电力落地率、资金到位率、订单转化率）里，<b>资金到位率</b>今天第一次亮了红灯：AI 相关债券发行额从 6 月 1130 亿美元骤降至 9 月 230 亿美元，现在连龙头 neocloud 的存量债都被要求更高的风险溢价。",
+        "heading": "信息差在哪里"
+      },
+      {
+        "body": "上游<b>电力设备</b>（变压器、开关柜）与电网审批仍是硬瓶颈，不受融资情绪影响；中游第三方数据中心开发商分化——有长约、有电、有钱的“三有”玩家活下去，靠讲故事拿地的出清；下游超大规模云厂商（谷歌、微软、亚马逊、Meta）议价权进一步上升，neocloud 可能被收编或被迫降价续约。",
+        "heading": "产业链影响"
+      }
+    ],
+    "summary": "昨天摩根士丹利和巴克莱还在争论 2027 年数据中心到底建多少，今天债券市场先用真金白银投票了：CoreWeave 10 月跌 29%、CDS 利差走阔——AI 基建的举债扩张模式正在被重新定价。",
+    "takeaway": "判断 AI 基建周期真假，别先看股价涨跌，看债券市场的三个先行信号：CDS 利差（违约保险贵不贵）、新债发行量（还借不借得到钱）、发债票息（借钱贵了多少）。核心原理：高杠杆扩张模型吃的是廉价资金，资金贵了，规划里的 GW 就要打折。",
+    "title": "为什么 CoreWeave 的 CDS 利差走阔很重要？"
+  },
+  "generated_at": "2026-10-22T12:02:25Z",
+  "items": [
+    {
+      "fact": "<b>Google Cloud</b> 上架 <b>GPT-6 Astra</b> 及 Codex 工作流，企业可用<b>云采购承诺额度</b>抵扣。——OpenAI 渠道战开打。",
+      "importance": "high",
+      "link": "https://techwireasia.com/2026/10/openai-google-cloud-ai-models/",
+      "signal": "云渠道大和解",
+      "source": "TechWire Asia"
+    },
+    {
+      "fact": "<b>Anthropic</b> 推出独立应用 <b>Claude Duet</b>：每日推送<b>早报</b>、巡检邮件日历、后台持续执行任务，付款签约前须用户确认。——AI 助手进入主动时代。",
+      "importance": "high",
+      "link": "https://9to5mac.com/2026/10/21/anthropic-takes-on-chatgpt-dots-and-meta-muse-with-claude-duet/",
+      "signal": "助手先发声",
+      "source": "9to5Mac"
+    },
+    {
+      "fact": "<b>美光</b>桃园工会投票通过罢工，今日 <b>9 点停工 24 小时</b>——台湾半导体史上首次；台湾产能占美光 <b>DRAM/HBM</b> 总产出 50–60%。——内存紧缩雪上加霜。",
+      "importance": "high",
+      "link": "https://aiweekly.co/alerts/micron-taoyuan-union-begins-taiwans-first-semiconductor-strike",
+      "signal": "内存供给惊魂",
+      "source": "AI Weekly（援引 Nikkei Asia）"
+    },
+    {
+      "fact": "<b>Samsung Electro-Mechanics</b> 拿下向<b>英伟达</b>供应 <b>FC-BGA</b> 基板的<b>数十亿美元</b>订单，为公司史上最大单笔合同。",
+      "importance": "high",
+      "link": "https://www.kedglobal.com/electronics/newsView/ked202610220002",
+      "signal": "封装产能总攻",
+      "source": "KED Global"
+    },
+    {
+      "fact": "<b>英特尔</b>亚利桑那 <b>Fab 62</b> 开始设备进厂安装，目标 <b>2028 年</b>投产；公司已把 High-NA EUV 纳入量产，并在加州新建光掩模厂。",
+      "importance": "high",
+      "link": "https://www.trendforce.com/news/2026/10/22/news-intel-begins-equipment-installation-at-arizona-fab-62-targeting-2028-operations-ohio-one-advances/",
+      "signal": "美国制造回流",
+      "source": "TrendForce"
+    },
+    {
+      "fact": "据 CNBC 报道，AI 云服务商 <b>CoreWeave</b> 10 月股价已跌 <b>29%</b>，其<b>信用违约互换（CDS）</b>利差同步走阔。——举债买 GPU 的模式被审视。",
+      "importance": "high",
+      "link": "https://www.vespernews.com/en/news/62df9f0c-6344-434c-be28-b107ef2d2f75",
+      "signal": "举债扩张受审",
+      "source": "Vesper News（转述 CNBC）"
+    },
+    {
+      "fact": "<b>诺基亚</b> Q3 网络基础设施业务（含 AI 与<b>数据中心网络</b>）销售额同比增 <b>17%</b>，本季从 AI 与云客户获得 15 亿欧元订单。——AI 网络设备订单潮起。",
+      "importance": "high",
+      "link": "https://www.morningstar.com/news/dow-jones/202610221364/nokia-reports-continued-strength-from-ai-data-center-rollout",
+      "signal": "AI网络订单潮",
+      "source": "Morningstar（Dow Jones）"
+    },
+    {
+      "fact": "<b>FDA</b> 授予<b>阿斯利康</b> Ultomiris <b>加速批准</b>，用于成人原发性 <b>IgA 肾病</b>：34 周时蛋白尿较安慰剂下降 43.4%。——肾病治疗新选择。",
+      "importance": "high",
+      "link": "https://www.reuters.com/business/healthcare-pharmaceuticals/astrazeneca-says-fda-approves-drug-rare-kidney-disease-adults-2026-10-21/",
+      "signal": "补体药首登肾病",
+      "source": "Reuters"
+    },
+    {
+      "fact": "<b>FDA</b> 批准 <b>GSK</b> dostarlimab 用于 <b>dMMR</b> 直肠癌新辅助治疗：2 年随访后近<b>四分之三</b>患者避免手术放化疗。——保器官治疗开辟路径。",
+      "importance": "high",
+      "link": "https://knowridge.com/2026/10/new-immune-drug-may-help-some-rectal-cancer-patients-avoid-major-treatment/",
+      "signal": "保器官免手术",
+      "source": "Knowridge（HealthDay）"
+    },
+    {
+      "fact": "<b>阿斯利康</b>/第一三共宣布，优赫得在中国获批新适应症，用于 <b>HER2 表达 IHC3+</b> 成人实体瘤，成为中国首个获批<b>泛肿瘤适应症</b>的靶向 HER2 ADC 药物。",
+      "importance": "high",
+      "link": "https://www.prnasia.com/story/552832-1.shtml",
+      "signal": "泛肿瘤首破局",
+      "source": "美通社（阿斯利康公告）"
+    },
+    {
+      "fact": "<b>Factorial</b> 与日本<b>三井金属</b>战略合作推进<b>硫化物电解质</b>量产；<b>天赐材料</b>九江百吨级中试线已建成投产。——量产竞赛进入材料卡位。",
+      "importance": "high",
+      "link": "https://evertiq.com/design/2026-10-22-mitsui-kinzoku-factorial-to-scale-all-solid-state-battery-manufacturing",
+      "signal": "固态电池竞速",
+      "source": "Evertiq / 中国证券报·中证网"
+    },
+    {
+      "fact": "国家发改委发布《<b>电力现货市场</b>基本规则（公开征求意见稿）》，支持新能源与配套<b>储能</b>作为联合报价主体参与现货市场，“<b>电能量+容量+辅助服务</b>”三重收益框架轮廓清晰。",
+      "importance": "high",
+      "link": "https://www.cs.com.cn/esg/2026/10/22/detail_2026102210046401.html",
+      "signal": "储能三重收益",
+      "source": "证券日报"
+    },
+    {
+      "fact": "<b>宇树科技</b>创始人王兴兴透露：<b>G1</b> 累计生产约 <b>1–2 万台</b>，上半年出货约 5900 台、全球份额约 31%；商业服务将先于家庭场景发展。",
+      "importance": "high",
+      "link": "https://asiadaily.org/news/16171/",
+      "signal": "具身服务先行",
+      "source": "Asia Daily（转引 IT之家）"
+    },
+    {
+      "fact": "<b>特斯拉</b> Q3 财报披露，<b>Optimus</b> 人形机器人已在弗里蒙特工厂的量产装配线上启动生产；马斯克称达到每周 <b>2 万台</b>目标产能仍需一年以上。——量产爬坡还需一年。",
+      "importance": "high",
+      "link": "https://www.kucoin.com/news/flash/tesla-begins-mass-production-of-optimus-humanoid-robot-at-fremont-factory-musk-says-weekly-target-of-20-000-units-needs-over-a-year",
+      "signal": "机器人上产线",
+      "source": "KuCoin News（转引 CoinDesk）"
+    },
+    {
+      "fact": "<b>比特币</b>周四亚盘一度跌破 <b>8.2 万美元</b>，日内跌约 2.7%，AI 支出疑虑重燃；不过美国现货比特币 <b>ETF</b> 本周三天已吸金超 10 亿美元，机构资金仍在回流。",
+      "importance": "high",
+      "link": "https://www.coindesk.com/markets/2026/10/22/bitcoin-slides-below-usd82-000-as-ai-doubts-return-with-defi-tokens-leading-declines",
+      "signal": "机构抄底回流",
+      "source": "CoinDesk"
+    },
+    {
+      "fact": "<b>灰度</b>将<b>实物（in-kind）</b>认购扩展至 10 只加密投资产品，合资格投资者可直接用代币兑换基金份额，覆盖比特币、以太坊、Solana、XRP、狗狗币等。",
+      "importance": "normal",
+      "link": "https://coincentral.com/grayscale-now-lets-you-swap-bitcoin-solana-and-xrp-directly-for-etf-shares/",
+      "signal": "实物申购扩围",
+      "source": "CoinCentral"
+    },
+    {
+      "fact": "<b>胡塞武装</b>无人机袭击沙特阿美 <b>Shaybah 油田</b>致 2 死，<b>布伦特原油</b>涨至 110.11 美元；油价推升通胀预期，<b>黄金</b>跌至 4085 美元。——地缘风险重定价。",
+      "importance": "high",
+      "link": "https://www.tradingview.com/news/moneycontrol:01caac7cf094b:0-commodity-corner-oil-rises-on-middle-east-tensions-gold-slips/",
+      "signal": "地缘推升油价",
+      "source": "TradingView（Moneycontrol）/ Maaal（路透）"
+    },
+    {
+      "fact": "国家<b>市场监督管理总局</b>约谈阿里、京东、拼多多等平台要求提升质量与消费者保护；<b>阿里</b>港股收盘暴跌 <b>5.9%</b> 至 97.55 港元，创两个月最大单日跌幅。",
+      "importance": "high",
+      "link": "https://www.businesstoday.com/2026/10/22/alibaba-shares-plunge-nearly-6-to-hk97-55-amid-chinas-regulatory-scrutiny/",
+      "signal": "平台监管收紧",
+      "source": "BusinessToday"
+    },
+    {
+      "fact": "<b>PHP 基金会</b>紧急补丁修复 <b>PHP2Shell</b> 漏洞，可免认证远程执行代码；<b>Cloudflare</b> 称攻击尝试从数千次激增至<b>数百万次</b>。——全球连夜抢修。",
+      "importance": "high",
+      "link": "https://northlandnewsradio.com/2026/10/21/cloudflare-sees-millions-of-exploit-attempts-after-php-disclosure/",
+      "signal": "开源组件爆雷",
+      "source": "Reuters / Cybersecurity News"
+    },
+    {
+      "fact": "<b>Meta</b> Q3 财报显示，<b>Reality Labs</b> 营收 <b>4.43 亿美元</b>（同比降约 6%），经营亏损 <b>41.29 亿美元</b>（同比收窄 3.03 亿美元）。",
+      "importance": "high",
+      "link": "https://www.fool.com/earnings/call-transcripts/2026/10/21/meta-meta-q3-2026-earnings-call-transcript/",
+      "signal": "元宇宙减亏",
+      "source": "Motley Fool（财报电话会实录）"
+    }
+  ]
+}
