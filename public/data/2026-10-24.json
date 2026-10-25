@@ -1,0 +1,201 @@
+{
+ "date": "2026-10-24",
+ "deepdive": {
+  "compare": {
+   "a": {
+    "lines": [
+     "拼参数数字大小",
+     "权重开放常缩水",
+     "按量付费是默认"
+    ],
+    "title": "此前"
+   },
+   "b": {
+    "lines": [
+     "拼长程任务完成率",
+     "权重全量公开成硬承诺",
+     "自有算力成可选项"
+    ],
+    "title": "之后"
+   }
+  },
+  "flow": [
+   {
+    "label": "今天",
+    "sub": "Kimi K3.1 Pro 发布：3万亿参数、100万上下文，权重11月4日前公开"
+   },
+   {
+    "label": "关键变量",
+    "sub": "权重是否全量公开、第三方长程基准、推理账单"
+   },
+   {
+    "label": "连锁反应",
+    "sub": "闭源旗舰承压、推理与 serving 需求抬升、Agent 生态换底座"
+   },
+   {
+    "label": "下一步",
+    "sub": "11月4日权重发布、独立基准成绩、API 与显存门槛"
+   }
+  ],
+  "points": [
+   {
+    "body": "三个变量相乘：<b>参数规模</b>定能力上限，<b>100万上下文</b>装下长任务的全部中间态，<b>强化学习</b>教会模型多步骤调用专业工具。关键一跃是从答题到干活：规划、调用工具、自己纠错。开源权重把成本从按量付费变成自有算力。",
+    "heading": "原理拆解"
+   },
+   {
+    "body": "不看参数数字本身，看三点：<b>权重</b>是否如期全量公开，<b>第三方</b>长程任务成功率，<b>推理账单</b>（显存与 serving 成本）。参数最容易被营销，最难的是把参数变成稳定可复现的任务完成率。",
+    "heading": "信息差在哪里"
+   },
+   {
+    "body": "对<b>闭源旗舰</b>形成价格与能力锚，倒逼 API 定价；推高大显存推理与长上下文 serving 需求；<b>Agent 框架</b>与工具生态获得新的免费底座；国内开源阵营三足鼎立，企业私有化部署议价权上升。",
+    "heading": "产业链影响"
+   }
+  ],
+  "summary": "Kimi K3.1 Pro 把“最大开源模型”的门槛抬到 3 万亿参数、100 万上下文，权重 11 月 4 日前公开——开源竞赛从“能用”进入“能扛长程复杂任务”的阶段。",
+  "takeaway": "判断开源大模型成色，别只看参数量：核心原理是“规模×数据×强化学习”三者的乘积，关键变量是权重开放度、长程任务完成率、单位推理成本。判断方法：先看权重是否如期全量可下载，再看第三方长程基准，最后算每百万词元的推理账单——三者都过关，才算真底座。",
+  "title": "为什么3万亿参数的开源模型很重要？"
+ },
+ "generated_at": "2026-10-24T12:00:00Z",
+ "items": [
+  {
+   "fact": "<b>月之暗面</b>发布<b>Kimi K3.1 Pro</b>：<b>3万亿级参数</b>、100万词元上下文，全球最大开源模型，权重11月4日前发布——开源竞赛进入长程任务阶段。",
+   "importance": "high",
+   "link": "http://news.sina.com.cn/o/2026-10-24/doc-iniwhxpw2152418.shtml",
+   "signal": "开源规模新王",
+   "source": "新京报贝壳财经"
+  },
+  {
+   "fact": "<b>AWS</b>云容量在<b>2027年底</b>前已基本售罄，订单排至<b>2028年</b>，公司正竭力满足AI实验室与企业需求——云算力从按需购买变成提前锁仓。",
+   "importance": "high",
+   "link": "https://finance.sina.cn/2026-10-24/detail-iniwhtfs8148965.d.html",
+   "signal": "云算力锁仓",
+   "source": "界面新闻"
+  },
+  {
+   "fact": "<b>英国</b>出资<b>1亿英镑</b>建<b>AI生物安全实验室</b>，OpenAI与Anthropic追加最高2亿英镑算力支持——AI生物防御正式建制化。",
+   "importance": "high",
+   "link": "https://tech-insider.org/uk-ai-biosecurity-lab-100-million-openai-anthropic-2026/",
+   "signal": "AI生物防御建制",
+   "source": "英国政府公告"
+  },
+  {
+   "fact": "<b>22家</b>A股半导体公司三季报合计净利约<b>1660亿元</b>，<b>长鑫</b>独占八成，存储链三家合计近九成——但存储涨价边际效应已退潮。",
+   "importance": "high",
+   "link": "https://www.21jingji.com/article/20261024/4e51f7e6a4dd592c3697e1ac8d9dfeeb.html",
+   "signal": "存储涨价见顶",
+   "source": "21世纪经济报道"
+  },
+  {
+   "fact": "<b>布伦特原油</b>涨至<b>116.72美元</b>创4月新高，<b>道指</b>跌653点，10年期美债收益率回升至4.99%——油价通胀链正传导至股债。",
+   "importance": "high",
+   "link": "http://finance.sina.com.cn/roll/2026-10-24/doc-iniwhnya2339952.shtml",
+   "signal": "油价压制风险资产",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>OpenAI</b>将对最先进模型实施<b>无实时互联网接入</b>训练，设严格安全边界，即使智能体持续尝试突破也须被挡住——前沿训练开始上锁。",
+   "importance": "high",
+   "link": "https://freeaitoolsayoob.com/rogue-ai-threat-openai-to-train-frontier-models-without-internet-access-morungexpress/",
+   "signal": "前沿训练上锁",
+   "source": "IANS"
+  },
+  {
+   "fact": "<b>德州</b>寻求法院禁令：<b>OpenAI</b>新模型发布前须经<b>独立安全审查</b>，并禁未成年人用ChatGPT——州政府直接卡发布。",
+   "importance": "normal",
+   "link": "https://www.mlex.com/mlex/artificial-intelligence",
+   "signal": "州政府卡发布",
+   "source": "MLex"
+  },
+  {
+   "fact": "<b>Flapping Airplanes</b>无产品无收入却完成<b>10亿美元A轮</b>，估值<b>60亿美元</b>——硅谷AI投资热最争议案例。",
+   "importance": "normal",
+   "link": "http://news.sina.cn/ai/2026-10-24/detail-iniwhxpw2165658.d.html",
+   "signal": "无产品高估值",
+   "source": "新浪科技"
+  },
+  {
+   "fact": "<b>韩国</b>把半导体园区从规划到投产压缩至<b>5年内</b>，现行流程超过10年，审批补偿设计并行，目标在AI芯片竞赛中加速投资落地——审批战抢产能。",
+   "importance": "normal",
+   "link": "https://www.ajupress.com//view/20261024111214207",
+   "signal": "审批战抢产能",
+   "source": "Aju Press"
+  },
+  {
+   "fact": "<b>奕斯伟</b>前三季度营收<b>26.51亿元</b>（+37%），销量830万片（+42.72%），Q3毛利率<b>6.45%</b>创7季最高——硅片量价齐升。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/stock/jdts/2026-10-24/detail-iniwhxps4898488.d.html",
+   "signal": "硅片量价齐升",
+   "source": "证券时报"
+  },
+  {
+   "fact": "<b>Nebius</b>向<b>花旗</b>借入<b>35亿美元</b>364天短贷，利率基准加2.75个百分点起，公告后股价震荡——算力债短期化。",
+   "importance": "normal",
+   "link": "https://kimkj.com/zh/ai-board-zh/?mod=document&uid=19833",
+   "signal": "算力债短期化",
+   "source": "全球AI新闻周报"
+  },
+  {
+   "fact": "<b>谷歌Data Agent Kit</b>正式可用：<b>37个技能</b>接<b>15项</b>数据云服务，以MCP暴露实时表结构，智能体直通数据层。",
+   "importance": "normal",
+   "link": "https://wisevoter.com/world/us/2026/10/24/google-launches-data-agent-kit",
+   "signal": "智能体接数据层",
+   "source": "Wisevoter"
+  },
+  {
+   "fact": "<b>医药创新与投资大会</b>南京开幕，<b>民生银行</b>发布创新药服务方案，并与多家头部药企座谈，围绕AI制药与跨境出海研讨——产融协同再进一步。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/2026-10-24/detail-iniwiqmk4706647.d.html",
+   "signal": "创新药产融协同",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>宁乡废旧锂电池回收集群</b>入选国家级公示，2025年产值<b>382.72亿元</b>、集聚企业77家——电池循环成集群。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/2026-10-24/detail-iniwicvs1324769.d.html",
+   "signal": "电池循环成集群",
+   "source": "长沙晚报"
+  },
+  {
+   "fact": "9月动力与储能电池销量<b>222.7GWh</b>（+52%），储能<b>73.5GWh</b>同比翻倍、占总量33%——储能扛增长。",
+   "importance": "normal",
+   "link": "https://www.redfit15.com/articles/daily-9f2700fd90cd.html",
+   "signal": "储能扛增长",
+   "source": "交银国际"
+  },
+  {
+   "fact": "<b>韩国</b>12月3日起收紧加密转账外汇监管，<b>个人钱包</b>拟纳入范围，未登记经营最高可判3年——稳定币纳入外汇网。",
+   "importance": "normal",
+   "link": "https://cn.asiadaily.org/news/16406/",
+   "signal": "稳定币纳入外汇网",
+   "source": "Asia Daily"
+  },
+  {
+   "fact": "<b>华强北</b>迎欧美购物季爆单，商户营收较平日<b>翻倍以上</b>；深圳前三季度进出口4.65万亿、增<b>38.8%</b>，规模已超去年全年。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/2026-10-24/detail-iniwicvq4848819.d.html",
+   "signal": "购物季前置爆单",
+   "source": "界面新闻"
+  },
+  {
+   "fact": "双11电商素材<b>全AI化</b>：主图视频详情页与<b>买家秀</b>皆生成，消费者难辨真实材质版型与上身效果——电商信任被AI稀释。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/2026-10-24/detail-iniwhtfy2254012.d.html",
+   "signal": "信任被AI稀释",
+   "source": "JSTV荔枝视频"
+  },
+  {
+   "fact": "<b>美国运通</b>裁员约<b>3500人</b>（约5%），为两年来首次大规模收缩，媒体与<b>AI提效</b>挂钩——AI裁员叙事进金融。",
+   "importance": "normal",
+   "link": "https://news.marsbit.co/20261024144520152160.html",
+   "signal": "AI裁员进金融",
+   "source": "Marsbit"
+  },
+  {
+   "fact": "<b>具身智能技能大赛</b>上海开赛：千台以上机器人、<b>800余支</b>战队黑盒盲测，<b>23个</b>赛项无剧本无法彩排——具身从表演转实干。",
+   "importance": "normal",
+   "link": "http://finance.sina.com.cn/stock/t/2026-10-24/doc-iniwhnya2335814.shtml",
+   "signal": "具身转实干",
+   "source": "上观新闻"
+  }
+ ]
+}
