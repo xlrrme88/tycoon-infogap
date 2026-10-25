@@ -1,0 +1,201 @@
+{
+ "date": "2026-10-25",
+ "deepdive": {
+  "compare": {
+   "a": {
+    "lines": [
+     "拼参数数字大小",
+     "单卡或单机推理",
+     "按量付费是默认"
+    ],
+    "title": "此前"
+   },
+   "b": {
+    "lines": [
+     "拼 serving 成本与速度",
+     "晶圆级并行部署",
+     "电力与工程成门票"
+    ],
+    "title": "之后"
+   }
+  },
+  "flow": [
+   {
+    "label": "今天",
+    "sub": "Cerebras披露59片晶圆部署3万亿参数Kimi模型，4比特量化，每秒1000—2000+词元"
+   },
+   {
+    "label": "关键变量",
+    "sub": "功耗与每词元成本、量化精度回落、万亿模型是否真正开放可用"
+   },
+   {
+    "label": "连锁反应",
+    "sub": "推理架构成新卖点、云端电力配额吃紧、开源大模型从权重免费转向 serving 付费"
+   },
+   {
+    "label": "下一步",
+    "sub": "第三方真实长任务时延、量化后精度、每百万词元综合推理成本"
+   }
+  ],
+  "points": [
+   {
+    "body": "三招合用：<b>流水线并行</b>把模型切段分到多片晶圆，<b>4比特量化</b>压小权重体积，<b>8比特KV缓存</b>压缩长对话中间态——三者相乘，才换来每秒1000—2000+词元。",
+    "heading": "原理拆解"
+   },
+   {
+    "body": "别只看片数，看三张账单：<b>功耗账</b>约1.18兆瓦、每词元4.1焦耳，<b>可得性账</b>公开可用模型仍以百亿级为主，<b>成本账</b>量化精度损失是否可接受。",
+    "heading": "信息差在哪里"
+   },
+   {
+    "body": "对<b>芯片商</b>，推理专用架构成可报价路线；对<b>云厂商</b>，超大模型 serving 成本与电力配额成新壁垒；对<b>应用方</b>，开源权重免费，真正门票是硬件、电力与工程团队。",
+    "heading": "产业链影响"
+   }
+  ],
+  "summary": "Cerebras把一个3万亿参数模型拆到59片晶圆上跑，说明大模型竞争的下一关不是“训出多大”，而是“能否便宜、快速、稳定地把超大模型 serving 给真实用户。”",
+  "takeaway": "晶圆级推理的核心原理是“切分×压缩×并行”：把超大模型切段分布、用低比特压缩权重与缓存、以流水线并行换速度。关键变量是功耗、精度损失与可得性三项，而非晶圆片数本身。判断方法：先算每百万词元的综合成本，再测你自己任务上的精度回落，最后确认该规模模型是否真正开放可用——三者都过关，万亿模型才算从演示走进生产。",
+  "title": "为什么用59片晶圆跑一个模型很重要？"
+ },
+ "generated_at": "2026-10-25T11:58:16Z",
+ "items": [
+  {
+   "fact": "<b>比特币</b>周六跌破<b>8万美元</b>、创一个多月新低，<b>以太币</b>跌破2300美元，24小时爆仓约5.4亿美元——地缘卖压正从能源向加密市场传导。",
+   "importance": "high",
+   "link": "https://www.ctee.com.tw/news/20261025700443-430702",
+   "signal": "地缘风险定价",
+   "source": "工商时报"
+  },
+  {
+   "fact": "<b>美联储</b>等三央行本周议息料齐按兵不动，94位经济学家预计利率维持<b>3.75%—4.00%</b>，市场目光已转向12月是否再度加息。",
+   "importance": "high",
+   "link": "https://www.ctee.com.tw/news/20261025700013-430105",
+   "signal": "央行按兵待12月",
+   "source": "工商时报"
+  },
+  {
+   "fact": "<b>野村</b>称AI军备竞赛持续概率约<b>75%</b>，<b>2027年</b>存储供应与价格已提前锁定，违约保证金可达年度需求价值50%—100%。",
+   "importance": "high",
+   "link": "https://finance.sina.cn/stock/jdts/2026-10-25/detail-iniwmhuv9900759.d.html",
+   "signal": "存储短缺已锁定",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>寒武纪</b>前三季度营收<b>95.26亿元</b>、同比增106.76%，但存货激增至116亿元、经营现金流仅2.28亿元——国产算力进入兑现考验期。",
+   "importance": "high",
+   "link": "https://www.21jingji.com/article/20261023/herald/02583701a5e019f3a791a596571babe8.html",
+   "signal": "国产算力兑现期",
+   "source": "21世纪经济报道"
+  },
+  {
+   "fact": "<b>中国信通院</b>报告称大陆大模型词元均价升至<b>13.46元</b>、涨近一倍，海外均价约117.8元、约为大陆8.8倍——价格战后价值回归。",
+   "importance": "normal",
+   "link": "https://www.ctee.com.tw/news/20261025700279-430804",
+   "signal": "价格战后回升",
+   "source": "工商时报"
+  },
+  {
+   "fact": "<b>Cerebras</b>以<b>59片晶圆</b>流水线部署3万亿参数Kimi模型，<b>4比特</b>量化下每秒输出1000—2000+词元，整机功耗约1.18兆瓦。",
+   "importance": "high",
+   "link": "https://ai0.news/posts/2026-10-25-daily-digest/",
+   "signal": "晶圆级推理上场",
+   "source": "ai0.news"
+  },
+  {
+   "fact": "<b>Block</b>推出全双工语音模型<b>Dessa</b>，可边听边说并在<b>MacBook M4 Max</b>本地运行，本地化语音的隐私优势仍待真实任务验证。",
+   "importance": "normal",
+   "link": "https://www.preciseimpact.ai/briefing/ai-news-digest-2026-10-25",
+   "signal": "语音交互本地化",
+   "source": "Precise Impact"
+  },
+  {
+   "fact": "<b>DXC</b>推出面向受监管行业的<b>合规AI</b>方案，内置合规自动化与全程审计追踪，企业AI采购正从拼模型转向拼过审能力。",
+   "importance": "normal",
+   "link": "https://emergent.sh/news/dxc-technology-stock-undervalued-after",
+   "signal": "合规成卖点",
+   "source": "Emergent"
+  },
+  {
+   "fact": "<b>LiteLLM 1.107.0</b>被植入窃取凭证挂钩并下架，<b>Node.js</b>同日修复Brotli高危漏洞，开源供应链风险一日双响。",
+   "importance": "normal",
+   "link": "https://ai-news-brief.com/",
+   "signal": "开源供应链警报",
+   "source": "AI News Brief"
+  },
+  {
+   "fact": "<b>信达生物</b>双靶点ADC <b>IBI3001</b>首发I期数据：总体缓解率30.2%，<b>小细胞肺癌</b>缓解率62.5%、疾病控制率100%。",
+   "importance": "high",
+   "link": "https://www.prnasia.com/story/553113-1.shtml",
+   "signal": "双靶ADC破局",
+   "source": "美通社"
+  },
+  {
+   "fact": "<b>Moderna</b>个性化mRNA疫苗三期降低黑色素瘤复发或死亡风险<b>42%</b>，两年无复发生存率82.2%对70.0%——同类疫苗开始分化。",
+   "importance": "normal",
+   "link": "https://drugnews.com.tw/articles/2026-10-25-moderna-merck-intismeran-biontech-opposite.html",
+   "signal": "mRNA疫苗分化",
+   "source": "药时事"
+  },
+  {
+   "fact": "<b>美国</b>售电量预估2027年升至<b>4.211万亿度</b>，数据中心变压器需求达150—200MVA、交期2—3年——电力成算力新瓶颈。",
+   "importance": "high",
+   "link": "https://cachenews.tw/a/2026-09-13/ai-data-center-grid",
+   "signal": "电力成算力瓶颈",
+   "source": "快取新闻"
+  },
+  {
+   "fact": "<b>长征八号甲</b>一箭<b>28星</b>升空，为国网低轨星座第28批组网，<b>700公里</b>太阳同步轨道运力已提升至7吨，上面级可分批部署。",
+   "importance": "normal",
+   "link": "https://keeptrack.space/week-in-review/week-in-review-2026-10-25",
+   "signal": "星座组网加速",
+   "source": "KeepTrack"
+  },
+  {
+   "fact": "<b>国务院</b>AI就业意见要求稳慎把握劳动密集型行业应用节奏，鼓励企业设<b>失业缓冲期</b>并提供转岗支持——先托住民生底线。",
+   "importance": "high",
+   "link": "https://news.bjd.com.cn/2026/10/25/12006756.shtml",
+   "signal": "AI就业要缓冲",
+   "source": "北京日报"
+  },
+  {
+   "fact": "<b>科大讯飞</b>机器人超脑V3.0已接入<b>500多家</b>企业与10万多台设备，覆盖头部客户90%，具身竞争转向平台生态。",
+   "importance": "normal",
+   "link": "https://kimkj.com/zh/daily-briefing-zh/?mod=document&uid=19891",
+   "signal": "具身进现场实干",
+   "source": "KIMKJ中国AI简报"
+  },
+  {
+   "fact": "<b>国内</b>约6100万辆乘用车已搭载组合驾驶辅助，其中<b>1500万辆</b>具备领航功能，自动驾驶下半场拼的是商业闭环。",
+   "importance": "normal",
+   "link": "https://www.tjkydhb.com/articles/daily-e2e93ce348d8.html",
+   "signal": "自动驾驶拼下半场",
+   "source": "启牛配资"
+  },
+  {
+   "fact": "<b>广州市</b>与<b>爱奇艺</b>签署AIGC视听战略合作，围绕产业布局与<b>AI影视创作营</b>发力，助力广州建设纪录片之城与视听高地。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/7x24/2026-10-25/detail-iniwkwey3247413.d.html",
+   "signal": "AIGC视听落地",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>台企</b>跨境电商调查：419家企业中仅<b>18.6%</b>系统研究市场需求，71.4%靠既有客户找需求——选品仍靠经验而非数据。",
+   "importance": "normal",
+   "link": "https://www.ctee.com.tw/news/20261025700300-430503",
+   "signal": "跨境缺数据能力",
+   "source": "工商时报"
+  },
+  {
+   "fact": "<b>稳定币</b>年度交易量已超越<b>比特币</b>网络结算规模，正转向支付与跨境结算基础设施，但真实消费占比与储备透明度仍是考验。",
+   "importance": "normal",
+   "link": "https://www.wsbrt.com/news/2026-10-25_edc278.html",
+   "signal": "稳定币抢支付位",
+   "source": "波比钱包"
+  },
+  {
+   "fact": "<b>宾州</b>立法要求显著AI生成广告披露，研究称Grok与GPT在近500场选举中推荐分歧超<b>90%</b>——AI中立幻觉进入立法视野。",
+   "importance": "normal",
+   "link": "https://secureresearch.com/ai/2026-10-25.html",
+   "signal": "AI广告要贴标签",
+   "source": "SecureResearch"
+  }
+ ]
+}
