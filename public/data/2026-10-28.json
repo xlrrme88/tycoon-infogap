@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-28",
+  "deepdive": {
+    "compare": {
+      "a": {
+        "lines": [
+          "只看营收破纪录就追涨",
+          "缺货就是短期周期炒作",
+          "利润数字全线超预期"
+        ],
+        "title": "此前"
+      },
+      "b": {
+        "lines": [
+          "先看长约锁定产能比例",
+          "净利润低于预期要打折",
+          "分红回购验证涨价底气"
+        ],
+        "title": "之后"
+      }
+    },
+    "flow": [
+      {
+        "label": "今天",
+        "sub": "SK海力士三季度营收104.62万亿韩元、营业利润83.33万亿韩元，均创季度新高，利润率近80%"
+      },
+      {
+        "label": "关键变量",
+        "sub": "HBM4四季度能否超越HBM3E、2027—2028年长约执行、龙仁一期投产节奏"
+      },
+      {
+        "label": "连锁反应",
+        "sub": "存储涨价向服务器与手机传导，AI云成本上升，国产存储迎来替代窗口"
+      },
+      {
+        "label": "下一步",
+        "sub": "HBM4切换速度、长约兑现、存储价格向终端的传导幅度"
+      }
+    ],
+    "points": [
+      {
+        "body": "涨价来自产品结构变化：<b>HBM4</b>、服务器<b>DDR5</b>与企业级<b>SSD</b>占比上升，单价与利润率同步抬升，营业利润率近80%说明涨价大头留在厂商手里。",
+        "heading": "原理拆解"
+      },
+      {
+        "body": "市场易漏两个反差：净利润<b>39.78万亿韩元</b>低于约<b>60万亿韩元</b>的预期；公司一边喊缺货到2030年，一边推出<b>100万亿韩元</b>股东回报回应资本开支疑虑。",
+        "heading": "信息差在哪里"
+      },
+      {
+        "body": "上游涨价沿服务器与手机两线传导，<b>AI云厂商</b>成本上升、手机物料成本抬升；国产存储迎来替代窗口，考验在于产能与良率能否跟上。",
+        "heading": "产业链影响"
+      }
+    ],
+    "summary": "这份财报用80%营业利润率、供不应求到2030年、100万亿韩元股东回报三组数字，把AI存储从周期炒作变成了有长约锁定的结构性涨价故事。",
+    "takeaway": "看存储周期不要只盯单季营收，要同时看三个变量：高附加值产品占比决定利润率成色，长约锁定产能比例决定需求真实度，供需缺口预期时长决定涨价持续性。三者同向时涨价有支撑，任一变量反转，周期叙事就要重新定价。",
+    "title": "为什么 SK海力士的财报很重要？"
+  },
+  "generated_at": "2026-10-28T11:56:34Z",
+  "items": [
+    {
+      "fact": "<b>SK海力士</b>三季度营收<b>104.62万亿韩元</b>、同比增328%，营业利润<b>83.33万亿韩元</b>、同比增632%，公司预计存储供不应求持续至2030年。",
+      "importance": "high",
+      "link": "https://news.china.com/socialgd/10000169/20261028/49823455.html",
+      "signal": "存储涨价传导全链",
+      "source": "财联社"
+    },
+    {
+      "fact": "<b>英伟达</b>向<b>Meta</b>投资30亿美元，<b>AMD</b>投资10亿美元，合计40亿美元——芯片供应商由此变成大客户股东，绑定吉瓦级AI基建。",
+      "importance": "high",
+      "link": "https://www.21jingji.com/article/20261028/herald/d61e9ca639146fc6df01e7bbe1cfe67b.html",
+      "signal": "芯片商绑定大客户",
+      "source": "21世纪经济报道"
+    },
+    {
+      "fact": "<b>Anthropic</b>考虑将IPO股份<b>15%—20%</b>分配给散户，<b>摩根大通</b>牵头美国散户销售，市场估计其估值1.5万亿—2万亿美元。",
+      "importance": "high",
+      "link": "https://news.cnyes.com/news/id/6639118",
+      "signal": "IPO散户配售潮",
+      "source": "钜亨网"
+    },
+    {
+      "fact": "<b>谷歌</b>推出世界模型<b>Genie 4</b>，可实时交互模拟并动态生成环境音与对话，用户可用自然语言调整场景、天气和角色。",
+      "importance": "high",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-28/detail-iniwtpke6676058.d.html",
+      "signal": "世界模型走向实时",
+      "source": "界面新闻"
+    },
+    {
+      "fact": "<b>DeepSeek</b>开源推理框架<b>DeepInfer</b>，单集群一天吞吐<b>155万亿Tokens</b>，官方代码库又现V5标识符——但占位符不等于发布临近。",
+      "importance": "high",
+      "link": "http://m.cnwest.com/bwyc/a/2026/10/28/23461865.html",
+      "signal": "开源效率战升级",
+      "source": "西部网"
+    },
+    {
+      "fact": "<b>小鹏IRON</b>机器人固态电池已小批量量产下线，处于<b>SOP</b>前阶段，计划2026年底规模量产、<b>2027年</b>上市交付。",
+      "importance": "high",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-28/detail-iniwukpz5954248.d.html",
+      "signal": "机器人逼近量产",
+      "source": "上海证券报"
+    },
+    {
+      "fact": "<b>上海</b>智能制造行动方案提出，到2028年培育<b>500家</b>先进级智能工厂，推动<b>8000台</b>人形机器人进工厂，机器人密度达600台/万人。",
+      "importance": "normal",
+      "link": "https://www.21jingji.com/article/20261028/herald/4557dd42cb1369039d80e2574a3d1fcf.html",
+      "signal": "机器人进厂提速",
+      "source": "21财经"
+    },
+    {
+      "fact": "<b>宁德时代</b>成立储能科技公司，注册资本<b>50亿元</b>、全资持股，经营储能技术服务、新兴能源技术研发与电池制造。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-28/detail-iniwtxyc9643256.d.html",
+      "signal": "储能单独立项提速",
+      "source": "雷达财经"
+    },
+    {
+      "fact": "<b>谷歌</b>将向<b>OpenAI</b>与甲骨文出售<b>TPU</b>，甲骨文成谷歌自有云外首家提供TPU服务的超大规模云，服务2027年上线。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/usstock/mggd/2026-10-28/detail-iniwuqvs6538600.d.html",
+      "signal": "TPU走出谷歌",
+      "source": "新浪财经"
+    },
+    {
+      "fact": "<b>英特尔</b>与<b>甲骨文</b>扩大多年合作，<b>OCI</b>将扩展至强计算服务，下一代Diamond Rapids处理器预计用于OCI X14并支持推理加速。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-28/detail-iniwttse3417962.d.html",
+      "signal": "企业云算力再结盟",
+      "source": "界面新闻"
+    },
+    {
+      "fact": "<b>安森美</b>洽谈以近<b>10亿美元</b>收购芯片初创<b>Ferric</b>，其集成稳压器可直接向AI芯片供电——AI供电成并购新焦点。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/usstock/mggd/2026-10-28/detail-iniwuqvv9479773.d.html",
+      "signal": "AI供电并购热",
+      "source": "新浪财经"
+    },
+    {
+      "fact": "<b>中国创新药</b>在当日启幕的欧洲肿瘤学会年会迎来集中发布，<b>29项</b>研究入选突破性摘要，约占大会LBA总数的三分之一。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-28/detail-iniwtxya3382590.d.html",
+      "signal": "创新药批量亮相",
+      "source": "财闻"
+    },
+    {
+      "fact": "<b>国家能源局</b>数据显示，截至9月底全国风电光伏累计装机达<b>20.1亿千瓦</b>，风光发电增量占全社会新增用电量的64%。",
+      "importance": "normal",
+      "link": "https://news.sina.cn/2026-10-28/detail-iniwukpw3366815.d.html",
+      "signal": "风光成用电主力",
+      "source": "央视新闻"
+    },
+    {
+      "fact": "<b>上海星枢计划</b>提出2032年完成千星部署，2026—2027年实现<b>32POPS</b>算力与<b>200Gbps</b>星间通信，建成天地一体化算力数据中心。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/2026-10-28/detail-iniwuefz9575771.d.html",
+      "signal": "太空算力路线图",
+      "source": "新浪财经"
+    },
+    {
+      "fact": "<b>美财长贝森特</b>称数字资产可巩固美元主导，超<b>90%</b>稳定币由美元支持，发行方持有美债作储备——稳定币纳入美元战略。",
+      "importance": "normal",
+      "link": "https://www.huxiu.com/article/4901032.html",
+      "signal": "稳定币护美元",
+      "source": "虎嗅"
+    },
+    {
+      "fact": "<b>美联储</b>将于北京时间29日凌晨公布10月决议，市场预计本次按兵不动，但12月加息概率超<b>80%</b>，9月CPI同比涨3.7%。",
+      "importance": "normal",
+      "link": "https://www.21jingji.com/article/20261028/herald/f7ed67055026e2d5fe2502f480453099.html",
+      "signal": "按兵不动待加息",
+      "source": "财联社"
+    },
+    {
+      "fact": "消息称<b>特斯拉</b>拟用<b>Optimus</b>为Robotaxi插拔充电枪，作为无线充电投用前的过渡，奥斯汀枢纽计划部署80个无线充电设备。",
+      "importance": "normal",
+      "link": "https://k.sina.cn/article_5952915720_162d24908067052p54.html?from=tech",
+      "signal": "机器人先干充电",
+      "source": "环球网"
+    },
+    {
+      "fact": "<b>高通6G</b>终端原型机将在进博会全球首展，已与<b>中国移动</b>、中兴通讯联合测试，9月完成U6G频段原型基站与终端对接。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-28/detail-iniwtxxy6708424.d.html",
+      "signal": "6G进入系统验证",
+      "source": "IT之家"
+    },
+    {
+      "fact": "<b>苹果iPhone 18 Pro</b>上市三周全球销量同比增<b>3.1%</b>，中国市场同比增<b>29%</b>，贡献了全球销量增量的大部分。",
+      "importance": "normal",
+      "link": "https://k.sina.cn/article_7857201856_1d45362c001908sqxg.html?from=digit",
+      "signal": "中国撑起Pro",
+      "source": "每经"
+    },
+    {
+      "fact": "海外双十一临近，<b>国货出海</b>告别铺货转向品牌本土化深耕，<b>AI</b>贯穿运营全链路，洛克兄弟最低目标增长50%且备货已完成。",
+      "importance": "normal",
+      "link": "https://www.cdjslt.com/articles/daily-e3d9d329531f.html",
+      "signal": "出海转向品牌化",
+      "source": "中国证券报"
+    }
+  ]
+}
