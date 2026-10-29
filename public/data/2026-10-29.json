@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-29",
+  "generated_at": "2026-10-29T11:59:02Z",
+  "items": [
+    {
+      "fact": "<b>三星电子</b>三季度营收<b>195.3万亿韩元</b>、同比增127%，营业利润<b>107.4万亿韩元</b>、同比增783%，半导体利润占整体约99%——存储涨价仍在加速。",
+      "signal": "存储涨价再创纪录",
+      "importance": "high",
+      "source": "新浪财经",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-29/detail-iniwwiew6039518.d.html"
+    },
+    {
+      "fact": "<b>美联储</b>维持利率<b>3.75%—4%</b>不变，声明把经济评价上调至“强劲”，决议以<b>10:2</b>通过，12月加息概率升至约85%——鹰派分歧并未消失。",
+      "signal": "按兵不动鹰派未消",
+      "importance": "high",
+      "source": "财联社",
+      "link": "https://finance.sina.cn/2026-10-29/detail-iniwvmzh6269106.d.html"
+    },
+    {
+      "fact": "<b>微软Azure</b>增48%、自由现金流<b>186亿美元</b>，盘后涨近3%；<b>Alphabet</b>云增103%至307亿美元，自由现金流却为-90.7亿美元——现金流成了新分水岭。",
+      "signal": "现金流成新分水岭",
+      "importance": "high",
+      "source": "东方财富网",
+      "link": "https://www.21jingji.com/article/20261029/herald/a0c362fdf6a8b6dbdc343cb5fa88b4f2.html"
+    },
+    {
+      "fact": "<b>智元机器人</b>发布物理AI度量衡<b>Worken</b>，上半年出货<b>9700台</b>、占全球份额超43%，营收近20亿元——机器人开始算工时账。",
+      "signal": "机器人有了KPI",
+      "importance": "high",
+      "source": "网易智能",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-29/detail-iniwwawy6098054.d.html"
+    },
+    {
+      "fact": "<b>谷歌Gemini 4 Carbon</b>第三方智慧指数拿<b>59分</b>登顶，漏洞发现达<b>88.2%</b>、修复达71.0%，先限量向安全人员开放。",
+      "signal": "安全长程双登顶",
+      "importance": "high",
+      "source": "快科技",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-29/detail-iniwwaxc8894991.d.html"
+    },
+    {
+      "fact": "<b>OpenAI</b>与<b>ServiceNow</b>扩大合作，模型与智能体嵌入企业产品，工作流接入ChatGPT与Codex——对话界面开始改单。",
+      "signal": "对话界面接管工单",
+      "importance": "high",
+      "source": "TokenPost",
+      "link": "https://www.tokenpost.com/news/business/43302"
+    },
+    {
+      "fact": "<b>英伟达Nemotron 3.5</b>支持<b>40种</b>语言转写、31种语言与英语互译、最多8位说话人区分，并同步开源Granary v2管线。",
+      "signal": "语音开源一站式",
+      "importance": "normal",
+      "source": "Oossa",
+      "link": "https://oossa.com/en/nvidia-releases-nemotron-3-5-speech-model-and-training-data"
+    },
+    {
+      "fact": "<b>XHEART X7 Ultra</b>算力达<b>700 TOPS</b>，采用大模型设计的超大核NPU与首发量产Armv9车规级CPU，实测NPU利用率98.7%。",
+      "signal": "大模型定义芯片",
+      "importance": "normal",
+      "source": "界面新闻",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-29/detail-iniwwtuu2766051.d.html"
+    },
+    {
+      "fact": "<b>Anthropic</b>与6家药企的创药成果：CAR-T设计耗时缩短约<b>70%</b>，抗体设计筛出<b>3种</b>优于获批药的候选——AI创药走出演示。",
+      "signal": "AI创药进入实证",
+      "importance": "normal",
+      "source": "KIMKJ每日简报",
+      "link": "https://kimkj.com/zh/daily-briefing-zh/?mod=document&uid=20171"
+    },
+    {
+      "fact": "<b>特朗普</b>认同机器人进口威胁国家安全的232调查结论，但暂不加征关税，指示官员谈判并在<b>180天</b>内汇报进展。",
+      "signal": "机器人关税先谈判",
+      "importance": "normal",
+      "source": "新浪财经",
+      "link": "https://finance.sina.cn/usstock/mggd/2026-10-29/detail-iniwvwre2881792.d.html"
+    },
+    {
+      "fact": "<b>国星宇航</b>通过港交所聆讯，2025年收入<b>7.03亿元</b>，已自研26颗AI智算卫星、22颗在轨，AI智算卫星收入占比升至55.1%。",
+      "signal": "太空算力冲港股",
+      "importance": "normal",
+      "source": "活报告",
+      "link": "https://finance.sina.cn/cj/2026-10-29/detail-iniwwtuu2802049.d.html"
+    },
+    {
+      "fact": "<b>仁宝电脑</b>与<b>ARC Cloud</b>签署备忘录，探讨最高<b>100MW</b>的数据中心路线图，覆盖美国四州布局——代工向AI基建延伸。",
+      "signal": "代工切入AI基建",
+      "importance": "normal",
+      "source": "美通社",
+      "link": "https://businessfocus.io/article/364603/%E4%BB%81%E5%AF%B6%E8%88%87-arc-cloud-%E7%B0%BD%E7%BD%B2%E7%AD%96%E7%95%A5%E5%90%88%E4%BD%9C%E5%82%99%E5%BF%98%E9%8C%84-%E5%8A%A0%E9%80%9F%E5%A4%A7%E5%9E%8B-ai-%E5%9F%BA%E7%A4%8E%E5%BB%BA%E8%A8%AD%E5%B8%83%E5%B1%80"
+    },
+    {
+      "fact": "<b>Zoho</b>再追加<b>7500万元</b>投入中国市场，推进京沪数据中心升级与AI算力扩容，并发布出海企业“海鸥计划”。",
+      "signal": "SaaS加码中国",
+      "importance": "normal",
+      "source": "新浪科技",
+      "link": "https://finance.sina.cn/chanjing/gsxw/2026-10-29/detail-iniwvwra6140959.d.html"
+    },
+    {
+      "fact": "<b>宁夏</b>调频里程申报价暂定<b>5—15元/兆瓦</b>，独立储能调频中标总量不超过市场总需求的<b>50%</b>，调频与现货市场独立出清。",
+      "signal": "储能调频有了价",
+      "importance": "normal",
+      "source": "储能网",
+      "link": "https://finance.sina.cn/2026-10-29/detail-iniwwawy6099357.d.html"
+    },
+    {
+      "fact": "<b>瑞科生物REC610</b>的III期试验已完成并获总结报告，适用于40岁及以上成人，采用<b>糖蛋白E</b>抗原与自研佐剂BFA01——离申报更近一步。",
+      "signal": "疱疹疫苗近申报",
+      "importance": "normal",
+      "source": "新浪港股",
+      "link": "https://finance.sina.cn/2026-10-29/detail-iniwwtuv8813449.d.html"
+    },
+    {
+      "fact": "<b>泰坦未来</b>推出国内首款<b>12英寸</b>多晶碳化硅衬底，直径约300毫米，瞄准AI芯片与先进封装的散热瓶颈，是国产散热材料的关键一步。",
+      "signal": "芯片散热国产化",
+      "importance": "normal",
+      "source": "IT之家",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-29/detail-iniwwpnw2780098.d.html"
+    },
+    {
+      "fact": "<b>和黄医药索乐匹尼布</b>获FDA孤儿药资格，用于原发免疫性血小板减少症，若获批可享<b>7年</b>美国市场独占权，其两项上市申请正由国家药监局审评。",
+      "signal": "孤儿药资格添筹码",
+      "importance": "normal",
+      "source": "新浪港股",
+      "link": "https://finance.sina.cn/2026-10-29/detail-iniwvwrf8981926.d.html"
+    },
+    {
+      "fact": "<b>比特币</b>亚洲时段跌破<b>8万美元</b>，24小时加密期货清算达<b>3.56亿美元</b>，10年期美债收益率重回5%上方——风险资产先承压。",
+      "signal": "鹰派按兵压风险",
+      "importance": "normal",
+      "source": "CoinDesk",
+      "link": "https://www.coindesk.com/zh/markets/2026/10/29/bitcoin-dips-below-usd80-000-as-samsung-led-risk-aversion-in-tech-and-a-hawkish-fed-weigh-on-crypto"
+    },
+    {
+      "fact": "<b>百济神州</b>实体瘤数据：肝癌双抗缓解率<b>36%</b>，肺癌PRMT5抑制剂缓解率38.5%，CEA ADC高表达肺癌缓解率高达<b>56%</b>。",
+      "signal": "实体瘤管线齐报喜",
+      "importance": "normal",
+      "source": "新浪港股",
+      "link": "https://finance.sina.cn/hkstock/sckxjfx/2026-10-29/detail-iniwwaxa2821690.d.html"
+    },
+    {
+      "fact": "<b>智原科技</b>获美国客户云端AI芯片开案，基于三星<b>2nm</b>制程，逻辑SoC与定制DRAM垂直堆叠并用混合键合，支持PCIe Gen6。",
+      "signal": "2nm定制开案",
+      "importance": "normal",
+      "source": "电子技术应用",
+      "link": "https://www.chinaaet.com/article/3000181416"
+    }
+  ],
+  "deepdive": {
+    "title": "为什么微软与谷歌的财报分化很重要？",
+    "summary": "同一份云高增长答卷，市场却用自由现金流给两家打了相反的分数——AI竞赛的裁判标准，已经从“长得多快”换成了“烧的钱能不能变回现金”。",
+    "points": [
+      {
+        "heading": "原理拆解",
+        "body": "自由现金流大致等于经营现金流减去资本开支。<b>微软</b>单季资本开支约<b>394亿美元</b>，仍留出<b>186亿美元</b>自由现金流；<b>Alphabet</b>单季资本开支约514亿美元，自由现金流为-90.7亿美元，且连续第二个季度转负，未来支出承诺合计超1万亿美元。"
+      },
+      {
+        "heading": "信息差在哪里",
+        "body": "只看云增速会误判。<b>谷歌云</b>增103%至307亿美元确实亮眼，但核心搜索与广告增长放缓至近五个季度最低，<b>YouTube</b>广告也不及预期，加之SpaceX股权价值变动带来约87亿美元投资亏损，拖累每股收益至2.12美元。"
+      },
+      {
+        "heading": "产业链影响",
+        "body": "当投资者开始为现金流定价，AI基建传导链会分层：能自我造血的云厂商继续扩产，靠转租算力吃饭的租赁商首当其冲承压；企业软件商则被迫证明智能体能省下真金白银，而不只是讲接入故事。"
+      }
+    ],
+    "flow": [
+      {
+        "label": "今天",
+        "sub": "微软Azure增48%、自由现金流186亿美元，盘后涨近3%；Alphabet云增103%却自由现金流-90.7亿美元，盘后跌近10%"
+      },
+      {
+        "label": "关键变量",
+        "sub": "Alphabet全年资本开支指引1950亿—2050亿美元、未来承诺超1万亿美元、谷歌云增速能否维持"
+      },
+      {
+        "label": "连锁反应",
+        "sub": "投资者为现金流定价，算力租赁与企业软件承压，上一周Meta现金流转负后股价重挫已是预演"
+      },
+      {
+        "label": "下一步",
+        "sub": "谷歌云增速、Alphabet自由现金流能否转正、亚马逊与英特尔财报是否同样分化"
+      }
+    ],
+    "compare": {
+      "a": {
+        "title": "此前",
+        "lines": [
+          "只看营收与云增速就追涨",
+          "烧钱多少不算账",
+          "云亮眼等于整体健康"
+        ]
+      },
+      "b": {
+        "title": "之后",
+        "lines": [
+          "先看自由现金流是否转正",
+          "单季开支与未来承诺对照看",
+          "分部亮点与整体现金流分开算"
+        ]
+      }
+    },
+    "takeaway": "看AI军备竞赛不要只盯营收与云增速，要同时看三个变量：自由现金流决定烧钱能否持续，单季资本开支决定投入强度，未来支出承诺决定账单长度。三者同向恶化时，再高的增速也要打折；现金流先转正的一方，才有资格把竞赛拖进下一轮。"
+  }
+}
