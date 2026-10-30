@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-30",
+  "deepdive": {
+    "compare": {
+      "a": {
+        "lines": [
+          "只看币价涨跌判断风险",
+          "交易所规模等于安全",
+          "冻结数与被盗数混为一谈"
+        ],
+        "title": "此前"
+      },
+      "b": {
+        "lines": [
+          "先看托管结构与提币状态",
+          "冻结与赔付承诺分开核对",
+          "大额资产优先自托管"
+        ],
+        "title": "之后"
+      }
+    },
+    "flow": [
+      {
+        "label": "今天",
+        "sub": "币安暂停存取并展开安全检查，经确认冻结25.4亿美元，比特币一度跌破7.8万美元，超18万人爆仓"
+      },
+      {
+        "label": "关键变量",
+        "sub": "提币恢复时间、事后报告中的攻击路径与最终损失数、冻结规模是否继续上升"
+      },
+      {
+        "label": "连锁反应",
+        "sub": "安全事件叠加108.6亿美元期权到期，清算放大，资金向自托管与合规托管迁移"
+      },
+      {
+        "label": "下一步",
+        "sub": "比特币能否守住7.65万至7.7万美元一带，期权到期后波动率是否回落"
+      }
+    ],
+    "points": [
+      {
+        "body": "交易所热钱包是高频出入金的活水口，攻击者得手后平台要同时做三件事：冻结可疑资产、暂停提币止血、与发行方和执法部门追踪资金。<b>币安</b>30日经确认冻结<b>25.4亿美元</b>，并称用户资金安全、将承担全部损失；但冻结数会随追踪继续变化，链上传言的流出规模未经官方确认，不能直接等同于被盗金额。",
+        "heading": "原理拆解"
+      },
+      {
+        "body": "数字打架本身就是信号。市场流传18亿、25.4亿、56亿等多个版本，币安只认经确认的25.4亿冻结数；同一天Deribit约<b>108.6亿美元</b>比特币期权到期、看跌保护需求升温，安全事件与衍生品结算叠加，放大了清算——过去24小时清算达<b>11.12亿美元</b>、超18万人爆仓。",
+        "heading": "信息差在哪里"
+      },
+      {
+        "body": "中心化交易所仍是绝大多数用户的出入口，一次停摆会同时冲击现货、合约与平台币，并把资金推向自托管与合规托管；短期内交易所将加码冷钱包比例、提币风控与准备金披露，监管对大所安全审计的追问也会升温。",
+        "heading": "产业链影响"
+      }
+    ],
+    "summary": "全球最大交易所一夜暂停存取，说明加密市场的系统性风险不在币价，而在托管与出入金的单点上——交易所停摆一天，比币价跌5%更能改变用户行为。",
+    "takeaway": "判断交易所风险不要只看币价与手续费，要同时看三个变量：资产托管结构决定单点失守的冲击范围，冻结与赔付承诺决定损失由谁兜底，提币恢复节奏决定事件是插曲还是信任裂缝。三者中任一含糊，再大的交易量也要打折；先把大额资产放进自托管，才是穿越交易所事件的底线。",
+    "title": "为什么币安这次安全事件很重要？"
+  },
+  "generated_at": "2026-10-30T10:59:18Z",
+  "items": [
+    {
+      "fact": "<b>币安</b>30日暂停存取功能并展开安全检查，经确认已冻结资产<b>25.4亿美元</b>；<b>比特币</b>一度跌破7.8万美元，过去24小时超18万人爆仓——托管单点失守比币价下跌更伤信任。",
+      "importance": "high",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-30/detail-iniwyfvy5602049.d.html",
+      "signal": "交易所安全警钟",
+      "source": "中国基金报"
+    },
+    {
+      "fact": "<b>亚马逊</b>三季度营收<b>2019.4亿美元</b>、同比增12%，<b>AWS</b>增39.3%至459.8亿美元；但单季资本开支772.6亿美元，滚动自由现金流为负423.6亿美元。",
+      "importance": "high",
+      "link": "https://www.mrjjxw.com/articles/2026-10-30/4630171.html",
+      "signal": "云增长难掩烧钱",
+      "source": "每日经济新闻"
+    },
+    {
+      "fact": "<b>英特尔</b>三季度营收<b>165.1亿美元</b>、同比增21%，但四季度指引仅150亿至160亿美元；以色列工厂事故预计拖累营收<b>3亿美元</b>，盘后跌超22%。",
+      "importance": "high",
+      "link": "https://www.21jingji.com/article/20261030/herald/dc57239a6381e361b52a059fbbc60a1f.html",
+      "signal": "指引暴雷拖累芯片",
+      "source": "21财经"
+    },
+    {
+      "fact": "<b>谷歌</b>北京时间30日清晨收盘跌超<b>12%</b>，拖累纳指跌1.38%；<b>Alphabet</b>云增103%但自由现金流为负90.7亿美元——增长放缓正在触发重估。",
+      "importance": "high",
+      "link": "https://finance.sina.cn/usstock/mggd/2026-10-30/detail-iniwyfvy5566391.d.html",
+      "signal": "增长放缓触发重估",
+      "source": "新浪财经"
+    },
+    {
+      "fact": "<b>微软</b>计划发行约<b>250亿美元</b>投资级债券，为2017年以来首次在美发债；市场认购超1000亿美元、超额逾三倍，资金用于AI基建扩张。",
+      "importance": "high",
+      "link": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=e3121030-3124-4c9b-ac75-e6d86d0e0f74",
+      "signal": "发债撑AI扩产",
+      "source": "MoneyDJ"
+    },
+    {
+      "fact": "<b>Mistral</b>开放<b>Large 4</b>权重，总参数1万亿、激活参数约520亿；编程代理指数48%，单任务token消耗比GLM-5.3少47%。",
+      "importance": "high",
+      "link": "https://readhub.cn/topic/8xdgWnpX6Wf",
+      "signal": "开源万亿参数登场",
+      "source": "ReadHub"
+    },
+    {
+      "fact": "<b>闪迪</b>2027财年一季度营收<b>110.31亿美元</b>、同比增378%，<b>数据中心</b>业务48亿美元、同比增1682%——存储涨价周期仍在兑现。",
+      "importance": "normal",
+      "link": "https://www.21jingji.com/article/20261030/herald/2d7a4260bf7abb5a28ae3781087f34ba.html",
+      "signal": "存储涨价兑现业绩",
+      "source": "21财经"
+    },
+    {
+      "fact": "欧盟批准向<b>英飞凌</b>提供<b>3.19亿欧元</b>补贴，建设全球首座300mm氮化镓量产线；项目总投资约11亿欧元，2027年底前产出首批产品。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-30/detail-iniwyncy2385804.d.html",
+      "signal": "氮化镓300mm",
+      "source": "快科技"
+    },
+    {
+      "fact": "<b>国家能源局</b>称前三季度可再生能源发电量<b>3.13万亿千瓦时</b>、占41.8%，光伏装机超煤电；“十五五”算力用电年均新增1000亿千瓦时以上——算电协同进入规划。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/futuremarket/gypzx/2026-10-30/detail-iniwywts5474502.d.html",
+      "signal": "算电协同进入规划",
+      "source": "新浪财经"
+    },
+    {
+      "fact": "<b>上海市</b>提出到2028年工业机器人密度达<b>600台/万人</b>，推动8000台人形机器人进工厂，智能制造装备产业规模突破2000亿元。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-30/detail-iniwyncz8287888.d.html",
+      "signal": "人形机器人进工厂",
+      "source": "财闻"
+    },
+    {
+      "fact": "<b>《时代》周刊</b>2026最佳发明榜单300项入榜，中国企业近30款入选，其中<b>深圳</b>产品11款，涵盖荣耀机器人手机与宇树载人机甲。",
+      "importance": "normal",
+      "link": "https://www.21jingji.com/article/20261030/herald/33c2be32e3247767a1eff8352bdca588.html",
+      "signal": "深圳智造集中登榜",
+      "source": "21财经"
+    },
+    {
+      "fact": "<b>大疆</b>双11开门红以<b>79.7%</b>销量份额居手持智能影像市场第一，云台相机Pocket系列份额达90.9%——一超格局仍在强化。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-30/detail-iniwywtx4682921.d.html",
+      "signal": "手持影像一超独大",
+      "source": "新浪科技"
+    },
+    {
+      "fact": "<b>四川</b>与<b>重庆</b>市场监管部门联合发布“双11”合规提示，要求平台落实商家核验与明码标价，活动页显著设置“商家证照资质”入口。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/2026-10-30/detail-iniwywtx4674883.d.html",
+      "signal": "双11合规先行",
+      "source": "新浪财经"
+    },
+    {
+      "fact": "<b>上海医药</b>前三季度营收<b>2229.64亿元</b>、同比增3.67%，扣非后净利润增25.02%；研发费用15.16亿元，新增13个仿制药获批。",
+      "importance": "normal",
+      "link": "https://www.cs.com.cn/ssgs/01/2026/10/30/detail_2026103010048588.html",
+      "signal": "医药工业稳中有进",
+      "source": "中证网"
+    },
+    {
+      "fact": "<b>麦济生物MG-K10</b>针对6至12岁儿童中重度特应性皮炎的Ib/Ⅱ期临床30日首次公示，登记号CTR20264078，国内目标入组<b>24人</b>。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/2026-10-30/detail-iniwyncy2392071.d.html",
+      "signal": "儿童皮炎新药起步",
+      "source": "新浪财经"
+    },
+    {
+      "fact": "<b>Sierra Club</b>分析称，若美国AI算力项目全部落地，2030年电力行业二氧化碳排放将较2025年上升<b>42%</b>，增加6.18亿吨——算力碳账开始算账。",
+      "importance": "normal",
+      "link": "https://finance.sina.cn/stock/jdts/2026-10-30/detail-iniwzazv4599890.d.html",
+      "signal": "算力碳账开始算账",
+      "source": "IT之家"
+    },
+    {
+      "fact": "<b>甲骨文</b>计划2027年起在OCI云中提供<b>谷歌TPU</b>，成为谷歌之外首家提供该芯片的超大规模云厂商，首批包括训练用TPU 8t与推理用TPU 8i。",
+      "importance": "normal",
+      "link": "https://businesstimescn.com/articles/631819.html",
+      "signal": "芯片开放打破壁垒",
+      "source": "BT财经"
+    },
+    {
+      "fact": "<b>阿尔特</b>从整车研发转向工业AI与具身智能，9月与富士康合资成立机器人公司；已为80余家客户研发近<b>500款</b>车型——汽车厂跨界机器人。",
+      "importance": "normal",
+      "link": "https://www.cs.com.cn/ssgs/01/2026/10/30/detail_2026103010048385.html",
+      "signal": "汽车厂跨界机器人",
+      "source": "中国证券报"
+    },
+    {
+      "fact": "<b>芯德半导体</b>30日起招股，拟全球发售<b>1.07亿股</b>H股，发售价每股8.6至9.6港元，预期11月10日在联交所买卖。",
+      "importance": "normal",
+      "link": "https://k.sina.cn/article_7857201856_1d45362c001908szf2.html?from=finance",
+      "signal": "封测商冲刺港股",
+      "source": "新浪财经"
+    },
+    {
+      "fact": "<b>工业和信息化部</b>重申到2030年全面建成新型信息通信网络、适时启动<b>6G</b>商用；四川实施首批量子和6G重大科技专项，聚焦通感一体化。",
+      "importance": "normal",
+      "link": "https://kimkj.com/zh/ai-board-zh/?mod=document&uid=20271",
+      "signal": "6G商用定时间表",
+      "source": "KIMKJ每日简报"
+    }
+  ]
+}
