@@ -1,0 +1,201 @@
+{
+ "date": "2026-11-01",
+ "generated_at": "2026-11-01T11:06:03Z",
+ "items": [
+  {
+   "fact": "<b>Anthropic</b> IPO估值预期上限从约<b>2万亿美元</b>下修至约<b>1.5万亿美元</b>，三季度营收约168亿美元、环比增约45%，增速放缓——增速一慢，锚就松了。",
+   "signal": "估值预期遭遇下修",
+   "importance": "high",
+   "source": "21经济网",
+   "link": "https://www.21jingji.com/article/20261101/herald/211eb4521e0489c694967ca23e79d44d.html"
+  },
+  {
+   "fact": "<b>币安</b>1日分阶段恢复提款，首批恢复<b>15种</b>代币，含比特币、以太币与USDT、USDC；公司称已补足约<b>95%</b>被盗资产，FBI归因朝鲜黑客。",
+   "signal": "提款恢复修复信任",
+   "importance": "high",
+   "source": "新浪财经",
+   "link": "https://finance.sina.cn/usstock/mggd/2026-11-01/detail-inixfrfw7813019.d.html"
+  },
+  {
+   "fact": "<b>韩国</b>10月出口同比增<b>93.7%</b>至1152.8亿美元创纪录，<b>半导体</b>出口564.4亿美元、同比增259.4%，占出口近一半——芯片仍是出口引擎。",
+   "signal": "半导体拉动出口",
+   "importance": "high",
+   "source": "Asia Daily",
+   "link": "https://cn.asiadaily.org/news/17142/"
+  },
+  {
+   "fact": "<b>中国人民银行</b>宣布自11月2日起每日开展<b>隔夜逆回购</b>招标，固定利率<b>1.25%</b>，7天期改为多重价位中标，短端利率调控正式换锚。",
+   "signal": "短端利率换锚",
+   "importance": "high",
+   "source": "21经济网",
+   "link": "https://www.21jingji.com/article/20261101/herald/10a5a82f44914a30668d3a1527c8bbf8.html"
+  },
+  {
+   "fact": "<b>OpenAI</b>、谷歌、微软与<b>Anthropic</b>共用robots.txt退出规则，一条规则可拒绝四家用于训练；微软2027年2月起执行——内容方终于有了统一开关。",
+   "signal": "训练退出统一规则",
+   "importance": "high",
+   "source": "Pivot News",
+   "link": "https://pivotnews.ai/five/four-ai-companies-say-they-will-honour-a-single-robots-txt"
+  },
+  {
+   "fact": "<b>SK海力士</b>通过美国存托股份募资<b>265亿美元</b>，三星单季营业利润暴增18倍；2026年<b>HBM</b>市场规模预计突破600亿美元，约七成先进存储产能被AI占用。",
+   "signal": "内存产能转向AI",
+   "importance": "high",
+   "source": "中国新闻社",
+   "link": "https://www.21jingji.com/article/20261101/herald/f2a8fa6f29bec6add1fb11defd2d867a.html"
+  },
+  {
+   "fact": "<b>Meta</b>与<b>傅利叶</b>仅用三个月造出人形机器人原型<b>Max</b>，高约1.5米、重约48.1千克，搭载英伟达Thor芯片，9月已启动Max 2研发——大模型开始长手脚。",
+   "signal": "大模型长出双手",
+   "importance": "normal",
+   "source": "IT之家",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-01/detail-inixepuc6892915.d.html"
+  },
+  {
+   "fact": "<b>OpenAI</b>宣布12月起<b>ChatGPT</b>与<b>Codex</b>额度合并不再分池，统一按Token计量，模型越高级、任务越复杂消耗越多，即时对话除外。",
+   "signal": "额度合池按量计费",
+   "importance": "normal",
+   "source": "快科技",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-01/detail-inixetzy1007253.d.html"
+  },
+  {
+   "fact": "<b>宇树科技</b>相关概念数日内反弹超<b>50%</b>，万得物理AI概念指数自10月15日低点涨超25%；<b>摩根大通</b>连升宇树两级至增持，目标价上调至995元。",
+   "signal": "物理AI走向扩产",
+   "importance": "normal",
+   "source": "中国基金报",
+   "link": "https://www.21jingji.com/article/20261101/herald/9a3610487660ae439b383693c3fff50a.html"
+  },
+  {
+   "fact": "<b>三安光电</b>攻克低电阻<b>SiC衬底</b>，平均电阻率降至11mΩ·cm、较传统减半；其800V/15kW原型样机宽负载效率超<b>99.6%</b>，已批量交货——材料决定电源天花板。",
+   "signal": "材料抬升电源效率",
+   "importance": "normal",
+   "source": "新浪科技",
+   "link": "https://finance.sina.cn/tech/2026-11-01/detail-inixeyiw0923332.d.html?vt=4"
+  },
+  {
+   "fact": "<b>北京太空算力创新中心</b>发布全球首个天地一体化<b>太空算力云平台</b>，纳管40余颗卫星算力，与地面CPU、GPU、NPU统一池化调度，支持大模型在轨推理。",
+   "signal": "星地算力统一调度",
+   "importance": "normal",
+   "source": "上海证券报",
+   "link": "https://k.sina.cn/article_5952915705_162d248f906703s6yg.html?from=tech"
+  },
+  {
+   "fact": "全国一体化<b>算力网</b>提速：上海临港风电直连<b>海底数据中心</b>全面商用，甘肃庆阳在建数据中心超1.2万架机柜，智驾大模型迭代从按月压缩到按小时。",
+   "signal": "算力网规模兑现",
+   "importance": "normal",
+   "source": "央视网",
+   "link": "https://finance.sina.cn/2026-11-01/detail-inixferx3089245.d.html"
+  },
+  {
+   "fact": "<b>天猫</b>Token品类成“双十一”新货架，接入<b>DeepSeek</b>、阿里云、智谱、Kimi等厂商，开售首日成交额环比增<b>450%</b>——算力服务开始按零售卖。",
+   "signal": "算力变成零售商品",
+   "importance": "normal",
+   "source": "新华社",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-01/detail-inixeyiz3168552.d.html"
+  },
+  {
+   "fact": "<b>益方生物</b>自研TYK2抑制剂<b>nomelcitinib</b>治疗中重度斑块状银屑病的注册性三期临床达到主要终点，标志着该药开发取得里程碑进展。",
+   "signal": "银屑病迎来里程碑",
+   "importance": "normal",
+   "source": "界面新闻",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-01/detail-inixfkxv3029055.d.html"
+  },
+  {
+   "fact": "亚太在研<b>肥胖药</b>管线达<b>30款</b>，其中21款源自中国；今年已有3款亚太源头肥胖药获批，另有3款中国GLP-1/GIP双靶点药物完成三期待审批——中国源头领跑。",
+   "signal": "中国主导减重管线",
+   "importance": "normal",
+   "source": "BioPharma APAC",
+   "link": "https://www.biobookmedia.com/articles/9163"
+  },
+  {
+   "fact": "<b>北京市</b>印发氢能方案，力争2030年推广<b>燃料电池汽车</b>超1万辆、建成加氢站超40座，全市氢能产业链规模突破<b>400亿元</b>，带动京津冀破千亿。",
+   "signal": "氢能走向规模应用",
+   "importance": "normal",
+   "source": "央视财经",
+   "link": "https://www.21jingji.com/article/20261101/herald/2d8911fc5e0f7af536ce3162b6f9057b.html"
+  },
+  {
+   "fact": "<b>欧阳明高</b>表示，到2030年中国动力电池出货量将在2025年<b>1875GWh</b>基础上接近翻倍，未来十年<b>磷酸铁锂</b>仍主导国内动力与储能市场——成本路线胜出。",
+   "signal": "铁锂锁定成本主线",
+   "importance": "normal",
+   "source": "IT之家",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-01/detail-inixeyiw0972703.d.html"
+  },
+  {
+   "fact": "<b>中国汽车工程学会</b>发布2027年度十大技术趋势：单体<b>400Wh/kg</b>级固态电池进入中试，高级别自动驾驶卡车编队迈入千辆级示范运营，镁合金大铸件小规模应用。",
+   "signal": "固态智驾同步中试",
+   "importance": "normal",
+   "source": "新浪新闻",
+   "link": "https://news.sina.cn/znl/2026-11-01/detail-inixeyix6721018.d.html"
+  },
+  {
+   "fact": "<b>道通智能</b>发布<b>AAGI</b>空地智能品牌，推出AIP底座及三大行业应用平台，让无人机、无人车与机器人围绕同一任务协同作业，覆盖巡检与低空安全。",
+   "signal": "空地协同落地业务",
+   "importance": "normal",
+   "source": "中国证券报",
+   "link": "https://www.cs.com.cn/ssgs/01/2026/11/01/detail_2026110110048946.html"
+  },
+  {
+   "fact": "第140届<b>广交会</b>上<b>AI玩具</b>成焦点：深圳企业AI毛绒玩具会说60多种语言，已获美欧客户数万个订单、排单至12月底——情绪价值正在出海。",
+   "signal": "情绪价值驱动出海",
+   "importance": "normal",
+   "source": "中新社",
+   "link": "https://finance.sina.cn/2026-11-01/detail-inixfkxy7899608.d.html"
+  }
+ ],
+ "deepdive": {
+  "title": "为什么 Anthropic 的 2 万亿美元估值很重要？",
+  "summary": "一家成立仅5年、2026年上半年营收162.86亿美元的模型公司，上市估值预期一度摸到2万亿美元——市场不是在给一家公司定价，而是在给“企业AI能否撑起下一个万亿级现金流”投票。",
+  "points": [
+   {
+    "heading": "原理拆解",
+    "body": "估值逻辑是收入增速、毛利与算力成本曲线的乘积：Anthropic二季度首次实现营业利润9.74亿美元，算力支出占营收比降至48%；但招股书披露的算力协议总额约6370亿美元，未来十年与六家伙伴投入至少5180亿美元且大部分不可取消。"
+   },
+   {
+    "heading": "信息差在哪里",
+    "body": "11月1日的关键不是“要上市”，而是“预期下修”：三季度营收约168亿美元、环比增约45%，增速放缓后部分投资者把上限从2万亿美元砍到1.5万亿美元；同时上半年807亿美元账面净亏损大头是非现金项，调整后净利润为正。"
+   },
+   {
+    "heading": "产业链影响",
+    "body": "若以1.5万亿美元落地，仍是美国AI大模型首家IPO、史上最大募资之一，将重定所有未上市模型公司的锚；它与OpenAI争夺同一批机构资金，OpenAI同日被曝把新一轮融资目标从300亿美元下调至200亿美元。"
+   }
+  ],
+  "flow": [
+   {
+    "label": "10月26日",
+    "sub": "Anthropic递交S-1，计划11月中旬登陆纳斯达克，募资最高约1000亿美元"
+   },
+   {
+    "label": "11月1日",
+    "sub": "三季度增速放缓的消息传出，估值预期上限从2万亿美元下修至1.5万亿美元"
+   },
+   {
+    "label": "11月9日起",
+    "sub": "路演与定价周检验机构真实出价，发行价区间决定最终锚点"
+   },
+   {
+    "label": "上市后",
+    "sub": "看营收增速能否跑赢已经锁死的算力账单"
+   }
+  ],
+  "compare": {
+   "a": {
+    "title": "预期高点时",
+    "lines": [
+     "估值预期摸高2万亿美元",
+     "募资最高约1000亿美元被视为史上最大IPO",
+     "增速叙事压倒成本质疑"
+    ]
+   },
+   "b": {
+    "title": "下修之后",
+    "lines": [
+     "预期上限下修至约1.5万亿美元",
+     "机构开始按增速放缓重新定价",
+     "不可取消算力承诺成为估值核心变量"
+    ]
+   }
+  },
+  "takeaway": "判断天价IPO不要只看营收增速，要同时看三个变量：增速是否放缓、毛利与算力成本曲线是否收敛、不可取消的长期承诺占未来现金流的比重。承诺占比越高，估值对增速下滑的容忍度就越低；收入增长能否跑赢锁死的算力账单，才是关键。"
+ }
+}
