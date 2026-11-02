@@ -1,0 +1,201 @@
+{
+ "date": "2026-11-02",
+ "deepdive": {
+  "compare": {
+   "a": {
+    "lines": [
+     "风险只能通过股票与CDS表达",
+     "租金涨跌没有直接对冲工具",
+     "产能过剩信号滞后于财报"
+    ],
+    "title": "只有股价可对冲时"
+   },
+   "b": {
+    "lines": [
+     "租金曲线成为先行指标",
+     "收入波动可用期权平滑",
+     "扩产节奏反向受租金约束"
+    ],
+    "title": "租金有了衍生品后"
+   }
+  },
+  "flow": [
+   {
+    "label": "11月2日",
+    "sub": "Jump Trading算力衍生品与B300租金数据见报，GPU租金对冲进入视野"
+   },
+   {
+    "label": "租金高位",
+    "sub": "B300每小时7.56美元，年内涨约56%，CoreWeave看跌期权10月交易量创历史新高"
+   },
+   {
+    "label": "对冲落地",
+    "sub": "云厂商买入每小时4美元价格保护的看跌期权，租金跌破约定水平即可获赔"
+   },
+   {
+    "label": "下一步",
+    "sub": "看租金能否守住7美元、续约率与长期租约占比是否改善"
+   }
+  ],
+  "points": [
+   {
+    "body": "Jump Trading的逻辑是，出租英伟达GPU的云厂商买入与租金挂钩的看跌期权，约定每小时4美元的价格保护；英伟达B300算力租赁价年内已涨约56%至每小时7.56美元，租金跌破约定水平即可获赔，相当于给算力收入上了保险。同一篇报道还提到，CoreWeave看跌期权10月交易量创历史新高，说明避险需求已从股票蔓延到算力本身。",
+    "heading": "原理拆解"
+   },
+   {
+    "body": "关键不是“有人炒租金”，而是租金成了AI基建的晴雨表：租金涨说明需求旺，租金跌往往先于订单与续约出问题。看跌期权、信用违约互换与股价看跌期权同步活跃，意味着市场开始用金融工具给“AI资本开支能否回本”定价，而不是只看发布会叙事。",
+    "heading": "信息差在哪里"
+   },
+   {
+    "body": "对数据中心与AI云运营商，衍生品能平滑收入波动、帮助拿到长期融资；对芯片与云厂商，租金曲线会反向影响扩产节奏——租金跌破保护价的区域，就是产能过剩最先暴露的地方；对投资者，GPU租金将成为与财报并行的跟踪指标。",
+    "heading": "产业链影响"
+   }
+  ],
+  "summary": "当AI基建的收入从“卖卡”变成“按小时出租算力收钱”，租金本身就成了一种会涨跌的大宗商品价格——价格会波动，就需要对冲工具，华尔街于是给GPU租金做起了期权。",
+  "takeaway": "判断AI基建周期别只看算力规模，要盯三个变量：租金价格曲线、长期租约占比、客户续约率。租金是先行信号，租约决定收入能锁定多久，续约率决定账面需求是否真实；三者背离时，叙事再热也要先看现金流能否覆盖锁死的成本。",
+  "title": "为什么 GPU 租金能变成金融衍生品很重要？"
+ },
+ "generated_at": "2026-11-02T11:01:45Z",
+ "items": [
+  {
+   "fact": "<b>铠侠</b>2027年产能已全部售出，2028年超<b>50%</b>出货量已有长期协议保障；三星、SK海力士NAND售价2027年分别涨<b>34%</b>和30%——存储涨价周期还在延续。",
+   "importance": "high",
+   "link": "https://www.21jingji.com/article/20261102/herald/2fc642bdba234e7fed4e5d34fc0ea4c6.html",
+   "signal": "NAND涨价延续",
+   "source": "21经济网"
+  },
+  {
+   "fact": "<b>DeepSeek</b>开源编程智能体原型<b>dsh-superagent</b>，开发者可在GitHub或飞书提需求，智能体独立开发并返回代码变更——编程智能体走向更少人工干预。",
+   "importance": "high",
+   "link": "https://cn.technode.com/post/2026-11-02/deepseek-dsh-superagent-coding-agent-prototype/",
+   "signal": "编程智能体自主化",
+   "source": "动点科技"
+  },
+  {
+   "fact": "<b>币安</b>恢复提领后客户累计净提领约<b>36.4亿美元</b>，约占资产2.1%；同期稳定币市值缩水约12亿美元，美国现货比特币ETF单日净流出6.43亿美元。",
+   "importance": "high",
+   "link": "https://news.cnyes.com/news/id/6643847",
+   "signal": "资金撤退快于反弹",
+   "source": "钜亨网"
+  },
+  {
+   "fact": "<b>宁德时代</b>与北汽签署<b>百万辆换电</b>合作，并与德国INTILION达成5年<b>3GWh</b>欧洲储能合作，未来5年在德、瑞、奥部署天恒储能系统。",
+   "importance": "high",
+   "link": "https://finance.sina.cn/fund/etf/2026-11-02/detail-inixicic0564857.d.html",
+   "signal": "换电储能双线出海",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>机器科学</b>完成<b>A2轮数亿元</b>融资，用于迭代通用具身大模型<b>Visics</b>，推进物流、零售、工业场景POC验证与规模化落地——具身智能进入规模验证期。",
+   "importance": "high",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-02/detail-inixiira7303616.d.html",
+   "signal": "具身智能加速落地",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>美团龙猫</b>推出原生多模态大模型<b>LongCat-2.5</b>，总参数达<b>1.6万亿</b>、单次激活约480亿参数，主攻长程智能体任务执行能力。",
+   "importance": "high",
+   "link": "https://www.iimedia.cn/c1088/119408.html",
+   "signal": "长程智能体拼效率",
+   "source": "艾媒网"
+  },
+  {
+   "fact": "<b>康宁杰瑞</b>双抗ADC药物<b>JSKN021</b>的I期临床IND获美国<b>FDA</b>批准，海外开发启动；该药已于2026年6月在中国完成首例患者给药。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-02/detail-inixiiqz0496569.d.html",
+   "signal": "双抗ADC出海",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>Jump Trading</b>成立算力交易部门，设计与GPU租金挂钩的场外衍生品；英伟达<b>B300</b>租金年内涨约<b>56%</b>至每小时7.56美元——算力价格有了对冲工具。",
+   "importance": "high",
+   "link": "https://finance.sina.cn/usstock/mggd/2026-11-02/detail-inixipwy7249061.d.html",
+   "signal": "算力租金金融化",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>腾讯云</b>发布<b>专有云AI套件</b>，模型服务层以私有化MaaS平台TokenHub为核心，汇聚混元、DeepSeek等18款模型，企业一个API Key即可调用。",
+   "importance": "normal",
+   "link": "https://news.iresearch.cn/yx/2026/11/572392.shtml",
+   "signal": "私有AI一站交付",
+   "source": "艾瑞网"
+  },
+  {
+   "fact": "<b>京东</b>政企业务成交额同比增<b>62%</b>，<b>AI采购管家</b>落地70余个场景应用，服务企业客户突破25万家——采购智能体进入规模化应用。",
+   "importance": "normal",
+   "link": "https://news.sina.cn/sx/2026-11-02/detail-inixipwv2227053.d.html",
+   "signal": "采购智能体规模化",
+   "source": "新浪新闻"
+  },
+  {
+   "fact": "<b>前沿生物</b>前三季度营收<b>3.38亿元</b>、同比增226.79%，主要来自与<b>GSK</b>超10亿美元授权合作的许可收入确认，小核酸管线稳步推进。",
+   "importance": "normal",
+   "link": "https://www.cs.com.cn/ssgs/01/2026/11/02/detail_2026110210049070.html",
+   "signal": "小核酸授权兑现",
+   "source": "中国证券报·中证网"
+  },
+  {
+   "fact": "<b>“港澳药械通”</b>指定医疗机构达<b>71家</b>、覆盖内地9市，累计引进港澳已上市药械178种、惠及患者近3万人次——湾区先行先试持续扩围。",
+   "importance": "normal",
+   "link": "https://www.21jingji.com/article/20261102/herald/492233061eacfa7241453e52dd23e903.html",
+   "signal": "湾区先行先试扩围",
+   "source": "21经济网"
+  },
+  {
+   "fact": "<b>科翔股份</b>拟终止惠州大亚湾<b>8GWh</b>钠电项目并计提减值5130.47万元，同日抛出三项AI算力PCB投资合计约<b>85亿元</b>，资本开支转回主业。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/2026-11-02/detail-inixipxc9411433.d.html",
+   "signal": "跨界电池全面退场",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "<b>中科荣熠</b><b>铁基全固态</b>储能技术推进至中试放大阶段，主攻4—100小时长时储能市场，与锂电形成场景互补而非替代——长时储能寻到新路线。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-02/detail-inixiiqx2328854.d.html",
+   "signal": "长时储能寻新路线",
+   "source": "新浪财经"
+  },
+  {
+   "fact": "2026年<b>“互联网之光”</b>博览会在乌镇开幕，<b>671家</b>企业展示1000余项新技术，卫星互联网、<b>6G</b>等首次集中亮相，百余款具身机器人同台展示。",
+   "importance": "normal",
+   "link": "https://www.21jingji.com/article/20261102/herald/3583eb1f652ea64d98afb2424191f7f6.html",
+   "signal": "6G卫星集中亮相",
+   "source": "21经济网"
+  },
+  {
+   "fact": "<b>谷歌</b>与<b>NASA</b>合作开发“机器人医生”，面向深空任务通信延迟场景在舱内自主问诊查体并给出处理办法——AI医生开始走向深空任务。",
+   "importance": "normal",
+   "link": "https://daily.physixfrontier.com/issues/2026-11-02.html",
+   "signal": "AI医生走向深空",
+   "source": "物界前沿"
+  },
+  {
+   "fact": "<b>零跑</b>10月全球交付<b>106127台</b>、同比增51%，连续四个月超10万台；小鹏交付50237台创单月新高，蔚来、理想同比双双下滑。",
+   "importance": "normal",
+   "link": "https://www.21jingji.com/article/20261102/herald/e9d6b209ce9c2290f65d22b704ae4c41.html",
+   "signal": "新势力座次重排",
+   "source": "21经济网"
+  },
+  {
+   "fact": "<b>工信部</b>数据显示前三季度软件业务收入<b>118031亿元</b>、同比增8.4%，其中集成电路设计收入同比增<b>23.3%</b>，增速显著高于行业整体水平。",
+   "importance": "normal",
+   "link": "https://k.sina.cn/article_5953190046_162d6789e06703w4h0.html?from=tech",
+   "signal": "IC设计领跑软件",
+   "source": "新浪新闻"
+  },
+  {
+   "fact": "<b>美联储</b>10月会议以10票对2票维持利率<b>3.75%—4%</b>不变，欧洲央行维持关键利率不变，加拿大央行三年来首次加息至2.5%——全球央行路径分化。",
+   "importance": "normal",
+   "link": "https://www.21jingji.com/article/20261102/herald/ce4562cadd108dff3d600625d978b7da.html",
+   "signal": "全球央行路径分化",
+   "source": "21经济网"
+  },
+  {
+   "fact": "据<b>OpenRouter</b>测算，上周大模型总调用量<b>194万亿Token</b>，中国模型99.55万亿、连续<b>二十七周</b>超美国，DeepSeek V4.1 Flash居首。",
+   "importance": "normal",
+   "link": "https://finance.sina.cn/stock/jdts/2026-11-02/detail-inixiira7262205.d.html",
+   "signal": "中国调用量领跑",
+   "source": "新浪科技"
+  }
+ ]
+}
