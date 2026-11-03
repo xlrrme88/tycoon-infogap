@@ -1,0 +1,201 @@
+{
+ "date": "2026-11-03",
+ "deepdive": {
+  "compare": {
+   "a": {
+    "lines": [
+     "旗舰模型只以API出租使用",
+     "中小团队拿不到顶级权重",
+     "护城河靠模型本身维持"
+    ],
+    "title": "闭源API时代"
+   },
+   "b": {
+    "lines": [
+     "万亿权重可下载微调部署",
+     "许可与生态决定底座地位",
+     "竞争转向数据算力与服务"
+    ],
+    "title": "万亿开源时代"
+   }
+  },
+  "flow": [
+   {
+    "label": "10月6日",
+    "sub": "Mistral Large 4以API预览亮相，随后三周强化学习提升编码与推理"
+   },
+   {
+    "label": "11月3日",
+    "sub": "1万亿参数权重在Hugging Face以修订版MIT许可开放下载"
+   },
+   {
+    "label": "同周",
+    "sub": "Meta Muse Spark Open与美团LongCat-2.5相继出现，万亿开源成常态"
+   },
+   {
+    "label": "下一步",
+    "sub": "看独立基准排名、微调应用增速与闭源旗舰是否降价回应"
+   }
+  ],
+  "points": [
+   {
+    "body": "Mistral Large 4是混合专家架构，总参数约1万亿、单次激活仅约490亿，推理成本不随总参数线性膨胀；它以8位FP8格式发布，并提供面向Blackwell的NVFP4版本，降低了本地部署门槛。",
+    "heading": "原理拆解"
+   },
+   {
+    "body": "关键不是参数数字本身，而是许可与生态：修订版MIT许可允许商用改造，Hugging Face分发让中小团队无需谈判就能拿到旗舰级底座，闭源厂商的护城河被迫从模型本身转向数据、算力与服务。",
+    "heading": "信息差在哪里"
+   },
+   {
+    "body": "对芯片与云厂商，开放权重带来更多本地推理与私有化部署需求；对应用厂商，底座成本下降加速智能体与具身场景落地；对欧洲，Mistral证明非美国厂商也能在顶级开源赛道立足。",
+    "heading": "产业链影响"
+   }
+  ],
+  "summary": "当1万亿参数的模型可以被任何人下载、微调和部署时，大模型的竞争就从“谁的API更强”变成了“谁的权重更能成为行业默认底座”——开源权重正在成为新的平台权力。",
+  "takeaway": "判断开源模型价值别只看参数规模，要盯三个变量：激活参数决定的推理成本、可商用许可决定的改造自由度、生态分发决定的微调与应用增速。成本、许可、生态三者同时占优的权重，才可能成为行业默认底座。",
+  "title": "为什么 万亿参数模型走向开源很重要？"
+ },
+ "generated_at": "2026-11-03T11:00:00Z",
+ "items": [
+  {
+   "fact": "<b>Mistral</b>开放<b>Large 4</b>权重，总参数约<b>1万亿</b>、单次激活约490亿，原生多模态混合专家模型以修订版MIT许可发布——欧洲最大开放权重模型上线。",
+   "importance": "high",
+   "link": "https://www.technology.org/2026/11/03/mistral-large-4-open-weights-hugging-face-modified-mit/",
+   "signal": "万亿参数开源竞赛",
+   "source": "Technology.org"
+  },
+  {
+   "fact": "<b>智谱AGIBOT</b>发布具身模型<b>GO-3 Preview</b>，基于<b>WRAM</b>架构在三项具身基准均居第一，承诺2026年底前全面开源——具身模型开源提速。",
+   "importance": "high",
+   "link": "https://aapnews.aap.com.au/aapreleases/cision20261102AE87486",
+   "signal": "具身模型开源提速",
+   "source": "AAP News"
+  },
+  {
+   "fact": "<b>Anthropic</b>与美国防部就<b>Claude</b>军用限制僵持，CEO须在周五前接受条件，否则面临合作终止——AI军用红线博弈进入摊牌时刻。",
+   "importance": "high",
+   "link": "https://www.megasignal.ca/american-defense-convenes-crucial-talks-with-ai-firm-over-ai-model-restrictions/",
+   "signal": "AI军用红线博弈",
+   "source": "MegaSignal"
+  },
+  {
+   "fact": "<b>澳洲央行</b>以6票对3票加息<b>25个基点</b>至<b>4.85%</b>，为年内第五次加息、2008年以来最高，通胀预期上修至未来一年高于3%。",
+   "importance": "high",
+   "link": "https://www.morningstar.com/news/dow-jones/2026110369/rba-raises-interest-rates-to-highest-level-in-18-years-update",
+   "signal": "全球紧缩最后孤岛",
+   "source": "Morningstar"
+  },
+  {
+   "fact": "<b>三星</b>泰勒二厂将用<b>2纳米</b>工艺为AMD与英伟达生产<b>HBM</b>基底晶片，本月开工、2029年装机、2030年量产——HBM产能美洲布局。",
+   "importance": "high",
+   "link": "https://www.tradingview.com/news/reuters.com,2026:newsml_L2N46K0BX:0-samsung-to-make-amd-nvidia-chip-parts-at-second-texas-plant-maeil-business-reports/",
+   "signal": "HBM美洲布局",
+   "source": "TradingView"
+  },
+  {
+   "fact": "<b>Salesforce</b>签署收购<b>Cresta</b>协议，据称作价约<b>27亿美元</b>，其语音智能体已服务万豪等企业客户，预计2028财年一季度完成。",
+   "importance": "high",
+   "link": "https://dealroom.co/news/168989-salesforce-to-buy-voice-ai-startup-cresta-for-2-7b/",
+   "signal": "语音智能体整合",
+   "source": "Dealroom"
+  },
+  {
+   "fact": "<b>CrowdStrike</b>同日收购<b>Fiddler AI</b>与Dreadnode，前者并入Falcon Observe做智能体可观测，后者做AI红队测试。",
+   "importance": "high",
+   "link": "https://dealroom.co/news/169104-crowdstrike-buys-fiddler-to-give-enterprises-a-flight-recorder-for-ai-ag/",
+   "signal": "智能体安全全链路",
+   "source": "Dealroom"
+  },
+  {
+   "fact": "<b>Zalando</b>推出<b>Zalando Extended</b>，AI智能体可在应用内代客跨店比价下单，试点联手Westwing，三季度营收同比增5.1%至31.7亿欧元。",
+   "importance": "high",
+   "link": "https://www.retailgazette.co.uk/blog/2026/11/zalando-beats-sales-expectations-with-profit-rise-and-ai-shopping-push/",
+   "signal": "代理式电商抢入口",
+   "source": "Retail Gazette"
+  },
+  {
+   "fact": "<b>中科宇航</b>力箭二号Y2将<b>18颗</b>千帆卫星送入极轨，星座累计发射达<b>274颗</b>，为力箭二号首次大规模星座组网任务。",
+   "importance": "normal",
+   "link": "http://english.scio.gov.cn/chinavoices/2026-11/03/content_118759563.html",
+   "signal": "商业航天组网加速",
+   "source": "新华网英文版"
+  },
+  {
+   "fact": "<b>Teva</b>与三星生物达成协议，获得两款FDA已批免疫<b>生物类似药</b>美国商业化权，依那西普类似药交割时转让，英夫利昔单抗类似药2027年三季度转让。",
+   "importance": "normal",
+   "link": "https://www.morningstar.com/news/globe-newswire/1001301465/teva-and-samsung-bioepis-announce-agreement-to-commercialize-two-fda-approved-biosimilars-in-the-us",
+   "signal": "生物类似药整合",
+   "source": "Morningstar"
+  },
+  {
+   "fact": "北京市“十五五”新型能源规划提出推动<b>固态</b>、<b>液流</b>电池研发与系统集成，新型储能装机达<b>60万千瓦</b>，当日电池板块盘中涨3.28%。",
+   "importance": "normal",
+   "link": "https://www.21jingji.com/article/20261103/herald/aa213f695aa6213cf4b66978cfbe8733.html",
+   "signal": "储能技术路线押注",
+   "source": "21经济网"
+  },
+  {
+   "fact": "<b>亚马逊</b>、Alphabet、Meta、微软三季度资本开支合计约<b>2019亿美元</b>，同比翻倍有余，亚马逊过去12个月自由现金流为负424亿美元——AI基建现金流承压。",
+   "importance": "normal",
+   "link": "https://www.altcoinbuzz.io/big-tech-ai-spending-cash-flow-pressure-2026",
+   "signal": "AI基建承压",
+   "source": "AltcoinBuzz"
+  },
+  {
+   "fact": "韩系<b>HBM</b>被曝经服务器整机流入中国，单颗<b>HBM3E</b>报价约4000美元，华为Ascend 960DT被称高度依赖韩系存储，计划2027年一季度上市。",
+   "importance": "normal",
+   "link": "https://www.tokenpost.com/news/technology/47514",
+   "signal": "存储管制灰色通道",
+   "source": "TokenPost"
+  },
+  {
+   "fact": "<b>寒武纪</b>称AI设计的<b>Qimeng-2</b>已可比十余年前主流手机CPU，2021年Qimeng-1仅相当于486水平，华为曾为其架构支付约2亿元许可费。",
+   "importance": "normal",
+   "link": "https://www.trendforce.com/news/2026/11/03/news-ai-designed-cpus-match-decade-old-smartphone-chips-cambricon-co-founder-says-ai-also-reshapes-materials-equipment/",
+   "signal": "AI设计芯片跃升",
+   "source": "TrendForce"
+  },
+  {
+   "fact": "韩国机械研究院启用首座<b>人形机器人数据工厂</b>，首期<b>12台</b>机器人、约1000平方米，计划扩至25台，遥操作采集家务动作数据训练行动模型。",
+   "importance": "normal",
+   "link": "https://www.ajupress.com//view/20261103143728182",
+   "signal": "人形数据工业化",
+   "source": "AJU Press"
+  },
+  {
+   "fact": "<b>谷歌</b>捣毁<b>XCPE</b>机顶盒僵尸网络，超<b>130万台</b>设备被植入后门牟利，谷歌已切断其指挥控制域名并禁止涉事厂商再生产认证设备。",
+   "importance": "normal",
+   "link": "https://www.advanced-television.com/2026/11/03/google-shuts-the-door-on-xcpe-botnet/",
+   "signal": "供应链后门遭清算",
+   "source": "Advanced Television"
+  },
+  {
+   "fact": "国家药监局新批<b>阿舒克森片</b>等4款创新药，拜耳卒中新药通过优先审评用于降低缺血性卒中风险，两款药物经优先审评程序获批。",
+   "importance": "normal",
+   "link": "https://k.sina.cn/article_5952915720_162d24908067053tvo.html?from=health",
+   "signal": "创新药审评提速",
+   "source": "中国医药报"
+  },
+  {
+   "fact": "美国<b>OCC</b>最终确定支付稳定币规则，2027年<b>1月18日</b>生效，覆盖储备与赎回；欧洲则要求3个月内处理非MiCA合规稳定币既有敞口。",
+   "importance": "normal",
+   "link": "https://tgaged.com/us-stablecoin-rule-is-final-but-key-genius-act-requirements-start-january-18/",
+   "signal": "稳定币合规大限",
+   "source": "TGaged"
+  },
+  {
+   "fact": "中国<b>AI推理</b>数据量首次超过训练，全国已建成<b>500多家</b>卓越级智能工厂，覆盖超80%制造业大类，国产大模型在20个行业落地1000多个场景。",
+   "importance": "normal",
+   "link": "https://www.cenr.com.cn/kj/ydhl/2026/11/03/236124.html",
+   "signal": "AI落地压倒训练",
+   "source": "中国企业报道"
+  },
+  {
+   "fact": "国家发展改革委称“十五五”末新兴支柱产业产值有望超<b>10万亿元</b>，去年已近6万亿元，前三季度集成电路产量4428亿块、同比增23.3%。",
+   "importance": "normal",
+   "link": "https://www.cs.com.cn/xwzx/01/2026/11/03/detail_2026110310049494.html",
+   "signal": "新兴产业规模翻番",
+   "source": "中证网"
+  }
+ ]
+}
