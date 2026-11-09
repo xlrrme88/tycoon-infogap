@@ -1,0 +1,201 @@
+{
+ "date": "2026-11-09",
+ "deepdive": {
+  "compare": {
+   "a": {
+    "lines": [
+     "存储三巨头定价，买家排队等配额",
+     "芯片设计迭代以6–9个月计",
+     "算力、存储、能源分属不同供应商"
+    ],
+    "title": "此前"
+   },
+   "b": {
+    "lines": [
+     "特斯拉自建百万片级存储产能",
+     "设计迭代目标压缩到数周",
+     "算力+存储+能源走向垂直整合"
+    ],
+    "title": "之后"
+   }
+  },
+  "flow": [
+   {
+    "label": "11月6日放风",
+    "sub": "马斯克在Baron投资年会称Terafab投资规模可能高达1万亿美元"
+   },
+   {
+    "label": "产能目标曝光",
+    "sub": "日经消息称Terafab向设备商提出2032年月产100万片晶圆，其中70万片存储"
+   },
+   {
+    "label": "分工浮现",
+    "sub": "英特尔协助逻辑芯片（2nm/1.4nm），存储或由台企提供技术合作"
+   },
+   {
+    "label": "近端节点",
+    "sub": "2027年中首颗SRAM测试芯片，2028年三季度启动量产"
+   }
+  ],
+  "points": [
+   {
+    "body": "AI训练与推理的瓶颈已从算力转向存储带宽与供给：HBM吃掉大量晶圆产能，传统DRAM现货被挤压涨价；特斯拉的Optimus与SpaceX太空数据中心都需要海量高带宽存储，长期外购等于把命脉交给三星、SK海力士与美光三家。Terafab把存储与逻辑芯片放在同一个园区、用同一套快速迭代节奏生产，目标是把芯片设计迭代周期从6–9个月压缩到数周。",
+    "heading": "原理拆解"
+   },
+   {
+    "body": "多数人把Terafab当成马斯克又一个远期画饼，但关键变量是时间表与产能口径：2032年月产70万片存储已对标三星现有全部DRAM产能，而2027年中首颗SRAM测试芯片、2028年三季度量产是可验证的近端节点；英特尔以2nm/1.4nm协助逻辑芯片、台企或参与存储合作，说明这不是一家公司的独角戏，而是美国本土供应链的一次合谋。",
+    "heading": "信息差在哪里"
+   },
+   {
+    "body": "存储三巨头的定价权面临长期挑战；半导体设备商迎来一个潜在的百万片级新客户；若Terafab模式跑通，“算力+存储+能源”垂直整合会成为AI巨头的标配，代工与存储的分工边界将被重写。",
+    "heading": "产业链影响"
+   }
+  ],
+  "summary": "特斯拉造存储不是跨界，而是把AI算力最大的瓶颈——存储，从外购变成自产。",
+  "title": "为什么特斯拉要自己造存储芯片很重要？"
+ },
+ "generated_at": "2026-11-09T11:00:45Z",
+ "items": [
+  {
+   "fact": "10月<b>非农就业</b>新增<b>16.5万人</b>，远超预期的6.5万人，<b>失业率</b>降至4.1%，市场对美联储12月加息25个基点的预期升至约80%——就业强劲反成加息理由。",
+   "importance": "high",
+   "link": "https://en.infomaxai.com/news/articleView.html?idxno=147572",
+   "signal": "加息预期再升温",
+   "source": "联合Infomax"
+  },
+  {
+   "fact": "特斯拉与SpaceX合推的<b>Terafab</b>传出目标：2032年起月产100万片晶圆，其中<b>70万片</b>为存储芯片，规模接近三星现有<b>DRAM</b>月产能——存储巨头迎来新对手。",
+   "importance": "high",
+   "link": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=f7a5605a-20be-496b-b4c0-923d66a10c69",
+   "signal": "存储进入垂直整合",
+   "source": "MoneyDJ理財網"
+  },
+  {
+   "fact": "腾讯<b>混元Hy4</b>正式版总参数770B、上下文100万Token，新增视觉理解与电脑操作；<b>甲骨文</b>取消与腾讯约70亿美元芯片租赁协议，国产芯片单卡吞吐量提至5倍。",
+   "importance": "high",
+   "link": "https://www.21jingji.com/article/20261109/herald/dab01ccb675477e86de071680fb42954.html",
+   "signal": "开源模型拼落地",
+   "source": "21经济网"
+  },
+  {
+   "fact": "Zama分拆的<b>Raycash</b>在以太坊主网上线私人测试版，用全同态加密让余额与交易金额全程保密，已有<b>7.5万人</b>加入候补名单——链上隐私终于有了零售产品。",
+   "importance": "high",
+   "link": "https://www.theblock.co/news/defi/2026-11-09-zama-spin-off-raycash-launches-confidential-stablecoin-payments-private-yield-ethereum-435909",
+   "signal": "隐私支付上主网",
+   "source": "The Block"
+  },
+  {
+   "fact": "中期选举后，民调显示56%登记选民反对本地建数据中心，今年<b>2600亿美元</b>规划投资被取消；<b>OpenAI</b>融资目标从300亿下调至200亿美元——算力扩张撞上选票墙。",
+   "importance": "high",
+   "link": "https://www.mrjjxw.com/articles/2026-11-09/4642201.html",
+   "signal": "算力红利重分配",
+   "source": "每日经济新闻"
+  },
+  {
+   "fact": "国家药监局批准艺妙神州<b>赛泊华</b>上市，用于复发或难治性大B细胞淋巴瘤，这是国内第<b>10款CAR-T</b>产品，3个月客观缓解率58.3%——国产细胞治疗再下一城。",
+   "importance": "high",
+   "link": "https://www.zyzhan.com/news/detail/100766.html",
+   "signal": "CAR-T再扩围",
+   "source": "制药网"
+  },
+  {
+   "fact": "今年双11被称首届<b>AI双11</b>：阿里千问以30亿免单补贴触达近<b>1.3亿</b>用户，豆包月活超4亿；巨量引擎宣布2027年起取消代理商返点——AI从导购工具变成大促主角。",
+   "importance": "high",
+   "link": "https://m.ebrun.com/718575.html",
+   "signal": "AI改写大促打法",
+   "source": "亿邦动力"
+  },
+  {
+   "fact": "港股大模型双雄齐升，智谱一度升逾6%，<b>MiniMax</b>升逾4%；中国移动云与<b>智谱</b>签约，GLM模型接入移动云平台，MiniMax年化收入已超8亿美元。",
+   "importance": "normal",
+   "link": "https://www.tradingkey.com/zh-hans/news/stocks/262295258-",
+   "signal": "大模型转入变现",
+   "source": "TradingKey"
+  },
+  {
+   "fact": "美光演示全球首款<b>512GB DDR5</b>模组，速率达9200 MT/s，AMD与英特尔均在验证，单台服务器最高可配<b>12TB</b>内存——AI数据中心的内存天花板又抬高了。",
+   "importance": "normal",
+   "link": "https://evertiq.com/news/2026-11-09-micron-advances-memory-innovation-with-ultra-dense-module-for-servers",
+   "signal": "内存冲向12TB",
+   "source": "Evertiq"
+  },
+  {
+   "fact": "创见与威刚同日示警<b>DRAM</b>取得量不足，预计四季度至明年一季度可得量逐季下滑，DDR5最为吃紧，压力来自<b>HBM</b>与长约提前锁定大量晶圆产能。",
+   "importance": "normal",
+   "link": "https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=e1485de7-5282-40d9-b94a-8f0d1d48e4a5",
+   "signal": "存储缺货蔓延",
+   "source": "MoneyDJ理財網"
+  },
+  {
+   "fact": "荃信生物与Caldera就<b>TL1A/IL-17双抗</b>达成授权，获3000万美元首付款，最高7.5亿美元里程碑付款；2025年收入同比增<b>408.2%</b>，实现扭亏。",
+   "importance": "normal",
+   "link": "https://www.zyzhan.com/news/detail/100770.html",
+   "signal": "自免双抗出海提速",
+   "source": "制药网"
+  },
+  {
+   "fact": "Ignitis在拉脱维亚的<b>174MW</b>光伏电站投运，28.2万块组件可供8.5万户用电，同一场址在建<b>107MW/215MWh</b>储能——光伏配储能已成新项目标配。",
+   "importance": "normal",
+   "link": "https://www.pv-magazine.com/2026/11/09/latvia-switches-on-174-mw-of-solar/",
+   "signal": "光储一体成标配",
+   "source": "pv magazine"
+  },
+  {
+   "fact": "日本千葉县把本地生产的碘变成<b>钙钛矿</b>电池的区域筹码，千葉大学已在农田上方启动柔性薄膜钙钛矿试验，机构预测2026年全球钙钛矿市场达<b>1088亿日元</b>、同比增2.3倍。",
+   "importance": "normal",
+   "link": "https://now.solar/2026/11/09/chiba-pins-hopes-on-iodine-for-perovskite-solar-cell-production-朝日新聞/",
+   "signal": "钙钛矿抢碘资源",
+   "source": "朝日新闻"
+  },
+  {
+   "fact": "阿联酋数字银行<b>Liv</b>将央行注册的首个美元稳定币<b>USDU</b>接入银行App，由1:1美元储备支撑并接受月度审计，同步推出三个月零费率推广。",
+   "importance": "normal",
+   "link": "https://mid-east.info/liv-by-emirates-nbd-universal-and-aquanow-to-deliver-the-first-integration-of-a-cbuae-registered-usd-backed-stablecoin-into-the-uae-digital-banking-ecosystem/",
+   "signal": "稳定币进银行",
+   "source": "mid-east.info"
+  },
+  {
+   "fact": "被裁开发者发起<b>OccupySaaS</b>，发布开源项目<b>ZeroAuthy</b>替代Auth0、SalesCompel替代Salesforce，均可自托管——开源平替来了。",
+   "importance": "normal",
+   "link": "https://www.it-daily.net/shortnews/occupysaas-baut-open-source-ersatz",
+   "signal": "开源平替SaaS",
+   "source": "IT Daily"
+  },
+  {
+   "fact": "电视剧<b>《重庆号》</b>创意诞生于10年前，如今借助<b>AI</b>、虚拟制作与真人实拍混制终于具备拍摄条件，于11月7日开机；AIGC已能独立生产长视频内容并登陆主流大屏。",
+   "importance": "normal",
+   "link": "http://news.youth.cn/sh/202611/t20261109_16956432.htm",
+   "signal": "AI让旧剧本复活",
+   "source": "中国青年网"
+  },
+  {
+   "fact": "11月9日亚洲时段，黄金在上周五小幅回落后反弹逾1%，盘中最高触及<b>4134.27美元</b>，重新站上<b>4100美元</b>关口，市场目光转向10日公布的美国10月CPI。",
+   "importance": "normal",
+   "link": "https://www.tradingkey.com/th/news/economic-indicator/262295725-fxstreet",
+   "signal": "避险资金回流金市",
+   "source": "TradingKey"
+  },
+  {
+   "fact": "<b>NXP</b>发布模块化机器人平台，开发者开箱<b>30分钟</b>即可实现无人机初步功能，预集成软件可把子系统集成验证从数月缩短至数天或数周——机器人开发门槛再降一档。",
+   "importance": "normal",
+   "link": "https://www.unite.ai/zh-cn/nxp-launches-modular-robotics-platform-for-physical-ai-development/",
+   "signal": "机器人开发降门槛",
+   "source": "Unite.AI"
+  },
+  {
+   "fact": "瑞士Embodied AI发布轮式人形机器人AIR，工业线缆处理试验可靠率<b>98%</b>，通常一个月内从人类遥操作示范中学会自主作业，CE认证计划于<b>2027年</b>完成。",
+   "importance": "normal",
+   "link": "https://aimagazine.com/news/embodied-ais-air-wheeled-humanoid-built-for-factory-floors",
+   "signal": "人形机器人进工厂",
+   "source": "AI Magazine"
+  },
+  {
+   "fact": "特斯拉<b>Robotaxi</b>自11月9日凌晨5点起在圣安东尼奥上线，德州第五城、全美第九城；第三方统计其无监督覆盖人口已达<b>420万人</b>，占全美约1.2%。",
+   "importance": "normal",
+   "link": "https://fourweekmba.com/ai-tesla-robotaxi-opens-in-san-antonio-its-fifth-texas-city/",
+   "signal": "无人出租扩至九城",
+   "source": "FourWeekMBA"
+  }
+ ],
+ "takeaway": "AI基础设施的瓶颈正在从芯片算力转向存储与电力：谁手里有高带宽存储的稳定供给与便宜电力，谁就有持续扩算力的底气。判断方法：盯住三组变量——存储现货价与长约占比、数据中心电力审批进度、巨头自建产能的流片节点。"
+}
